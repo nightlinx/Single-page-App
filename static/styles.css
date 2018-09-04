@@ -1,0 +1,35 @@
+.maingrid {
+  display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 120px auto;
+    grid-template-areas:
+       "header header header"
+       "navigation main aside"
+}
+
+.maingrid > * {
+  border: 1px solid black;
+}
+
+
+.maingrid > header {
+    grid-area: header;
+}
+
+.maingrid > nav {
+    grid-area: navigation;
+    min-height: 500px;
+}
+
+.maingrid >  main {
+    grid-area: main;
+}
+
+.maingrid > aside {
+    grid-area: aside;
+}
+
+body {
+  margin: 100px;
+}
