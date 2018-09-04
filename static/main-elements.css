@@ -27,12 +27,12 @@ h1 {
   font-size: 22px;
 }
 
-input[type="text"]:hover, input[type="number"]:hover, input[type="text"]:focus, input[type="number"]:focus {
+input[type="text"]:hover, input[type="number"]:hover, select:hover, input[type="text"]:focus, input[type="number"]:focus, select:focus {
   opacity: 0.9;
 }
 
 
-input[type="text"], input[type="number"]{
+input[type="text"], input[type="number"], select{
   padding: 5px 10px;
   border-radius: 3px;
   border: none;
@@ -40,6 +40,19 @@ input[type="text"], input[type="number"]{
   font-family: Rokkitt;
   width: 120px;
 }
+
+select#job {
+  width: 150px;
+}
+
+.label > select {
+  width: 150px;
+}
+
+.input > select {
+  width: 70px;
+}
+
 
 form > div {
   display: inline-block;
