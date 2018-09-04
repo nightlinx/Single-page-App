@@ -1,12 +1,13 @@
 .maingrid {
   display: grid;
-    grid-gap: 10px;
-    max-width: 1190px;
-    grid-template-columns: 250px auto% 250px;
-    grid-template-rows: 80px auto;
-    grid-template-areas:
-       "header header header"
-       "navigation main aside"
+  margin: auto;
+  grid-gap: 10px;
+  max-width: 1190px;
+  grid-template-columns: 250px auto% 250px;
+  grid-template-rows: 80px auto;
+  grid-template-areas:
+     "header header header"
+     "navigation main aside"
 }
 
 .maingrid > * {
@@ -14,7 +15,7 @@
   background-color: black;
   color: white;
   border-radius: 5px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .maingrid > nav, .maingrid > aside {
@@ -22,6 +23,7 @@
 }
 
 .maingrid > header {
+    text-transform: uppercase;
     grid-area: header;
     background: #76D7B4;
     color: #35775F;
@@ -43,11 +45,31 @@
     background-color: #404959;
 }
 
-.maingrid > nav > button {
+.maingrid > aside > div#summarise, .maingrid > aside > div#img{
+  padding: 10px;
+  background-color: black;
+  opacity: 0.7;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.maingrid > aside > div#img{
+  margin-bottom: 20px;
+  height: 170px;
+}
+
+.maingrid > aside > div > p{
+  margin: 0;
+}
+
+.maingrid > nav > button, .maingrid > aside > button {
   padding: 10px;
   width: 180px;
   height: 70px;
   margin: 10px 10px 30px 10px;
+}
+
+.maingrid > nav > button {
   background-color: #224C3D;
   color: white;
 }
@@ -62,10 +84,6 @@
 }
 
 .maingrid > aside > button {
-  padding: 10px;
-  width: 180px;
-  height: 70px;
-  margin: 10px 10px 30px 10px;
   background-color: #442916;
   color: white;
 }
