@@ -38,6 +38,7 @@
     min-width: 420px;
     max-width: 810px;
     background-color: #071020;
+    padding: 0;
 }
 
 .maingrid > aside {
