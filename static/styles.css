@@ -10,8 +10,11 @@
 }
 
 .maingrid > * {
-  border: 1px solid black;
   padding: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  opacity: 0.8;
 }
 
 .maingrid > nav, .maingrid > aside {
@@ -20,6 +23,8 @@
 
 .maingrid > header {
     grid-area: header;
+    background: #76D7B4;
+    color: #35775F;
 }
 
 .maingrid > nav {
@@ -30,20 +35,12 @@
     grid-area: main;
     min-width: 420px;
     max-width: 810px;
+    background-color: #071020;
 }
 
 .maingrid > aside {
     grid-area: aside;
-}
-
-body {
-  margin: 100px 180px;
-}
-
-button {
-  border-radius: 5px;
-  cursor: pointer;
-  display: block;
+    background-color: #404959;
 }
 
 .maingrid > nav > button {
@@ -51,8 +48,29 @@ button {
   width: 180px;
   height: 70px;
   margin: 10px 10px 30px 10px;
+  background-color: #224C3D;
+  color: white;
+}
+
+.maingrid > nav > button:hover {
+  background-color: #79C28D;
+  color: #29483D;
 }
 
 .maingrid > nav > button#last {
   margin-bottom: 10px;
+}
+
+.maingrid > aside > button {
+  padding: 10px;
+  width: 180px;
+  height: 70px;
+  margin: 10px 10px 30px 10px;
+  background-color: #442916;
+  color: white;
+}
+
+.maingrid > aside > button:hover {
+  background-color: #7E583C;
+  color: #442916;
 }

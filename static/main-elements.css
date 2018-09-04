@@ -1,0 +1,22 @@
+body {
+  margin: 100px 180px;
+  background-image: url("img/cthulhu.jpg");
+  background-size: cover;
+}
+
+button {
+  border-radius: 3px;
+  cursor: pointer;
+  display: block;
+  border: none;
+}
+
+.maingrid > header {
+  font-size: 30px;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 0px;
+  text-align: center;
+}
