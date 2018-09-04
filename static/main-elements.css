@@ -9,7 +9,6 @@ button {
   font-family: Rokkitt;
   border-radius: 3px;
   cursor: pointer;
-  display: block;
   border: none;
   text-transform: uppercase;
   letter-spacing: 0.8px;

@@ -38,7 +38,23 @@
     min-width: 420px;
     max-width: 810px;
     background-color: #071020;
-    padding: 0;
+    padding: 0 15px 25px 15px;
+}
+
+form > div > button{
+    font-size: 14px;
+    background-color: #D8CD6D;
+    height: 25px;
+}
+
+form > div > button:hover{
+    font-size: 14px;
+    background-color: #F1E89C;
+}
+
+.maingrid >  main > p.note{
+    font-size: 14px;
+    text-align: center;
 }
 
 .maingrid > aside {
@@ -73,6 +89,7 @@
 .maingrid > nav > button {
   background-color: #224C3D;
   color: white;
+  display: block;
 }
 
 .maingrid > nav > button:hover {

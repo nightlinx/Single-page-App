@@ -21,6 +21,7 @@
         <button id="last">Wygląd</button>
       </nav>
       <main>
+        <!--
         <h1>Informacje o postaci</h1>
         <form>
           <div class="label"> Imię Badacza </div>
@@ -35,7 +36,7 @@
 
           <div class="label"> Wiek </div>
           <div class="input">
-            <input type="number" name="age" value="32">
+            <input type="number" name="age" value="32" min="10" max="100">
           </div>
 
           <div class="label"> Płeć </div>
@@ -72,6 +73,69 @@
             <input type="text" name="imp-person" value="Siotra Meggie">
           </div>
         </form>
+      -->
+      <h1>Cechy głowne</h1>
+      <form>
+        <div class="label"> Siła (S) </div>
+        <div class="input">
+          <input type="number" name="strength" value="80">
+        </div>
+
+        <div class="label"> Kondycja (KON) </div>
+        <div class="input">
+          <input type="number" name="condition" value="70">
+        </div>
+
+        <div class="label"> Moc </div>
+        <div class="input">
+          <input type="number" name="power" value="60">
+        </div>
+
+        <div class="label"> Zręczność (ZR) </div>
+        <div class="input">
+          <input type="number" name="agility" value="60">
+        </div>
+
+        <div class="label"> Wygląd (W) </div>
+        <div class="input">
+          <input type="number" name="condition" value="50">
+        </div>
+
+        <div class="label"> Budowa Ciała (BC) </div>
+        <div class="input">
+          <input type="number" name="condition" value="50">
+        </div>
+
+        <div class="label"> Inteligencja (INT) </div>
+        <div class="input">
+          <input type="number" name="intelligence" value="50">
+        </div>
+
+        <div class="label"> Wykształcenie (WYK) </div>
+        <div class="input">
+          <input type="number" name="education" value="40">
+        </div>
+      </form>
+      <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+
+      <h1>Cechy pochodne</h1>
+      <form>
+        <div class="label">Szczęście:</div>
+        <div class="input"><button>Losuj</button></div>
+
+        <div class="label">Punkty Magii:</div>
+        <div class="input">12</div>
+
+        <div class="label">Modifikator obrażeń: </div>
+        <div class="input">+1</div>
+
+        <div class="label">Punkty wytrzymałości (PW): </div>
+        <div class="input">12</div>
+        
+        <div class="label">Poczytalność (P): </div>
+        <div class="input">60</div>
+
+      <form>
 
       </main>
       <aside>
