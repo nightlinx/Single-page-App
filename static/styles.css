@@ -1,8 +1,9 @@
 .maingrid {
   display: grid;
     grid-gap: 10px;
-    grid-template-columns: 25% 50% 25%;
-    grid-template-rows: 120px auto;
+    max-width: 1190px;
+    grid-template-columns: 250px auto% 250px;
+    grid-template-rows: 80px auto;
     grid-template-areas:
        "header header header"
        "navigation main aside"
@@ -10,8 +11,12 @@
 
 .maingrid > * {
   border: 1px solid black;
+  padding: 20px;
 }
 
+.maingrid > nav, .maingrid > aside {
+  width: 200px;
+}
 
 .maingrid > header {
     grid-area: header;
@@ -19,11 +24,12 @@
 
 .maingrid > nav {
     grid-area: navigation;
-    min-height: 500px;
 }
 
 .maingrid >  main {
     grid-area: main;
+    min-width: 420px;
+    max-width: 810px;
 }
 
 .maingrid > aside {
@@ -31,5 +37,22 @@
 }
 
 body {
-  margin: 100px;
+  margin: 100px 180px;
+}
+
+button {
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+.maingrid > nav > button {
+  padding: 10px;
+  width: 180px;
+  height: 70px;
+  margin: 10px 10px 30px 10px;
+}
+
+.maingrid > nav > button#last {
+  margin-bottom: 10px;
 }
