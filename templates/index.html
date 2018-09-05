@@ -18,7 +18,7 @@
         <button>Cechy</button>
         <button>Zawód i umiejętności</button>
         <button>Ekwipunek</button>
-        <button id="last">Wygląd</button>
+        <button class="last">Wygląd</button>
       </nav>
       <main>
         <!--
@@ -75,7 +75,7 @@
         </form>
       -->
 
-      <!--
+        <!--
       <h1>Cechy głowne</h1>
       <form>
         <div class="label"> Siła (S) </div>
@@ -140,6 +140,7 @@
       <form>
       -->
 
+      <!--
       <h1>Zawód</h1>
       <form>
         <div class="label">Zawód Badacza</div>
@@ -160,28 +161,28 @@
           </select>
         </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">70</option>
           </select>
         </div>
 
         <div class="label"> Broń palna </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">60</option>
           </select>
         </div>
 
         <div class="label"> Nasłuchiwanie </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">60</option>
           </select>
         </div>
 
         <div class="label"> Prawo </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">50</option>
           </select>
         </div>
@@ -192,21 +193,21 @@
           </select>
         </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">50</option>
           </select>
         </div>
 
         <div class="label"> Psychologia </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">50</option>
           </select>
         </div>
 
         <div class="label"> Spostrzegawczość </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">40</option>
           </select>
         </div>
@@ -217,14 +218,14 @@
           </select>
         </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">40</option>
           </select>
         </div>
 
         <div class="label"> Majętnosć </div>
         <div class="input">
-          <select>
+          <select class="number">
             <option value="">40</option>
           </select>
         </div>
@@ -233,33 +234,110 @@
 
       <h1>Zainteresowania</h1>
         <form>
-          <div class="label">
+          <div class="center-label">
           <select>
             <option value="">Medycyna: 41</option>
           </select>
         </div>
-        <div class="label">
+        <div class="center-label">
           <select>
             <option value="">Historia: 45</option>
           </select>
         </div>
-        <div class="label">
+        <div class="center-label">
           <select>
             <option value="">Tropienie: 50</option>
           </select>
         </div>
-        <div class="label">
+        <div class="center-label">
           <select>
             <option value="">Język włoski: 41</option>
           </select>
         </div>
         </form>
+
+      -->
+
+      <h1>Ekwipunek</h1>
+      <form>
+        <div class="label">Broń</div>
+        <div class="input">
+          <select>
+            <option value="">Krótki nóż: 1K4</option>
+            <option value="">Broń krótka: 1K10</option>
+          </select>
+        </div>
+        <div class="label hidden">Broń</div>
+        <div class="input">
+          <select>
+            <option value="">Krótki nóż: 1K4</option>
+            <option value="">Broń krótka: 1K10</option>
+          </select>
+        </div>
+        <hr>
+        <div class="label">Gotówka</div>
+        <div class="input"><button>Losuj</button></div>
+
+        <hr>
+        <div class="label">Dobytek</div>
+        <div class="input">
+          <select>
+            <option value="">Koc</option>
+            <option value="">Apteczka</option>
+            <option value="">Lampa naftowa</option>
+            <option value="">Zapałki</option>
+            <option value="">Lina</option>
+          </select>
+        </div>
+        <div class="label hidden">Dobytek</div>
+        <div class="input">
+          <select>
+            <option value="">Koc</option>
+            <option value="">Apteczka</option>
+            <option value="">Lampa naftowa</option>
+            <option value="">Zapałki</option>
+            <option value="">Lina</option>
+          </select>
+        </div>
+
+        <div class="label hidden">Dobytek</div>
+        <div class="input">
+          <select>
+            <option value="">Koc</option>
+            <option value="">Apteczka</option>
+            <option value="">Lampa naftowa</option>
+            <option value="">Zapałki</option>
+            <option value="">Lina</option>
+          </select>
+        </div>
+
+        <div class="label hidden">Dobytek</div>
+        <div class="input">
+          <select>
+            <option value="">Koc</option>
+            <option value="">Apteczka</option>
+            <option value="">Lampa naftowa</option>
+            <option value="">Zapałki</option>
+            <option value="">Lina</option>
+          </select>
+        </div>
+
+        <div class="label hidden">Dobytek</div>
+        <div class="input">
+          <select>
+            <option value="">Koc</option>
+            <option value="">Apteczka</option>
+            <option value="">Lampa naftowa</option>
+            <option value="">Zapałki</option>
+            <option value="">Lina</option>
+          </select>
+        </div>
+      </form>
       </main>
+
       <aside>
         <div id="img">
-          <p>
-            Tutaj będzie miniatura naszej postaci.
-          </p>
+          <img src="../static/img/postac.jpg"></img>
         </div>
         <div id="summarise">
           <p>Imię: Jass Anderson <br>
@@ -270,7 +348,7 @@
             Umiejętności: wspinaczka, charakteryzacja, urok osobisty <br>
             Bron: maczeta, bron krótka <br></p>
         </div>
-        <button>Zapisz</button>
+        <button class="last">Zapisz</button>
       </aside>
     </div> <!-- class="grid"> -->
   </div> <!-- id="content" -->

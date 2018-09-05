@@ -49,14 +49,17 @@ select#job {
   width: 150px;
 }
 
-.input > select {
+.input > select.number {
   width: 70px;
 }
 
+.input > select {
+  width: 150px;
+}
 
 form > div {
   display: inline-block;
-  width: 45%;
+  width: 46%;
 }
 
 form > div.label {
@@ -64,6 +67,24 @@ form > div.label {
   margin-right: 15px;
 }
 
+div.label.hidden {
+  visibility:hidden;
+}
+
+form > div.center-label{
+  width: 100%;
+  text-align: center;
+  margin: 5px;
+}
+
+form > div.center-label >select{
+  width: 150px;
+}
+
 form > div.input {
   margin: 5px;
+}
+
+hr {
+  opacity: 0;
 }
