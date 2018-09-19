@@ -23,368 +23,372 @@
       </nav>
       <main>
 
-      <div v-if="pages[0]">
-        <h1>Informacje o postaci</h1>
-        <form>
-          <div class="label"> Imię Badacza </div>
-          <div class="input">
-            <input type="text" name="character-name" value="Jass Anderson">
-          </div>
+        <div v-if="pages[0]">
+          <h1>Informacje o postaci</h1>
+          <form>
+            <div class="label"> Imię Badacza </div>
+            <div class="input">
+              <input type="text" name="character-name" value="Jass Anderson">
+            </div>
 
-          <div class="label"> Imię Gracza </div>
-          <div class="input">
-            <input type="text" name="name" value="Izabela">
-          </div>
+            <div class="label"> Imię Gracza </div>
+            <div class="input">
+              <input type="text" name="name" value="Izabela">
+            </div>
 
-          <div class="label"> Wiek </div>
-          <div class="input">
-            <input type="number" name="age" value="32" min="10" max="100">
-          </div>
+            <div class="label"> Wiek </div>
+            <div class="input">
+              <input type="number" name="age" value="32" min="10" max="100">
+            </div>
 
-          <div class="label"> Płeć </div>
-          <div class="input">
-            <input type="radio" name="gender" value="female"> K
-            <input type="radio" name="gender" value="male" checked> M<br>
-          </div>
+            <div class="label"> Płeć </div>
+            <div class="input">
+              <input type="radio" name="gender" value="female"> K
+              <input type="radio" name="gender" value="male" checked> M<br>
+            </div>
 
-          <div class="label"> Miejsce zamieszkania </div>
-          <div class="input">
-            <input type="text" name="liveplace" value="Boston">
-          </div>
+            <div class="label"> Miejsce zamieszkania </div>
+            <div class="input">
+              <input type="text" name="liveplace" value="Boston">
+            </div>
 
-          <div class="label"> Miejsce urodzenia </div>
-          <div class="input">
-            <input type="text" name="bornplace" value="Londyn">
-          </div>
-        </form>
-        <h1>Inne </h1>
-        <form>
-          <div class="label"> Znaczące miejsca </div>
-          <div class="input">
-            <input type="text" name="imp-places">
-          </div>
+            <div class="label"> Miejsce urodzenia </div>
+            <div class="input">
+              <input type="text" name="bornplace" value="Londyn">
+            </div>
+          </form>
+          <h1>Inne </h1>
+          <form>
+            <div class="label"> Znaczące miejsca </div>
+            <div class="input">
+              <input type="text" name="imp-places">
+            </div>
 
-          <div class="label"> Fobie </div>
-          <div class="input">
-            <input type="text" name="phobia" value="Pająki">
-          </div>
+            <div class="label"> Fobie </div>
+            <div class="input">
+              <input type="text" name="phobia" value="Pająki">
+            </div>
 
-          <div class="label"> Ważne osoby </div>
-          <div class="input">
-            <input type="text" name="imp-person" value="Siotra Meggie">
-          </div>
-        </form>
-      </div>
+            <div class="label"> Ważne osoby </div>
+            <div class="input">
+              <input type="text" name="imp-person" value="Siotra Meggie">
+            </div>
+          </form>
+        </div>
 
-      <div v-if="pages[1]">
-        <h1>Cechy głowne</h1>
-        <form>
-          <div class="label"> Siła (S) </div>
+        <div v-if="pages[1]">
+          <h1>Cechy głowne</h1>
+          <form id="attributes">
+            <div class="label"> Siła (S) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(0, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Kondycja (KON) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(1, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Moc (M) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(2, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Zręczność (ZR) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(3, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Wygląd (W) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(4, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Budowa Ciała (BC) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(5, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Inteligencja (INT) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(6, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+
+            <div class="label"> Wykształcenie (WYK) </div>
+            <div class="input">
+              <select class="number">
+                <option></option>
+                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(7, m.value)">{{m.value}}</option>
+              </select>
+            </div>
+          <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+
+          <h1>Cechy pochodne</h1>
+            <div class="label">Szczęście:</div>
+            <div class="input"><button>Losuj</button></div>
+
+            <div class="label">Punkty Magii:</div>
+            <div class="input">12</div>
+
+            <div class="label">Modifikator obrażeń: </div>
+            <div class="input">+1</div>
+
+            <div class="label">Punkty wytrzymałości (PW): </div>
+            <div class="input">12</div>
+
+            <div class="label">Poczytalność (P): </div>
+            <div class="input">60</div>
+          </form>
+        </div>
+
+        <div v-if="pages[2]">
+          <h1>Zawód</h1>
+          <div class="label">Zawód Badacza</div>
+          <div class="input">
+            <select id="job">
+              <option value="">Detektyw</option>
+              <option value="">Antykwariusz</option>
+              <option value="">Artysta</option>
+            </select>
+          </div>
+          <h1>Umiejętności</h1>
+          <div class="label">
+            <select>
+              <option value="">Charakteryzacja</option>
+            </select>
+          </div>
           <div class="input">
             <select class="number">
               <option value="">70</option>
             </select>
           </div>
 
-          <div class="label"> Kondycja (KON) </div>
-          <div class="input">
-            <select class="number">
-              <option value="">70</option>
-            </select>
-          </div>
-
-          <div class="label"> Moc </div>
+          <div class="label"> Broń palna </div>
           <div class="input">
             <select class="number">
               <option value="">60</option>
             </select>
           </div>
 
-          <div class="label"> Zręczność (ZR) </div>
+          <div class="label"> Nasłuchiwanie </div>
           <div class="input">
             <select class="number">
               <option value="">60</option>
             </select>
           </div>
 
-          <div class="label"> Wygląd (W) </div>
+          <div class="label"> Prawo </div>
           <div class="input">
             <select class="number">
               <option value="">50</option>
             </select>
           </div>
 
-          <div class="label"> Budowa Ciała (BC) </div>
+          <div class="label">
+            <select>
+              <option value="">Urok osobisty</option>
+            </select>
+          </div>
           <div class="input">
             <select class="number">
               <option value="">50</option>
             </select>
           </div>
 
-          <div class="label"> Inteligencja (INT) </div>
+          <div class="label"> Psychologia </div>
           <div class="input">
             <select class="number">
               <option value="">50</option>
             </select>
           </div>
 
-          <div class="label"> Wykształcenie (WYK) </div>
+          <div class="label"> Spostrzegawczość </div>
           <div class="input">
             <select class="number">
               <option value="">40</option>
             </select>
           </div>
 
-        <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+          <div class="label">
+            <select>
+              <option value="">Wspinaczka</option>
+            </select>
+          </div>
+          <div class="input">
+            <select class="number">
+              <option value="">40</option>
+            </select>
+          </div>
 
-        <h1>Cechy pochodne</h1>
+          <div class="label"> Majętnosć </div>
+          <div class="input">
+            <select class="number">
+              <option value="">40</option>
+            </select>
+          </div>
+          <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+          <h1>Zainteresowania</h1>
+            <form>
+              <div class="center-label">
+              <select>
+                <option value="">Medycyna: 41</option>
+              </select>
+            </div>
+            <div class="center-label">
+              <select>
+                <option value="">Historia: 45</option>
+              </select>
+            </div>
+            <div class="center-label">
+              <select>
+                <option value="">Tropienie: 50</option>
+              </select>
+            </div>
+            <div class="center-label">
+              <select>
+                <option value="">Język włoski: 41</option>
+              </select>
+            </div>
+          </form>
+        </div>
 
-          <div class="label">Szczęście:</div>
-          <div class="input"><button>Losuj</button></div>
+        <div v-if="pages[3]">
+          <h1>Ekwipunek</h1>
+          <form>
+            <div class="label">Broń</div>
+            <div class="input">
+              <select>
+                <option value="">Krótki nóż: 1K4</option>
+                <option value="">Broń krótka: 1K10</option>
+              </select>
+            </div>
+            <div class="label hidden">Broń</div>
+            <div class="input">
+              <select>
+                <option value="">Krótki nóż: 1K4</option>
+                <option value="">Broń krótka: 1K10</option>
+              </select>
+            </div>
+            <hr>
+            <div class="label">Gotówka</div>
+            <div class="input"><button>Losuj</button></div>
 
-          <div class="label">Punkty Magii:</div>
-          <div class="input">12</div>
+            <hr>
+            <div class="label">Dobytek</div>
+            <div class="input">
+              <select>
+                <option value="">Koc</option>
+                <option value="">Apteczka</option>
+                <option value="">Lampa naftowa</option>
+                <option value="">Zapałki</option>
+                <option value="">Lina</option>
+              </select>
+            </div>
+            <div class="label hidden">Dobytek</div>
+            <div class="input">
+              <select>
+                <option value="">Koc</option>
+                <option value="">Apteczka</option>
+                <option value="">Lampa naftowa</option>
+                <option value="">Zapałki</option>
+                <option value="">Lina</option>
+              </select>
+            </div>
 
-          <div class="label">Modifikator obrażeń: </div>
-          <div class="input">+1</div>
+            <div class="label hidden">Dobytek</div>
+            <div class="input">
+              <select>
+                <option value="">Koc</option>
+                <option value="">Apteczka</option>
+                <option value="">Lampa naftowa</option>
+                <option value="">Zapałki</option>
+                <option value="">Lina</option>
+              </select>
+            </div>
 
-          <div class="label">Punkty wytrzymałości (PW): </div>
-          <div class="input">12</div>
+            <div class="label hidden">Dobytek</div>
+            <div class="input">
+              <select>
+                <option value="">Koc</option>
+                <option value="">Apteczka</option>
+                <option value="">Lampa naftowa</option>
+                <option value="">Zapałki</option>
+                <option value="">Lina</option>
+              </select>
+            </div>
 
-          <div class="label">Poczytalność (P): </div>
-          <div class="input">60</div>
+            <div class="label hidden">Dobytek</div>
+            <div class="input">
+              <select>
+                <option value="">Koc</option>
+                <option value="">Apteczka</option>
+                <option value="">Lampa naftowa</option>
+                <option value="">Zapałki</option>
+                <option value="">Lina</option>
+              </select>
+            </div>
+          </form>
+        </div>
 
-        <form>
+        <div v-if="pages[4]">
+        <h1> Twoja Postać </h1>
+        <div class="img creator">
+            <img src="../static/img/postac.jpg"></img>
+        </div>
+        <div class="appgrid">
+          <nav>
+            <button>Postura</button>
+            <button>Skóra</button>
+            <button>Włosy</button>
+            <button>Oczy</button>
+            <button>Ubranie</button>
+            <button>Znaki</button>
+          </nav>
+          <div id="opt">
+            <h2> Kształt </h2>
+            <div class="img option">
+              <img></img>
+            </div>
+            <div class="img option">
+              <img></img>
+            </div>
+            <div class="img option">
+              <img></img>
+            </div>
+
+          </div>
+          <div id="colors">
+            <h2> Kolor </h2>
+            <div class="color col1"></div>
+            <div class="color col2"></div>
+            <div class="color col3"></div>
+            <div class="color col4"></div>
+            <div class="color col5"></div>
+            <div class="color col6"></div>
+          </div>
+        </div>
       </div>
-
-      <div v-if="pages[2]">
-        <h1>Zawód</h1>
-        <div class="label">Zawód Badacza</div>
-        <div class="input">
-          <select id="job">
-            <option value="">Detektyw</option>
-            <option value="">Antykwariusz</option>
-            <option value="">Artysta</option>
-          </select>
-        </div>
-        <h1>Umiejętności</h1>
-        <div class="label">
-          <select>
-            <option value="">Charakteryzacja</option>
-          </select>
-        </div>
-        <div class="input">
-          <select class="number">
-            <option value="">70</option>
-          </select>
-        </div>
-
-        <div class="label"> Broń palna </div>
-        <div class="input">
-          <select class="number">
-            <option value="">60</option>
-          </select>
-        </div>
-
-        <div class="label"> Nasłuchiwanie </div>
-        <div class="input">
-          <select class="number">
-            <option value="">60</option>
-          </select>
-        </div>
-
-        <div class="label"> Prawo </div>
-        <div class="input">
-          <select class="number">
-            <option value="">50</option>
-          </select>
-        </div>
-
-        <div class="label">
-          <select>
-            <option value="">Urok osobisty</option>
-          </select>
-        </div>
-        <div class="input">
-          <select class="number">
-            <option value="">50</option>
-          </select>
-        </div>
-
-        <div class="label"> Psychologia </div>
-        <div class="input">
-          <select class="number">
-            <option value="">50</option>
-          </select>
-        </div>
-
-        <div class="label"> Spostrzegawczość </div>
-        <div class="input">
-          <select class="number">
-            <option value="">40</option>
-          </select>
-        </div>
-
-        <div class="label">
-          <select>
-            <option value="">Wspinaczka</option>
-          </select>
-        </div>
-        <div class="input">
-          <select class="number">
-            <option value="">40</option>
-          </select>
-        </div>
-
-        <div class="label"> Majętnosć </div>
-        <div class="input">
-          <select class="number">
-            <option value="">40</option>
-          </select>
-        </div>
-      <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
-
-      <h1>Zainteresowania</h1>
-        <form>
-          <div class="center-label">
-          <select>
-            <option value="">Medycyna: 41</option>
-          </select>
-        </div>
-        <div class="center-label">
-          <select>
-            <option value="">Historia: 45</option>
-          </select>
-        </div>
-        <div class="center-label">
-          <select>
-            <option value="">Tropienie: 50</option>
-          </select>
-        </div>
-        <div class="center-label">
-          <select>
-            <option value="">Język włoski: 41</option>
-          </select>
-        </div>
-        </form>
-      </div>
-
-
-      <div v-if="pages[3]">
-      <h1>Ekwipunek</h1>
-      <form>
-        <div class="label">Broń</div>
-        <div class="input">
-          <select>
-            <option value="">Krótki nóż: 1K4</option>
-            <option value="">Broń krótka: 1K10</option>
-          </select>
-        </div>
-        <div class="label hidden">Broń</div>
-        <div class="input">
-          <select>
-            <option value="">Krótki nóż: 1K4</option>
-            <option value="">Broń krótka: 1K10</option>
-          </select>
-        </div>
-        <hr>
-        <div class="label">Gotówka</div>
-        <div class="input"><button>Losuj</button></div>
-
-        <hr>
-        <div class="label">Dobytek</div>
-        <div class="input">
-          <select>
-            <option value="">Koc</option>
-            <option value="">Apteczka</option>
-            <option value="">Lampa naftowa</option>
-            <option value="">Zapałki</option>
-            <option value="">Lina</option>
-          </select>
-        </div>
-        <div class="label hidden">Dobytek</div>
-        <div class="input">
-          <select>
-            <option value="">Koc</option>
-            <option value="">Apteczka</option>
-            <option value="">Lampa naftowa</option>
-            <option value="">Zapałki</option>
-            <option value="">Lina</option>
-          </select>
-        </div>
-
-        <div class="label hidden">Dobytek</div>
-        <div class="input">
-          <select>
-            <option value="">Koc</option>
-            <option value="">Apteczka</option>
-            <option value="">Lampa naftowa</option>
-            <option value="">Zapałki</option>
-            <option value="">Lina</option>
-          </select>
-        </div>
-
-        <div class="label hidden">Dobytek</div>
-        <div class="input">
-          <select>
-            <option value="">Koc</option>
-            <option value="">Apteczka</option>
-            <option value="">Lampa naftowa</option>
-            <option value="">Zapałki</option>
-            <option value="">Lina</option>
-          </select>
-        </div>
-
-        <div class="label hidden">Dobytek</div>
-        <div class="input">
-          <select>
-            <option value="">Koc</option>
-            <option value="">Apteczka</option>
-            <option value="">Lampa naftowa</option>
-            <option value="">Zapałki</option>
-            <option value="">Lina</option>
-          </select>
-        </div>
-      </form>
-    </div>
-
-    <div v-if="pages[4]">
-    <h1> Twoja Postać </h1>
-    <div class="img creator">
-        <img src="../static/img/postac.jpg"></img>
-    </div>
-    <div class="appgrid">
-      <nav>
-        <button>Postura</button>
-        <button>Skóra</button>
-        <button>Włosy</button>
-        <button>Oczy</button>
-        <button>Ubranie</button>
-        <button>Znaki</button>
-      </nav>
-      <div id="opt">
-        <h2> Kształt </h2>
-        <div class="img option">
-          <img></img>
-        </div>
-        <div class="img option">
-          <img></img>
-        </div>
-        <div class="img option">
-          <img></img>
-        </div>
-
-      </div>
-      <div id="colors">
-        <h2> Kolor </h2>
-        <div class="color col1"></div>
-        <div class="color col2"></div>
-        <div class="color col3"></div>
-        <div class="color col4"></div>
-        <div class="color col5"></div>
-        <div class="color col6"></div>
-      </div>
-    </div>
 
       </main>
 
@@ -412,6 +416,17 @@
 			info: true,
       attribute: false,
       pages: [true, false, false, false, false],
+      mainAttrValues: [{'value':80}, {'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}],
+      mainAttr: [
+        {'name': 'S', 'value': 0},
+        {'name': 'KON', 'value': 0},
+        {'name': 'M', 'value': 0},
+        {'name': 'ZR', 'value': 0},
+        {'name': 'W', 'value': 0},
+        {'name': 'BC', 'value': 0},
+        {'name': 'INT', 'value': 0},
+        {'name': 'WYK', 'value': 0}
+      ],
 		},
     methods: {
       switchToPage(pageIndex){
@@ -421,6 +436,13 @@
         }
         vm.$set(vm.pages, pageIndex, true)
       },
+      setMainAttributes(attribute, value){
+        console.log("---------------");
+        this.mainAttr[attribute].value = value;
+        for (var i=0; i<this.mainAttr.length; i++){
+          console.log(this.mainAttr[i].name + " -> " + this.mainAttr[i].value)
+        }
+      }
     },
   });
   </script>
