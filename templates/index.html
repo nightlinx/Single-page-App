@@ -6,6 +6,7 @@
   <link href='../static/styles.css' rel='stylesheet'>
   <link href='../static/main-elements.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet">
+  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -14,14 +15,15 @@
     <div class="maingrid">
       <header>Tworzenie postaci</header>
       <nav>
-        <button>Informacje o postaci</button>
-        <button>Cechy</button>
-        <button>Zawód i umiejętności</button>
-        <button>Ekwipunek</button>
-        <button class="last">Wygląd</button>
+        <button v-on:click="switchToPage(0)">Informacje o postaci</button>
+        <button v-on:click="switchToPage(1)">Cechy</button>
+        <button v-on:click="switchToPage(2)">Zawód i umiejętności</button>
+        <button v-on:click="switchToPage(3)">Ekwipunek</button>
+        <button v-on:click="switchToPage(4)" class="last">Wygląd</button>
       </nav>
       <main>
-        <!--
+
+      <div v-if="pages[0]">
         <h1>Informacje o postaci</h1>
         <form>
           <div class="label"> Imię Badacza </div>
@@ -55,7 +57,6 @@
             <input type="text" name="bornplace" value="Londyn">
           </div>
         </form>
-
         <h1>Inne </h1>
         <form>
           <div class="label"> Znaczące miejsca </div>
@@ -73,76 +74,91 @@
             <input type="text" name="imp-person" value="Siotra Meggie">
           </div>
         </form>
-      -->
+      </div>
 
-        <!--
-      <h1>Cechy głowne</h1>
-      <form>
-        <div class="label"> Siła (S) </div>
-        <div class="input">
-          <input type="number" name="strength" value="80">
-        </div>
+      <div v-if="pages[1]">
+        <h1>Cechy głowne</h1>
+        <form>
+          <div class="label"> Siła (S) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">70</option>
+            </select>
+          </div>
 
-        <div class="label"> Kondycja (KON) </div>
-        <div class="input">
-          <input type="number" name="condition" value="70">
-        </div>
+          <div class="label"> Kondycja (KON) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">70</option>
+            </select>
+          </div>
 
-        <div class="label"> Moc </div>
-        <div class="input">
-          <input type="number" name="power" value="60">
-        </div>
+          <div class="label"> Moc </div>
+          <div class="input">
+            <select class="number">
+              <option value="">60</option>
+            </select>
+          </div>
 
-        <div class="label"> Zręczność (ZR) </div>
-        <div class="input">
-          <input type="number" name="agility" value="60">
-        </div>
+          <div class="label"> Zręczność (ZR) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">60</option>
+            </select>
+          </div>
 
-        <div class="label"> Wygląd (W) </div>
-        <div class="input">
-          <input type="number" name="condition" value="50">
-        </div>
+          <div class="label"> Wygląd (W) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">50</option>
+            </select>
+          </div>
 
-        <div class="label"> Budowa Ciała (BC) </div>
-        <div class="input">
-          <input type="number" name="condition" value="50">
-        </div>
+          <div class="label"> Budowa Ciała (BC) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">50</option>
+            </select>
+          </div>
 
-        <div class="label"> Inteligencja (INT) </div>
-        <div class="input">
-          <input type="number" name="intelligence" value="50">
-        </div>
+          <div class="label"> Inteligencja (INT) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">50</option>
+            </select>
+          </div>
 
-        <div class="label"> Wykształcenie (WYK) </div>
-        <div class="input">
-          <input type="number" name="education" value="40">
-        </div>
-      </form>
-      <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+          <div class="label"> Wykształcenie (WYK) </div>
+          <div class="input">
+            <select class="number">
+              <option value="">40</option>
+            </select>
+          </div>
 
-      <h1>Cechy pochodne</h1>
-      <form>
-        <div class="label">Szczęście:</div>
-        <div class="input"><button>Losuj</button></div>
+        <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
 
-        <div class="label">Punkty Magii:</div>
-        <div class="input">12</div>
+        <h1>Cechy pochodne</h1>
 
-        <div class="label">Modifikator obrażeń: </div>
-        <div class="input">+1</div>
+          <div class="label">Szczęście:</div>
+          <div class="input"><button>Losuj</button></div>
 
-        <div class="label">Punkty wytrzymałości (PW): </div>
-        <div class="input">12</div>
+          <div class="label">Punkty Magii:</div>
+          <div class="input">12</div>
 
-        <div class="label">Poczytalność (P): </div>
-        <div class="input">60</div>
+          <div class="label">Modifikator obrażeń: </div>
+          <div class="input">+1</div>
 
-      <form>
-      -->
+          <div class="label">Punkty wytrzymałości (PW): </div>
+          <div class="input">12</div>
 
-      <!--
-      <h1>Zawód</h1>
-      <form>
+          <div class="label">Poczytalność (P): </div>
+          <div class="input">60</div>
+
+        <form>
+      </div>
+
+      <div v-if="pages[2]">
+        <h1>Zawód</h1>
         <div class="label">Zawód Badacza</div>
         <div class="input">
           <select id="job">
@@ -151,10 +167,7 @@
             <option value="">Artysta</option>
           </select>
         </div>
-        </form>
-
-      <h1>Umiejętności</h1>
-        <form>
+        <h1>Umiejętności</h1>
         <div class="label">
           <select>
             <option value="">Charakteryzacja</option>
@@ -229,7 +242,6 @@
             <option value="">40</option>
           </select>
         </div>
-      </form>
       <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
 
       <h1>Zainteresowania</h1>
@@ -255,9 +267,10 @@
           </select>
         </div>
         </form>
+      </div>
 
-      -->
 
+      <div v-if="pages[3]">
       <h1>Ekwipunek</h1>
       <form>
         <div class="label">Broń</div>
@@ -333,10 +346,50 @@
           </select>
         </div>
       </form>
+    </div>
+
+    <div v-if="pages[4]">
+    <h1> Twoja Postać </h1>
+    <div class="img creator">
+        <img src="../static/img/postac.jpg"></img>
+    </div>
+    <div class="appgrid">
+      <nav>
+        <button>Postura</button>
+        <button>Skóra</button>
+        <button>Włosy</button>
+        <button>Oczy</button>
+        <button>Ubranie</button>
+        <button>Znaki</button>
+      </nav>
+      <div id="opt">
+        <h2> Kształt </h2>
+        <div class="img option">
+          <img></img>
+        </div>
+        <div class="img option">
+          <img></img>
+        </div>
+        <div class="img option">
+          <img></img>
+        </div>
+
+      </div>
+      <div id="colors">
+        <h2> Kolor </h2>
+        <div class="color col1"></div>
+        <div class="color col2"></div>
+        <div class="color col3"></div>
+        <div class="color col4"></div>
+        <div class="color col5"></div>
+        <div class="color col6"></div>
+      </div>
+    </div>
+
       </main>
 
       <aside>
-        <div id="img">
+        <div class="img aside">
           <img src="../static/img/postac.jpg"></img>
         </div>
         <div id="summarise">
@@ -352,4 +405,24 @@
       </aside>
     </div> <!-- class="grid"> -->
   </div> <!-- id="content" -->
+  <script>
+	new Vue({
+		el: '#content',
+		data: {
+			info: true,
+      attribute: false,
+      pages: [true, false, false, false, false],
+		},
+    methods: {
+      switchToPage(pageIndex){
+        var vm = this;
+        for (var i=0; i<this.pages.length; i++){
+          vm.$set(vm.pages, i, false)
+        }
+        vm.$set(vm.pages, pageIndex, true)
+      },
+    },
+  });
+  </script>
 </body>
+</html>

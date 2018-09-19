@@ -27,6 +27,16 @@ h1 {
   font-size: 22px;
 }
 
+h2 {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-top: 5px;
+
+}
+
 input[type="text"]:hover, input[type="number"]:hover, select:hover, input[type="text"]:focus, input[type="number"]:focus, select:focus {
   opacity: 0.9;
 }
@@ -41,10 +51,6 @@ input[type="text"], input[type="number"], select{
   width: 120px;
 }
 
-select#job {
-  width: 150px;
-}
-
 .label > select {
   width: 150px;
 }
@@ -57,12 +63,12 @@ select#job {
   width: 150px;
 }
 
-form > div {
+div.label, div.input {
   display: inline-block;
   width: 46%;
 }
 
-form > div.label {
+div.label {
   text-align: right;
   margin-right: 15px;
 }
@@ -71,20 +77,24 @@ div.label.hidden {
   visibility:hidden;
 }
 
-form > div.center-label{
+div.center-label{
   width: 100%;
   text-align: center;
   margin: 5px;
 }
 
-form > div.center-label >select{
+div.center-label >select{
   width: 150px;
 }
 
-form > div.input {
+div.input {
   margin: 5px;
 }
 
 hr {
   opacity: 0;
+}
+
+p.note {
+  text-align: center;
 }
