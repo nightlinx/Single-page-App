@@ -10,25 +10,23 @@
 </head>
 
 <body>
-  <div>
+  <div id="content">
 
     <div class="maingrid">
       <header>Tworzenie postaci</header>
-      <nav id="leftnav">
-        <buttons
+      <nav>
+        <!-- <buttons
           v-for="el in elements"
           v-bind:key="el.id"
           v-bind:title="el.title"
-        ></buttons>
+        ></buttons> -->
+        <button v-on:click="switchToPage(0)">Informacje o postaci</button>
+        <button v-on:click="switchToPage(1)">Cechy</button>
+        <button v-on:click="switchToPage(2)">Zawód i umiejętności</button>
+        <button v-on:click="switchToPage(3)">Ekwipunek</button>
+        <button v-on:click="switchToPage(4)" class="last">Wygląd</button>
       </nav>
-      <!--
-      <button v-on:click="switchToPage(0)">Informacje o postaci</button>
-      <button v-on:click="switchToPage(1)">Cechy</button>
-      <button v-on:click="switchToPage(2)">Zawód i umiejętności</button>
-      <button v-on:click="switchToPage(3)">Ekwipunek</button>
-      <button v-on:click="switchToPage(4)" class="last">Wygląd</button>
-      -->
-      <main id="content">
+      <main>
 
         <div v-if="pages[0]">
           <h1>Informacje o postaci</h1>
@@ -417,76 +415,71 @@
     </div>
   </div>
   <script>
-	new Vue({
-		el: '#content',
-		data: {
-			info: true,
-      attribute: false,
-      pages: [true, false, false, false, false],
-      mainAttrValues: [{'value':80}, {'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}],
-      mainAttr: [
-        {'name': 'S', 'value': 0},
-        {'name': 'KON', 'value': 0},
-        {'name': 'M', 'value': 0},
-        {'name': 'ZR', 'value': 0},
-        {'name': 'W', 'value': 0},
-        {'name': 'BC', 'value': 0},
-        {'name': 'INT', 'value': 0},
-        {'name': 'WYK', 'value': 0}
-      ],
-		},
-    methods: {
-      switchToPage(pageIndex){
-        var vm = this;
-        for (var i=0; i<this.pages.length; i++){
-          vm.$set(vm.pages, i, false)
-        }
-        vm.$set(vm.pages, pageIndex, true)
-      },
-      setMainAttributes(attribute, value){
-        this.mainAttr[attribute].value = value;
-        this.validateAttributes();
-      },
-      validateAttributes(){
-        var a = [];
-        var b = [];
-        for (var i=0; i<this.mainAttr.length; i++){
-          a.push(this.mainAttrValues[i].value);
-          b.push(this.mainAttr[i].value);
-        }
-        b.sort();
-        a.sort();
-        for (var i=0; i<this.mainAttr.length; i++){
-          if (a[i] != b[i]){
-            return false; //two arrays aren't same
+    //
+    // Vue.component('buttons', {
+    //   props: ['title'],
+    //   template: '<button>{{title}}</button>',
+    // });
+
+  	new Vue({
+  		el: '#content',
+  		data: {
+  			info: true,
+        attribute: false,
+        pages: [true, false, false, false, false],
+        mainAttrValues: [{'value':80}, {'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}],
+        mainAttr: [
+          {'name': 'S', 'value': 0},
+          {'name': 'KON', 'value': 0},
+          {'name': 'M', 'value': 0},
+          {'name': 'ZR', 'value': 0},
+          {'name': 'W', 'value': 0},
+          {'name': 'BC', 'value': 0},
+          {'name': 'INT', 'value': 0},
+          {'name': 'WYK', 'value': 0}
+        ],
+        // elements: [
+        //   { id: 0, title: 'Informacje o postaci' },
+        //   { id: 1, title: 'Cechy' },
+        //   { id: 2, title: 'Zawód i umiejętności' },
+        //   { id: 3, title: 'Ekwipunek' },
+        //   { id: 4, title: 'Wygląd' },
+        // ],
+  		},
+      methods: {
+        switchToPage(pageIndex){
+          var vm = this;
+          for (var i=0; i<this.pages.length; i++){
+            vm.$set(vm.pages, i, false)
           }
+          vm.$set(vm.pages, pageIndex, true)
+        },
+        setMainAttributes(attribute, value){
+          this.mainAttr[attribute].value = value;
+          this.validateAttributes();
+        },
+        validateAttributes(){
+          var a = [];
+          var b = [];
+          for (var i=0; i<this.mainAttr.length; i++){
+            a.push(this.mainAttrValues[i].value);
+            b.push(this.mainAttr[i].value);
+          }
+          b.sort();
+          a.sort();
+          for (var i=0; i<this.mainAttr.length; i++){
+            if (a[i] != b[i]){
+              return false; //two arrays aren't same
+            }
+          }
+          return true; //two arrays are same
         }
-        return true; //two arrays are same
-      }
-    },
-  });
+      },
+    });
 
   // ------------ COMPONENTS ---------------
   //  NAJPIERW DEKLARUJ KOMPONENT, POTEM DOPIERO NEW VEU !!
 
-
-    Vue.component('buttons', {
-      props: ['title'],
-      template: '<button>{{title}}</button>',
-    });
-
-  new Vue({
-    el: '#leftnav',
-    data: {
-      elements: [
-        { id: 0, title: 'Informacje o postaci' },
-        { id: 1, title: 'Cechy' },
-        { id: 2, title: 'Zawód i umiejętności' },
-        { id: 3, title: 'Ekwipunek' },
-        { id: 4, title: 'Wygląd' },
-      ],
-    },
-  });
 
   </script>
 </body>
