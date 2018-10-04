@@ -171,10 +171,10 @@
           <h1>Zawód</h1>
           <div class="label">Zawód Badacza</div>
           <div class="input">
-            <select id="job">
-              <option value="">Detektyw</option>
-              <option value="">Antykwariusz</option>
-              <option value="">Artysta</option>
+            <select id="job" v-model="job">
+              <option v-for="j in allJobs" v-bind:value="j">
+                {{j}}
+              </option>
             </select>
           </div>
           <h1>Umiejętności</h1>
@@ -257,22 +257,22 @@
             <form>
               <div class="center-label">
               <select>
-                <option value="">Medycyna: 41</option>
+                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
             <div class="center-label">
               <select>
-                <option value="">Historia: 45</option>
+                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
             <div class="center-label">
               <select>
-                <option value="">Tropienie: 50</option>
+                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
             <div class="center-label">
               <select>
-                <option value="">Język włoski: 41</option>
+                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
           </form>
@@ -284,15 +284,13 @@
             <div class="label">Broń</div>
             <div class="input">
               <select>
-                <option value="">Krótki nóż: 1K4</option>
-                <option value="">Broń krótka: 1K10</option>
+                <option v-for="weapon in allWeapons" v-bind:value="weapon">{{weapon}}</option>
               </select>
             </div>
             <div class="label hidden">Broń</div>
             <div class="input">
               <select>
-                <option value="">Krótki nóż: 1K4</option>
-                <option value="">Broń krótka: 1K10</option>
+                <option v-for="weapon in allWeapons" v-bind:value="weapon">{{weapon}}</option>
               </select>
             </div>
             <hr>
@@ -303,54 +301,34 @@
             <div class="label">Dobytek</div>
             <div class="input">
               <select>
-                <option value="">Koc</option>
-                <option value="">Apteczka</option>
-                <option value="">Lampa naftowa</option>
-                <option value="">Zapałki</option>
-                <option value="">Lina</option>
+                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
             <div class="label hidden">Dobytek</div>
             <div class="input">
               <select>
-                <option value="">Koc</option>
-                <option value="">Apteczka</option>
-                <option value="">Lampa naftowa</option>
-                <option value="">Zapałki</option>
-                <option value="">Lina</option>
+                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
 
             <div class="label hidden">Dobytek</div>
             <div class="input">
               <select>
-                <option value="">Koc</option>
-                <option value="">Apteczka</option>
-                <option value="">Lampa naftowa</option>
-                <option value="">Zapałki</option>
-                <option value="">Lina</option>
+                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
 
             <div class="label hidden">Dobytek</div>
             <div class="input">
               <select>
-                <option value="">Koc</option>
-                <option value="">Apteczka</option>
-                <option value="">Lampa naftowa</option>
-                <option value="">Zapałki</option>
-                <option value="">Lina</option>
+                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
 
             <div class="label hidden">Dobytek</div>
             <div class="input">
               <select>
-                <option value="">Koc</option>
-                <option value="">Apteczka</option>
-                <option value="">Lampa naftowa</option>
-                <option value="">Zapałki</option>
-                <option value="">Lina</option>
+                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
           </form>
@@ -405,10 +383,10 @@
           <p>Imię: {{explorerName}}<br>
             Płeć: {{explorerSex}} <br>
             Wiek: {{explorerAge}} <br>
-            Zawód: Detektyw <br>
-            Mocne strony: Siła i kondycja <br>
-            Umiejętności: wspinaczka, charakteryzacja, urok osobisty <br>
-            Bron: maczeta, bron krótka <br></p>
+            Zawód: {{job}} <br>
+            Mocne strony: <span v-for="points in strongPoints">{{points}}, </span><br>
+            Umiejętności: <span v-for="skills in strongSkills">{{skills}}, </span><br>
+            Bron: <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
         <button class="last">Zapisz</button>
       </aside>
@@ -437,6 +415,14 @@
         importantPlace: '',
         phobia: '',
         importantPeople: '',
+        job: '',
+        allJobs: ['Aktor', 'Antykwariusz', 'Artysta', 'Detektyw', 'Hobbysta', 'Lekarz', 'Policjant', 'Student'],
+        allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
+        allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
+        allSkills: [{name:'Medycyna', value:41}, {name:'Historia', value:45}, {name:'Tropienie', value:50}, {name:'Język włoski', value:41}],
+        strongPoints: [],
+        strongSkills: [],
+        weapons: [],
   			info: true,
         attribute: false,
         pages: [true, false, false, false, false],
