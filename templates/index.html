@@ -33,50 +33,50 @@
           <form>
             <div class="label"> Imię Badacza </div>
             <div class="input">
-              <input type="text" name="character-name" value="Jass Anderson">
+              <input type="text" v-model="explorerName">
             </div>
 
             <div class="label"> Imię Gracza </div>
             <div class="input">
-              <input type="text" name="name" value="Izabela">
-            </div>
-
-            <div class="label"> Wiek </div>
-            <div class="input">
-              <input type="number" name="age" value="32" min="10" max="100">
+              <input type="text" v-model="gamerName">
             </div>
 
             <div class="label"> Płeć </div>
             <div class="input">
-              <input type="radio" name="gender" value="female"> K
-              <input type="radio" name="gender" value="male" checked> M<br>
+              <input type="radio" v-model="explorerSex" value="Kobieta"> K
+              <input type="radio" v-model="explorerSex" value="Mężczyzna" checked> M<br>
+            </div>
+
+            <div class="label"> Wiek </div>
+            <div class="input">
+              <input type="number" v-model="explorerAge" min="10" max="100">
             </div>
 
             <div class="label"> Miejsce zamieszkania </div>
             <div class="input">
-              <input type="text" name="liveplace" value="Boston">
+              <input type="text" v-model="explorerCity">
             </div>
 
             <div class="label"> Miejsce urodzenia </div>
             <div class="input">
-              <input type="text" name="bornplace" value="Londyn">
+              <input type="text" v-model="explorerBirthCity">
             </div>
           </form>
           <h1>Inne </h1>
           <form>
             <div class="label"> Znaczące miejsca </div>
             <div class="input">
-              <input type="text" name="imp-places">
+              <input type="text" v-model="importantPlace">
             </div>
 
             <div class="label"> Fobie </div>
             <div class="input">
-              <input type="text" name="phobia" value="Pająki">
+              <input type="text" v-model="phobia">
             </div>
 
             <div class="label"> Ważne osoby </div>
             <div class="input">
-              <input type="text" name="imp-person" value="Siotra Meggie">
+              <input type="text" v-model="importantPeople">
             </div>
           </form>
         </div>
@@ -402,9 +402,9 @@
           <img src="../static/img/postac.jpg"></img>
         </div>
         <div id="summarise">
-          <p>Imię: Jass Anderson <br>
-            Płeć: Kobieta <br>
-            Wiek: 32 <br>
+          <p>Imię: {{explorerName}}<br>
+            Płeć: {{explorerSex}} <br>
+            Wiek: {{explorerAge}} <br>
             Zawód: Detektyw <br>
             Mocne strony: Siła i kondycja <br>
             Umiejętności: wspinaczka, charakteryzacja, urok osobisty <br>
@@ -415,6 +415,10 @@
     </div>
   </div>
   <script>
+
+    // ------------ COMPONENTS ---------------
+    //  NAJPIERW DEKLARUJ KOMPONENT, POTEM DOPIERO NEW VUE !!
+
     //
     // Vue.component('buttons', {
     //   props: ['title'],
@@ -424,6 +428,15 @@
   	new Vue({
   		el: '#content',
   		data: {
+        explorerName: '',
+        gamerName: '',
+        explorerAge: '',
+        explorerSex: '',
+        explorerCity: '',
+        explorerBirthCity: '',
+        importantPlace: '',
+        phobia: '',
+        importantPeople: '',
   			info: true,
         attribute: false,
         pages: [true, false, false, false, false],
@@ -476,9 +489,6 @@
         }
       },
     });
-
-  // ------------ COMPONENTS ---------------
-  //  NAJPIERW DEKLARUJ KOMPONENT, POTEM DOPIERO NEW VEU !!
 
 
   </script>
