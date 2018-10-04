@@ -10,18 +10,25 @@
 </head>
 
 <body>
-  <div id="content">
+  <div>
 
     <div class="maingrid">
       <header>Tworzenie postaci</header>
-      <nav>
-        <button v-on:click="switchToPage(0)">Informacje o postaci</button>
-        <button v-on:click="switchToPage(1)">Cechy</button>
-        <button v-on:click="switchToPage(2)">Zawód i umiejętności</button>
-        <button v-on:click="switchToPage(3)">Ekwipunek</button>
-        <button v-on:click="switchToPage(4)" class="last">Wygląd</button>
+      <nav id="leftnav">
+        <buttons
+          v-for="el in elements"
+          v-bind:key="el.id"
+          v-bind:title="el.title"
+        ></buttons>
       </nav>
-      <main>
+      <!--
+      <button v-on:click="switchToPage(0)">Informacje o postaci</button>
+      <button v-on:click="switchToPage(1)">Cechy</button>
+      <button v-on:click="switchToPage(2)">Zawód i umiejętności</button>
+      <button v-on:click="switchToPage(3)">Ekwipunek</button>
+      <button v-on:click="switchToPage(4)" class="last">Wygląd</button>
+      -->
+      <main id="content">
 
         <div v-if="pages[0]">
           <h1>Informacje o postaci</h1>
@@ -352,43 +359,43 @@
         </div>
 
         <div v-if="pages[4]">
-        <h1> Twoja Postać </h1>
-        <div class="img creator">
-            <img src="../static/img/postac.jpg"></img>
-        </div>
-        <div class="appgrid">
-          <nav>
-            <button>Postura</button>
-            <button>Skóra</button>
-            <button>Włosy</button>
-            <button>Oczy</button>
-            <button>Ubranie</button>
-            <button>Znaki</button>
-          </nav>
-          <div id="opt">
-            <h2> Kształt </h2>
-            <div class="img option">
-              <img></img>
-            </div>
-            <div class="img option">
-              <img></img>
-            </div>
-            <div class="img option">
-              <img></img>
-            </div>
+          <h1> Twoja Postać </h1>
+          <div class="img creator">
+              <img src="../static/img/postac.jpg"></img>
+          </div>
+          <div class="appgrid">
+            <nav>
+              <button>Postura</button>
+              <button>Skóra</button>
+              <button>Włosy</button>
+              <button>Oczy</button>
+              <button>Ubranie</button>
+              <button>Znaki</button>
+            </nav>
+            <div id="opt">
+              <h2> Kształt </h2>
+              <div class="img option">
+                <img></img>
+              </div>
+              <div class="img option">
+                <img></img>
+              </div>
+              <div class="img option">
+                <img></img>
+              </div>
 
-          </div>
-          <div id="colors">
-            <h2> Kolor </h2>
-            <div class="color col1"></div>
-            <div class="color col2"></div>
-            <div class="color col3"></div>
-            <div class="color col4"></div>
-            <div class="color col5"></div>
-            <div class="color col6"></div>
+            </div>
+            <div id="colors">
+              <h2> Kolor </h2>
+              <div class="color col1"></div>
+              <div class="color col2"></div>
+              <div class="color col3"></div>
+              <div class="color col4"></div>
+              <div class="color col5"></div>
+              <div class="color col6"></div>
+            </div>
           </div>
         </div>
-      </div>
 
       </main>
 
@@ -407,8 +414,8 @@
         </div>
         <button class="last">Zapisz</button>
       </aside>
-    </div> <!-- class="grid"> -->
-  </div> <!-- id="content" -->
+    </div>
+  </div>
   <script>
 	new Vue({
 		el: '#content',
@@ -437,14 +444,50 @@
         vm.$set(vm.pages, pageIndex, true)
       },
       setMainAttributes(attribute, value){
-        console.log("---------------");
         this.mainAttr[attribute].value = value;
+        this.validateAttributes();
+      },
+      validateAttributes(){
+        var a = [];
+        var b = [];
         for (var i=0; i<this.mainAttr.length; i++){
-          console.log(this.mainAttr[i].name + " -> " + this.mainAttr[i].value)
+          a.push(this.mainAttrValues[i].value);
+          b.push(this.mainAttr[i].value);
         }
+        b.sort();
+        a.sort();
+        for (var i=0; i<this.mainAttr.length; i++){
+          if (a[i] != b[i]){
+            return false; //two arrays aren't same
+          }
+        }
+        return true; //two arrays are same
       }
     },
   });
+
+  // ------------ COMPONENTS ---------------
+  //  NAJPIERW DEKLARUJ KOMPONENT, POTEM DOPIERO NEW VEU !!
+
+
+    Vue.component('buttons', {
+      props: ['title'],
+      template: '<button>{{title}}</button>',
+    });
+
+  new Vue({
+    el: '#leftnav',
+    data: {
+      elements: [
+        { id: 0, title: 'Informacje o postaci' },
+        { id: 1, title: 'Cechy' },
+        { id: 2, title: 'Zawód i umiejętności' },
+        { id: 3, title: 'Ekwipunek' },
+        { id: 4, title: 'Wygląd' },
+      ],
+    },
+  });
+
   </script>
 </body>
 </html>
