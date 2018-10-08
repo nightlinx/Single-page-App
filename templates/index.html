@@ -256,22 +256,22 @@
           <h1>Zainteresowania</h1>
             <form>
               <div class="center-label">
-              <select>
+              <select v-model="skills[0]">
                 <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
             <div class="center-label">
-              <select>
+              <select v-model="skills[1]">
                 <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
             <div class="center-label">
-              <select>
+              <select v-model="skills[2]">
                 <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
             <div class="center-label">
-              <select>
+              <select v-model="skills[3]">
                 <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
@@ -283,14 +283,14 @@
           <form>
             <div class="label">Broń</div>
             <div class="input">
-              <select>
-                <option v-for="weapon in allWeapons" v-bind:value="weapon">{{weapon}}</option>
+              <select v-model="weapons[0]">
+                <option v-for="w in allWeapons" v-bind:value="w">{{w}}</option>
               </select>
             </div>
             <div class="label hidden">Broń</div>
             <div class="input">
-              <select>
-                <option v-for="weapon in allWeapons" v-bind:value="weapon">{{weapon}}</option>
+              <select v-model="weapons[1]">
+                <option v-for="w in allWeapons" v-bind:value="w">{{w}}</option>
               </select>
             </div>
             <hr>
@@ -300,34 +300,34 @@
             <hr>
             <div class="label">Dobytek</div>
             <div class="input">
-              <select>
+              <select v-model="equipment[0]">
                 <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
             <div class="label hidden">Dobytek</div>
             <div class="input">
-              <select>
-                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
-              </select>
-            </div>
-
-            <div class="label hidden">Dobytek</div>
-            <div class="input">
-              <select>
+              <select v-model="equipment[1]">
                 <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
 
             <div class="label hidden">Dobytek</div>
             <div class="input">
-              <select>
+              <select v-model="equipment[2]">
                 <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
 
             <div class="label hidden">Dobytek</div>
             <div class="input">
-              <select>
+              <select v-model="equipment[3]">
+                <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
+              </select>
+            </div>
+
+            <div class="label hidden">Dobytek</div>
+            <div class="input">
+              <select v-model="equipment[4]">
                 <option v-for="equipment in allEquipment" v-bind:value="equipment">{{equipment}}</option>
               </select>
             </div>
@@ -384,7 +384,7 @@
             Płeć: {{explorerSex}} <br>
             Wiek: {{explorerAge}} <br>
             Zawód: {{job}} <br>
-            Mocne strony: <span v-for="points in strongPoints">{{points}}, </span><br>
+            Mocne strony: <span v-for="points in strongPoints">{{points.name}}, </span><br>
             Umiejętności: <span v-for="skills in strongSkills">{{skills}}, </span><br>
             Bron: <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
@@ -416,26 +416,27 @@
         phobia: '',
         importantPeople: '',
         job: '',
+        sk: '',
         allJobs: ['Aktor', 'Antykwariusz', 'Artysta', 'Detektyw', 'Hobbysta', 'Lekarz', 'Policjant', 'Student'],
         allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
         allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
-        allSkills: [{name:'Medycyna', value:41}, {name:'Historia', value:45}, {name:'Tropienie', value:50}, {name:'Język włoski', value:41}],
-        strongPoints: [],
-        strongSkills: [],
+        allSkills: [{name:'Medycyna', value:21}, {name:'Historia', value:25}, {name:'Tropienie', value:30}, {name:'Język włoski', value:21}, {name:'Język francuski', value:21}],
+        skills: [],
         weapons: [],
+        equipment: [],
   			info: true,
         attribute: false,
         pages: [true, false, false, false, false],
         mainAttrValues: [{'value':80}, {'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}],
         mainAttr: [
-          {'name': 'S', 'value': 0},
-          {'name': 'KON', 'value': 0},
-          {'name': 'M', 'value': 0},
-          {'name': 'ZR', 'value': 0},
-          {'name': 'W', 'value': 0},
-          {'name': 'BC', 'value': 0},
-          {'name': 'INT', 'value': 0},
-          {'name': 'WYK', 'value': 0}
+          {'name': 'Siła', 'value': 0},
+          {'name': 'Kondycja', 'value': 0},
+          {'name': 'Moc', 'value': 0},
+          {'name': 'Zręczność', 'value': 0},
+          {'name': 'Wygląd', 'value': 0},
+          {'name': 'Budowa ciała', 'value': 0},
+          {'name': 'Inteligencja', 'value': 0},
+          {'name': 'Wykształcenie', 'value': 0}
         ],
         // elements: [
         //   { id: 0, title: 'Informacje o postaci' },
@@ -445,6 +446,40 @@
         //   { id: 4, title: 'Wygląd' },
         // ],
   		},
+      computed: {
+        strongPoints: function () {
+          var sp = [];
+          for (var i=0; i<this.mainAttr.length; i++){
+            if (this.mainAttr[i].value >= 70) {
+              sp.push(this.mainAttr[i]);
+            }
+          }
+          return sp;
+        },
+        strongSkills: function () {
+          var sp = [];
+          for (var i=0; i<this.skills.length; i++){
+            if (this.skills[i].value >= 70) {
+              sp.push(this.skills[i]);
+            }
+          }
+          return sp;
+        },
+      },
+      watch: {
+        weapons: function() {
+          console.log(this.weapons);
+        },
+        equipment: function() {
+          console.log(this.equipment);
+        },
+        skills: function() {
+          for (s of this.skills){
+            console.log(s.name, s.value);
+          }
+        }
+      },
+
       methods: {
         switchToPage(pageIndex){
           var vm = this;
@@ -472,7 +507,8 @@
             }
           }
           return true; //two arrays are same
-        }
+        },
+
       },
     });
 
