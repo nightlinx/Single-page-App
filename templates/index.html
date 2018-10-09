@@ -185,53 +185,61 @@
           </div>
           <div class="input">
             <select class="number">
-              <option value="">70</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(0, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label"> Broń palna </div>
           <div class="input">
             <select class="number">
-              <option value="">60</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(1, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label"> Nasłuchiwanie </div>
           <div class="input">
             <select class="number">
-              <option value="">60</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(2, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label"> Prawo </div>
           <div class="input">
             <select class="number">
-              <option value="">50</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(3, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label">
             <select>
+              <option></option>
               <option value="">Urok osobisty</option>
             </select>
           </div>
           <div class="input">
             <select class="number">
-              <option value="">50</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(4, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label"> Psychologia </div>
           <div class="input">
             <select class="number">
-              <option value="">50</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(5, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label"> Spostrzegawczość </div>
           <div class="input">
             <select class="number">
-              <option value="">40</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(6, m.value)">{{m.value}}</option>
             </select>
           </div>
 
@@ -242,24 +250,26 @@
           </div>
           <div class="input">
             <select class="number">
-              <option value="">40</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(7, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label"> Majętnosć </div>
           <div class="input">
             <select class="number">
-              <option value="">40</option>
+              <option></option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(8, m.value)">{{m.value}}</option>
             </select>
           </div>
-          <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+          <p class="note"> Przydziel wartości do powyższych umiejętności: <br>70, 60, 60, 50, 50, 50, 40, 40, 40</p>
           <h1>Zainteresowania</h1>
             <form>
               <div class="center-label">
-              <select v-model="skills[0]">
-                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
-              </select>
-            </div>
+                <select v-model="skills[0]">
+                  <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
+                </select>
+              </div>
             <div class="center-label">
               <select v-model="skills[1]">
                 <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
@@ -275,7 +285,7 @@
                 <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
               </select>
             </div>
-          </form>
+            </form>
         </div>
 
         <div v-if="pages[3]">
@@ -420,7 +430,12 @@
         allJobs: ['Aktor', 'Antykwariusz', 'Artysta', 'Detektyw', 'Hobbysta', 'Lekarz', 'Policjant', 'Student'],
         allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
         allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
-        allSkills: [{name:'Medycyna', value:21}, {name:'Historia', value:25}, {name:'Tropienie', value:30}, {name:'Język włoski', value:21}, {name:'Język francuski', value:21}],
+        allSkills: [
+          {name:'Medycyna', value:21},
+          {name:'Historia', value:25},
+          {name:'Tropienie', value:30},
+          {name:'Język włoski', value:21},
+          {name:'Język francuski', value:21}],
         skills: [],
         weapons: [],
         equipment: [],
@@ -428,15 +443,27 @@
         attribute: false,
         pages: [true, false, false, false, false],
         mainAttrValues: [{'value':80}, {'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}],
+        mainSkillsValues: [{'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}, {'value':40}, {'value':40}],
         mainAttr: [
-          {'name': 'Siła', 'value': 0},
-          {'name': 'Kondycja', 'value': 0},
-          {'name': 'Moc', 'value': 0},
-          {'name': 'Zręczność', 'value': 0},
-          {'name': 'Wygląd', 'value': 0},
-          {'name': 'Budowa ciała', 'value': 0},
-          {'name': 'Inteligencja', 'value': 0},
-          {'name': 'Wykształcenie', 'value': 0}
+          {name: 'Siła', value: 0},
+          {name: 'Kondycja', value: 0},
+          {name: 'Moc', value: 0},
+          {name: 'Zręczność', value: 0},
+          {name: 'Wygląd', value: 0},
+          {name: 'Budowa ciała', value: 0},
+          {name: 'Inteligencja', value: 0},
+          {name: 'Wykształcenie', value: 0}
+        ],
+        mainSkills: [
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
+          {name: '', value: 0},
         ],
         // elements: [
         //   { id: 0, title: 'Informacje o postaci' },
@@ -459,7 +486,7 @@
         strongSkills: function () {
           var sp = [];
           for (var i=0; i<this.skills.length; i++){
-            if (this.skills[i].value >= 70) {
+            if (this.skills[i].value >= 60) {
               sp.push(this.skills[i]);
             }
           }
@@ -488,25 +515,35 @@
           }
           vm.$set(vm.pages, pageIndex, true)
         },
+
         setMainAttributes(attribute, value){
           this.mainAttr[attribute].value = value;
-          this.validateAttributes();
+          this.validateValues(this.mainAttr, this.mainAttrValues);
         },
-        validateAttributes(){
+
+        setMainSkills(attribute, value){
+          this.mainSkills[attribute].value = value;
+          this.validateValues(this.mainSkills, this.mainSkillsValues);
+        },
+
+        validateValues(first, second){
           var a = [];
           var b = [];
-          for (var i=0; i<this.mainAttr.length; i++){
-            a.push(this.mainAttrValues[i].value);
-            b.push(this.mainAttr[i].value);
+          var length = first.length;
+          for (var i=0; i<length; i++){
+            a.push(first[i].value);
+            b.push(second[i].value);
           }
           b.sort();
           a.sort();
-          for (var i=0; i<this.mainAttr.length; i++){
+          for (var i=0; i<length; i++){
             if (a[i] != b[i]){
-              return false; //two arrays aren't same
+              console.log("Źle ustawione wartości");
+              return false;
             }
           }
-          return true; //two arrays are same
+          console.log("Dobrze ustawione wartości");
+          return true;
         },
 
       },
