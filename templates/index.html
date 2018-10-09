@@ -172,20 +172,20 @@
           <div class="label">Zawód Badacza</div>
           <div class="input">
             <select id="job" v-model="job">
-              <option v-for="j in allJobs" v-bind:value="j">
+              <option v-for="j in allJobs" v-bind:value="j" v-on:click="selectJob(j)">
                 {{j}}
               </option>
             </select>
           </div>
           <h1>Umiejętności</h1>
           <div class="label">
-            <select>
-              <option value="">Charakteryzacja</option>
+            <select v-model="mainSkills[0].name">
+              <option v-for="s in allSkills" v-bind:value="s.name">{{s.name}}</option>
             </select>
           </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(0, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(0, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -193,7 +193,7 @@
           <div class="label"> Broń palna </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(1, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(1, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -201,7 +201,7 @@
           <div class="label"> Nasłuchiwanie </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(2, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(2, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -209,20 +209,19 @@
           <div class="label"> Prawo </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(3, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(3, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label">
-            <select>
-              <option></option>
-              <option value="">Urok osobisty</option>
+            <select v-model="mainSkills[4].name">
+              <option v-for="s in allSkills" v-bind:value="s.name">{{s.name}}</option>
             </select>
           </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(4, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(4, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -230,7 +229,7 @@
           <div class="label"> Psychologia </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(5, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(5, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -238,19 +237,19 @@
           <div class="label"> Spostrzegawczość </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(6, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(6, m.value)">{{m.value}}</option>
             </select>
           </div>
 
           <div class="label">
-            <select>
-              <option value="">Wspinaczka</option>
+            <select v-model="mainSkills[7].name">
+              <option v-for="s in allSkills" v-bind:value="s.name">{{s.name}}</option>
             </select>
           </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(7, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(7, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -258,7 +257,7 @@
           <div class="label"> Majętnosć </div>
           <div class="input">
             <select class="number">
-              <option></option>
+              <option v-on:click="setMainSkills(8, 0)"></option>
               <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(8, m.value)">{{m.value}}</option>
             </select>
           </div>
@@ -395,7 +394,7 @@
             Wiek: {{explorerAge}} <br>
             Zawód: {{job}} <br>
             Mocne strony: <span v-for="points in strongPoints">{{points.name}}, </span><br>
-            Umiejętności: <span v-for="skills in strongSkills">{{skills}}, </span><br>
+            Umiejętności: <span v-for="skills in strongSkills">{{skills.name}}, </span><br>
             Bron: <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
         <button class="last">Zapisz</button>
@@ -431,6 +430,8 @@
         allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
         allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
         allSkills: [
+          {name:'Charakteryzacja', value:25},
+          {name:'Elektryka', value:30},
           {name:'Medycyna', value:21},
           {name:'Historia', value:25},
           {name:'Tropienie', value:30},
@@ -485,9 +486,9 @@
         },
         strongSkills: function () {
           var sp = [];
-          for (var i=0; i<this.skills.length; i++){
-            if (this.skills[i].value >= 60) {
-              sp.push(this.skills[i]);
+          for (var i=0; i<this.mainSkills.length; i++){
+            if (this.mainSkills[i].value >= 60) {
+              sp.push(this.mainSkills[i]);
             }
           }
           return sp;
@@ -500,11 +501,11 @@
         equipment: function() {
           console.log(this.equipment);
         },
-        skills: function() {
-          for (s of this.skills){
+        mainSkills: function() {
+          for (s of this.mainSkills){
             console.log(s.name, s.value);
           }
-        }
+        },
       },
 
       methods: {
@@ -514,6 +515,19 @@
             vm.$set(vm.pages, i, false)
           }
           vm.$set(vm.pages, pageIndex, true)
+        },
+
+        selectJob(job){
+          this.mainSkills[1].name = 'Broń palna';
+          this.mainSkills[2].name = 'Nasłuchiwanie';
+          this.mainSkills[3].name = 'Prawo';
+          this.mainSkills[5].name = 'Psychologia';
+          this.mainSkills[6].name = 'Spostrzegawczość';
+          this.mainSkills[7].name = 'Majętnosć';
+          console.log("-------------------");
+          for (s of this.mainSkills){
+            console.log(s.name, s.value);
+          }
         },
 
         setMainAttributes(attribute, value){
