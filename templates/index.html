@@ -180,7 +180,7 @@
           <h1>Umiejętności</h1>
           <div class="label">
             <select v-model="mainSkills[0].name">
-              <option v-for="s in allSkills" v-bind:value="s.name">{{s.name}}</option>
+              <option v-for="s in jobSkills[0].name" v-bind:value="s">{{s}}</option>
             </select>
           </div>
           <div class="input">
@@ -216,7 +216,7 @@
 
           <div class="label">
             <select v-model="mainSkills[4].name">
-              <option v-for="s in allSkills" v-bind:value="s.name">{{s.name}}</option>
+              <option v-for="s in jobSkills[4].name" v-bind:value="s">{{s}}</option>
             </select>
           </div>
           <div class="input">
@@ -244,7 +244,7 @@
 
           <div class="label">
             <select v-model="mainSkills[7].name">
-              <option v-for="s in allSkills" v-bind:value="s.name">{{s.name}}</option>
+              <option v-for="s in jobSkills[7].name" v-bind:value="s">{{s}}</option>
             </select>
           </div>
           <div class="input">
@@ -455,6 +455,17 @@
           {name: 'Inteligencja', value: 0},
           {name: 'Wykształcenie', value: 0}
         ],
+        jobSkills: [
+          {name: []},
+          {name: []},
+          {name: []},
+          {name: []},
+          {name: []},
+          {name: []},
+          {name: []},
+          {name: []},
+          {name: []},
+        ],
         mainSkills: [
           {name: '', value: 0},
           {name: '', value: 0},
@@ -516,14 +527,31 @@
           }
           vm.$set(vm.pages, pageIndex, true)
         },
+        setJobSkills(job){
+          //jeśli job = 'Detektyw' to ....
+          // tutaj będę pobierać GETem umiejętności danego zawodu
+          this.jobSkills[0].name = ['Sztuka/Rzemiosło', 'Charakteryzacja'];
+          this.jobSkills[1].name = ['Broń palna'];
+          this.jobSkills[2].name = ['Nasłuchiwanie'];
+          this.jobSkills[3].name = ['Prawo'];
+          this.jobSkills[4].name = ['Urok Osobisty', 'Gadanina', 'Zastraszanie', 'Perswazja'];
+          this.jobSkills[5].name = ['Psychologia'];
+          this.jobSkills[6].name = ['Spostrzegawczość'];
+          for (var i=0; i<this.allSkills.length; i++){
+            this.jobSkills[7].name[i] = this.allSkills[i].name;
+          }
+          //this.jobSkills[7].name = ['all Skills', 'all Skills', 'all Skills'];
+          this.jobSkills[8].name = ['Majętnosć'];
+        },
 
         selectJob(job){
-          this.mainSkills[1].name = 'Broń palna';
-          this.mainSkills[2].name = 'Nasłuchiwanie';
-          this.mainSkills[3].name = 'Prawo';
-          this.mainSkills[5].name = 'Psychologia';
-          this.mainSkills[6].name = 'Spostrzegawczość';
-          this.mainSkills[7].name = 'Majętnosć';
+          this.setJobSkills(job);
+          for (var i=0; i<this.jobSkills.length; i++){
+            if(this.jobSkills[i].name.length == 1) { //jeśli jest tylko jedna cecha do wyboru to zapisz ją 'na sztywno' jako umiejętność głowna (w mainSkills)
+              this.mainSkills[i].name = this.jobSkills[i].name[0];
+              console.log(this.jobSkills[i].name[0])
+            }
+          }
           console.log("-------------------");
           for (s of this.mainSkills){
             console.log(s.name, s.value);
