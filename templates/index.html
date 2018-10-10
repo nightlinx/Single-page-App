@@ -151,19 +151,22 @@
 
           <h1>Cechy pochodne</h1>
             <div class="label">Szczęście:</div>
-            <div class="input"><button>Losuj</button></div>
+            <div class="input"><span class="switch" v-on:click="luckDraw = false" v-if="luckDraw">Losuj</span><span v-if="!luckDraw">{{luck}}</span></div>
 
             <div class="label">Punkty Magii:</div>
-            <div class="input">12</div>
+            <div class="input">{{mainAttr[2].value/5}}</div>
 
             <div class="label">Modifikator obrażeń: </div>
-            <div class="input">+1</div>
+            <div class="input">{{injuriesAndBrawn[0]}}</div>
+
+            <div class="label">Krzepa: </div>
+            <div class="input">{{injuriesAndBrawn[1]}}</div>
 
             <div class="label">Punkty wytrzymałości (PW): </div>
-            <div class="input">12</div>
+            <div class="input">{{durability}}</div>
 
             <div class="label">Poczytalność (P): </div>
-            <div class="input">60</div>
+            <div class="input" v-bind="mind">{{mainAttr[2].value}}</div>
           </form>
         </div>
 
@@ -426,6 +429,9 @@
         importantPeople: '',
         job: '',
         sk: '',
+        magic: 0,
+        mind: 0,
+        luckDraw: true,
         allJobs: ['Aktor', 'Antykwariusz', 'Artysta', 'Detektyw', 'Hobbysta', 'Lekarz', 'Policjant', 'Student'],
         allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
         allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
@@ -488,6 +494,26 @@
         // ],
   		},
       computed: {
+        injuriesAndBrawn: function (){
+          var sum = this.mainAttr[0].value + this.mainAttr[5].value;
+          if (sum<=64) return ['-2', '-2'];
+          if (sum<=84) return ['-1', '-1'];
+          if (sum<=124) return ['Brak', '+1'];
+          if (sum<=164) return ['+1K4', '+1'];
+          return ['+1K6', '+2'];
+        },
+        durability: function () {
+          var sum = this.mainAttr[1].value + this.mainAttr[5].value;
+          return sum/10;
+        },
+        luck: function () {
+          // wykonuję 3 rzuty koścmi K6 i mnożę razy 5;
+          var first = Math.floor(Math.random() * 6) + 1;
+          var sec = Math.floor(Math.random() * 6) + 1;
+          var third = Math.floor(Math.random() * 6) + 1;
+          return (first+sec+third)*5;
+          //== return Math.floor(Math.random() * 90) + 15;
+        },
         strongPoints: function () {
           var sp = [];
           for (var i=0; i<this.mainAttr.length; i++){

@@ -41,15 +41,20 @@
     box-sizing: border-box;
 }
 
-form > div > button{
-    font-size: 14px;
-    background-color: #D8CD6D;
-    height: 25px;
+.switch{
+  cursor: pointer;
+  color: black;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 14px;
+  background-color: #D8CD6D;
+  height: 25px;
 }
 
-form > div > button:hover{
-    font-size: 14px;
-    background-color: #F1E89C;
+.switch:hover{
+  color: #544E1B;
+  font-size: 14px;
+  background-color: #F1E89C;
 }
 
 .maingrid >  main > p.note{
