@@ -87,64 +87,64 @@
             <div class="label"> Siła (S) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(0, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(0, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(0, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Kondycja (KON) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(1, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(1, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(1, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Moc (M) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(2, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(2, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(2, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Zręczność (ZR) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(3, m.value)">{{m.value}}</option>
+              ``<option v-on:click="setMainAttributes(3, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(3, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Wygląd (W) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(4, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(4, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(4, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Budowa Ciała (BC) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(5, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(5, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(5, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Inteligencja (INT) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(6, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(6, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(6, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Wykształcenie (WYK) </div>
             <div class="input">
               <select class="number">
-                <option></option>
-                <option v-for="m in mainAttrValues" :value="m.value" v-on:click="setMainAttributes(7, m.value)">{{m.value}}</option>
+                <option v-on:click="setMainAttributes(7, 0)"></option>
+                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(7, m)">{{m}}</option>
               </select>
             </div>
           <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
@@ -189,7 +189,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(0, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(0, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(0, m)">{{m}}</option>
             </select>
           </div>
 
@@ -197,7 +197,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(1, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(1, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(1, m)">{{m}}</option>
             </select>
           </div>
 
@@ -205,7 +205,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(2, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(2, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(2, m)">{{m}}</option>
             </select>
           </div>
 
@@ -213,7 +213,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(3, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(3, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(3, m)">{{m}}</option>
             </select>
           </div>
 
@@ -225,7 +225,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(4, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(4, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(4, m)">{{m}}</option>
             </select>
           </div>
 
@@ -233,7 +233,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(5, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(5, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(5, m)">{{m}}</option>
             </select>
           </div>
 
@@ -241,7 +241,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(6, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(6, m.value)">{{m.value}}</option>
+              <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainSkills(6, m)">{{m}}</option>
             </select>
           </div>
 
@@ -253,7 +253,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(7, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(7, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(7, m)">{{m}}</option>
             </select>
           </div>
 
@@ -261,7 +261,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(8, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(8, m.value)">{{m.value}}</option>
+              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(8, m)">{{m}}</option>
             </select>
           </div>
           <p class="note"> Przydziel wartości do powyższych umiejętności: <br>70, 60, 60, 50, 50, 50, 40, 40, 40</p>
@@ -443,7 +443,9 @@
           {name:'Tropienie', value:30},
           {name:'Język włoski', value:21},
           {name:'Język francuski', value:21},
-          {name: 'Zastraszanie', value: 20},],
+          {name: 'Zastraszanie', value: 20},
+          {name: 'Nasłuchiwanie', value: 20}
+        ],
         interests: [],
         skills: [],
         weapons: [],
@@ -537,19 +539,11 @@
           }
         },
         allInterests: function () {
-          var filtered = [];
-          //filtered = this.allSkills.filter(!this.isSelected); //dodaj tylko te umiejętności, których gracz jeszcze nie wybrał
-          for (s of this.allSkills) {
-            if (!this.isSelected(s)) {
-              filtered.push(s);
-            }
+          var mySkills = []
+          for (s of this.mainSkills) {
+            mySkills.push(s.name);
           }
-          console.log("-> ZAINTERESOWANIA <-\n");
-          for (f of filtered){
-            console.log(f.name)
-          }
-          console.log("- - -- - - ")
-          return filtered;
+          return this.allSkills.filter(function(i){return mySkills.indexOf(i.name) < 0;})
         },
 
       },
