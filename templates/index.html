@@ -225,7 +225,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(4, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(0, m.value)">{{m.value}}</option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(4, m.value)">{{m.value}}</option>
             </select>
           </div>
 
@@ -392,13 +392,13 @@
           <img src="../static/img/postac.jpg"></img>
         </div>
         <div id="summarise">
-          <p>Imię: {{explorerName}}<br>
-            Płeć: {{explorerSex}} <br>
-            Wiek: {{explorerAge}} <br>
-            Zawód: {{job}} <br>
-            Mocne strony: <span v-for="points in strongPoints">{{points.name}}, </span><br>
-            Umiejętności: <span v-for="skills in mainSkills">{{skills.name}}, </span><br>
-            Bron: <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
+          <p><b>Imię:</b> {{explorerName}}<br>
+            <b>Płeć:</b> {{explorerSex}} <br>
+            <b>Wiek:</b> {{explorerAge}} <br>
+            <b>Zawód:</b> {{job}} <br>
+            <b>Mocne strony:</b> <span v-for="points in strongPoints">{{points.name}}, </span><br>
+            <b>Umiejętności:</b> <span v-for="skills in strongSkills">{{skills.name}}, </span><br>
+            <b>Bron:</b> <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
         <button class="last">Zapisz</button>
       </aside>
@@ -515,22 +515,26 @@
           //== return Math.floor(Math.random() * 90) + 15;
         },
         strongPoints: function () {
-          var sp = [];
-          for (var i=0; i<this.mainAttr.length; i++){
-            if (this.mainAttr[i].value >= 70) {
-              sp.push(this.mainAttr[i]);
+          if(this.validateValues(this.mainAttr, this.mainAttrValues)){
+            var sp = [];
+            for (var i=0; i<this.mainAttr.length; i++){
+              if (this.mainAttr[i].value >= 70) {
+                sp.push(this.mainAttr[i]);
+              }
             }
+            return sp;
           }
-          return sp;
         },
         strongSkills: function () {
-          var sp = [];
-          for (var i=0; i<this.mainSkills.length; i++){
-            if (this.mainSkills[i].value >= 60) {
-              sp.push(this.mainSkills[i]);
+          if(this.validateValues(this.mainSkills, this.mainSkillsValues)){
+            var sp = [];
+            for (var i=0; i<this.mainSkills.length; i++){
+              if (this.mainSkills[i].value >= 60) {
+                sp.push(this.mainSkills[i]);
+              }
             }
+            return sp;
           }
-          return sp;
         },
         allInterests: function () {
           var filtered = [];
