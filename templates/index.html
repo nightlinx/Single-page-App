@@ -222,7 +222,7 @@
           <div class="input">
             <select class="number">
               <option v-on:click="setMainSkills(4, 0)"></option>
-              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(4, m.value)">{{m.value}}</option>
+              <option v-for="m in mainSkillsValues" :value="m.value" v-on:click="setMainSkills(0, m.value)">{{m.value}}</option>
             </select>
           </div>
 
@@ -265,25 +265,25 @@
           <h1>Zainteresowania</h1>
             <form>
               <div class="center-label">
-                <select v-model="skills[0]">
-                  <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
+                <select v-model="interests[0]">
+                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
                 </select>
               </div>
-            <div class="center-label">
-              <select v-model="skills[1]">
-                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
-              </select>
-            </div>
-            <div class="center-label">
-              <select v-model="skills[2]">
-                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
-              </select>
-            </div>
-            <div class="center-label">
-              <select v-model="skills[3]">
-                <option v-for="skill in allSkills" v-bind:value="skill">{{skill.name}}: {{skill.value}}</option>
-              </select>
-            </div>
+              <div class="center-label">
+                <select v-model="interests[1]">
+                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                </select>
+              </div>
+              <div class="center-label">
+                <select v-model="interests[2]">
+                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                </select>
+              </div>
+              <div class="center-label">
+                <select v-model="interests[3]">
+                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                </select>
+              </div>
             </form>
         </div>
 
@@ -394,7 +394,7 @@
             Wiek: {{explorerAge}} <br>
             Zawód: {{job}} <br>
             Mocne strony: <span v-for="points in strongPoints">{{points.name}}, </span><br>
-            Umiejętności: <span v-for="skills in strongSkills">{{skills.name}}, </span><br>
+            Umiejętności: <span v-for="skills in mainSkills">{{skills.name}}, </span><br>
             Bron: <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
         <button class="last">Zapisz</button>
@@ -436,7 +436,9 @@
           {name:'Historia', value:25},
           {name:'Tropienie', value:30},
           {name:'Język włoski', value:21},
-          {name:'Język francuski', value:21}],
+          {name:'Język francuski', value:21},
+          {name: 'Zastraszanie', value: 20},],
+        interests: [],
         skills: [],
         weapons: [],
         equipment: [],
@@ -504,6 +506,22 @@
           }
           return sp;
         },
+        allInterests: function () {
+          var filtered = [];
+          //filtered = this.allSkills.filter(!this.isSelected); //dodaj tylko te umiejętności, których gracz jeszcze nie wybrał
+          for (s of this.allSkills) {
+            if (!this.isSelected(s)) {
+              filtered.push(s);
+            }
+          }
+          console.log("-> ZAINTERESOWANIA <-\n");
+          for (f of filtered){
+            console.log(f.name)
+          }
+          console.log("- - -- - - ")
+          return filtered;
+        },
+
       },
       watch: {
         weapons: function() {
@@ -517,9 +535,21 @@
             console.log(s.name, s.value);
           }
         },
+        interests: function() {
+          console.log(this.interests);
+        }
       },
 
       methods: {
+        isSelected: function (skill) {
+          for (ms of this.mainSkills) { //iteruję po wszystkich skillach, które gracz już wybrał
+            if (ms.name == skill.name){ //jeśli ta nazwa umiejetności jest wybrana to zwracam prawdę
+              //console.log(ms.name, "powtarza się");
+              return true;
+            }
+            return false;
+          }
+        },
         switchToPage(pageIndex){
           var vm = this;
           for (var i=0; i<this.pages.length; i++){
@@ -540,7 +570,6 @@
           for (var i=0; i<this.allSkills.length; i++){
             this.jobSkills[7].name[i] = this.allSkills[i].name;
           }
-          //this.jobSkills[7].name = ['all Skills', 'all Skills', 'all Skills'];
           this.jobSkills[8].name = ['Majętnosć'];
         },
 
@@ -549,12 +578,8 @@
           for (var i=0; i<this.jobSkills.length; i++){
             if(this.jobSkills[i].name.length == 1) { //jeśli jest tylko jedna cecha do wyboru to zapisz ją 'na sztywno' jako umiejętność głowna (w mainSkills)
               this.mainSkills[i].name = this.jobSkills[i].name[0];
-              console.log(this.jobSkills[i].name[0])
+              //console.log(this.jobSkills[i].name[0])
             }
-          }
-          console.log("-------------------");
-          for (s of this.mainSkills){
-            console.log(s.name, s.value);
           }
         },
 
@@ -566,6 +591,13 @@
         setMainSkills(attribute, value){
           this.mainSkills[attribute].value = value;
           this.validateValues(this.mainSkills, this.mainSkillsValues);
+
+          console.log("----twoje umiejętności----");
+          for (s of this.mainSkills){
+            console.log(s.name, s.value);
+          }
+          console.log("-------------------");
+
         },
 
         validateValues(first, second){
