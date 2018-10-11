@@ -111,8 +111,6 @@ div.img.creator > img {
 }
 
 .maingrid > nav > button {
-  background-color: #224C3D;
-  color: white;
   display: block;
 }
 
@@ -133,6 +131,16 @@ div.img.creator > img {
 .maingrid > aside > button:hover {
   background-color: #7E583C;
   color: #442916;
+}
+
+.notActive {
+  background-color: #224C3D;
+  color: white;
+}
+
+.activePage {
+  background-color: #79C28D;
+  color: #29483D;
 }
 
 .appgrid {

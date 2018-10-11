@@ -98,3 +98,25 @@ hr {
 p.note {
   text-align: center;
 }
+
+a.save {
+  margin: 0;
+  font-family: Rokkitt;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  font-size: 16px;
+  background-color: #D8CD6D;
+  color: black;
+  text-align: center;
+  padding: 20px 0;
+  width: 200px;
+  display: block;
+}
+
+a.save:hover {
+  color: #544E1B;
+  background-color: #F1E89C;
+}

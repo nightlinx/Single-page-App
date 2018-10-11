@@ -20,11 +20,11 @@
           v-bind:key="el.id"
           v-bind:title="el.title"
         ></buttons> -->
-        <button v-on:click="switchToPage(0)">Informacje o postaci</button>
-        <button v-on:click="switchToPage(1)">Cechy</button>
-        <button v-on:click="switchToPage(2)">Zawód i umiejętności</button>
-        <button v-on:click="switchToPage(3)">Ekwipunek</button>
-        <button v-on:click="switchToPage(4)" class="last">Wygląd</button>
+        <button v-on:click="switchToPage(0)" v-bind:class="{activePage: pages[0], notActive: !pages[0]}">Informacje o postaci</button>
+        <button v-on:click="switchToPage(1)" v-bind:class="{activePage: pages[1], notActive: !pages[1]}">Cechy</button>
+        <button v-on:click="switchToPage(2)" v-bind:class="{activePage: pages[2], notActive: !pages[2]}">Zawód i umiejętności</button>
+        <button v-on:click="switchToPage(3)" v-bind:class="{activePage: pages[3], notActive: !pages[3]}">Ekwipunek</button>
+        <button v-on:click="switchToPage(4)" v-bind:class="{activePage: pages[4], notActive: !pages[4]}" class="last">Wygląd</button>
       </nav>
       <main>
 
@@ -154,7 +154,7 @@
             <div class="input"><span class="switch" v-on:click="luckDraw = false" v-if="luckDraw">Losuj</span><span v-if="!luckDraw">{{luck}}</span></div>
 
             <div class="label">Punkty Magii:</div>
-            <div class="input">{{mainAttr[2].value/5}}</div>
+            <div class="input">{{magic}}</div>
 
             <div class="label">Modifikator obrażeń: </div>
             <div class="input">{{injuriesAndBrawn[0]}}</div>
@@ -166,7 +166,7 @@
             <div class="input">{{durability}}</div>
 
             <div class="label">Poczytalność (P): </div>
-            <div class="input" v-bind="mind">{{mainAttr[2].value}}</div>
+            <div class="input">{{mainAttr[2].value}}</div>
           </form>
         </div>
 
@@ -307,7 +307,7 @@
             </div>
             <hr>
             <div class="label">Gotówka</div>
-            <div class="input"><button>Losuj</button></div>
+            <div class="input"><span class="switch" v-on:click="moneyDraw = false" v-if="moneyDraw">Losuj</span><span v-if="!moneyDraw">{{money}}</span></div>
 
             <hr>
             <div class="label">Dobytek</div>
@@ -400,7 +400,7 @@
             <b>Umiejętności:</b> <span v-for="skills in strongSkills">{{skills.name}}, </span><br>
             <b>Bron:</b> <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
-        <button class="last">Zapisz</button>
+        <a class="save" href="characters.html">Zapisz</a>
       </aside>
     </div>
   </div>
@@ -429,9 +429,8 @@
         importantPeople: '',
         job: '',
         sk: '',
-        magic: 0,
-        mind: 0,
         luckDraw: true,
+        moneyDraw: true,
         allJobs: ['Aktor', 'Antykwariusz', 'Artysta', 'Detektyw', 'Hobbysta', 'Lekarz', 'Policjant', 'Student'],
         allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
         allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
@@ -496,6 +495,12 @@
         // ],
   		},
       computed: {
+        magic: function() {
+          return this.mainAttr[2].value/5;
+        },
+        mind: function() {
+          return this.mainAttr[2].value;
+        },
         injuriesAndBrawn: function (){
           var sum = this.mainAttr[0].value + this.mainAttr[5].value;
           if (sum<=64) return ['-2', '-2'];
@@ -515,6 +520,10 @@
           var third = Math.floor(Math.random() * 6) + 1;
           return (first+sec+third)*5;
           //== return Math.floor(Math.random() * 90) + 15;
+        },
+        money: function () {
+          var a = Math.floor(Math.random() * 5) + 1;
+          return a * this.mainSkills[8].value / 10;
         },
         strongPoints: function () {
           if(this.validateValues(this.mainAttr, this.mainAttrValues)){
@@ -549,19 +558,20 @@
       },
       watch: {
         weapons: function() {
-          console.log(this.weapons);
+          console.log('watch: waeopons | ', this.weapons);
         },
         equipment: function() {
-          console.log(this.equipment);
-        },
-        mainSkills: function() {
-          for (s of this.mainSkills){
-            console.log(s.name, s.value);
-          }
+          console.log('watch: equipment | ',  this.equipment);
         },
         interests: function() {
-          console.log(this.interests);
-        }
+          console.log('watch: interests | ', this.interests);
+        },
+        magic: function() {
+            console.log('watch: magic | ', this.magic);
+        },
+        mind: function() {
+          console.log('watch: mind | ', this.mind);
+        },
       },
 
       methods: {
