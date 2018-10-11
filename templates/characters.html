@@ -10,10 +10,31 @@
 </head>
 
 <body>
-
-
-
+   <div id="list">
+     <div class="maingrid">
+       <header>twoje postacie</header>
+       <div class="list">
+         <a class="create" href="index.html">nowa postać</a>
+         <div class="element" v-for="c in characters">
+           <p class="job">{{c.job}}</p><br>
+           <p class="info"><b>{{c.name}}</b> | Płeć: {{c.sex}} | Wiek: {{c.age}} </p>
+           <div class="opt1"><a class="option">edytuj</a></div>
+           <div class="opt2"><a class="option right">drukuj</a></div>
+         </div>
+       </div>
+     </div>
+   </div>
 <script>
+	new Vue({
+    el: '#list',
+    data: {
+      characters: [
+        {job: "detektyw", name: "Jass Anderson", sex: "Kobieta", age: "34"},
+        {job: "lekarz", name: "Andrew", sex: "Mężczyzna", age: "41"},
+        {job: "aktorka", name: "Izabell", sex: "Kobieta", age: "25"},
+      ]
+    },
+  });
 </script>
 </body>
 </html>

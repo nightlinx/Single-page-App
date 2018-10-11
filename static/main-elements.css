@@ -99,24 +99,105 @@ p.note {
   text-align: center;
 }
 
-a.save {
-  margin: 0;
+a {
   font-family: Rokkitt;
   border-radius: 3px;
   cursor: pointer;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.8px;
+  display: block;
+  text-align: center;
+}
+
+a.inline {
+  display: inline-block;
+}
+
+a.save {
+  margin: 0;
   font-size: 16px;
   background-color: #D8CD6D;
   color: black;
-  text-align: center;
   padding: 20px 0;
   width: 200px;
-  display: block;
 }
 
 a.save:hover {
   color: #544E1B;
   background-color: #F1E89C;
+}
+
+a.create, .element {
+    width: auto;
+    display: block;
+}
+
+a.create {
+  background-color: #404959;
+  color: white;
+  margin: 40px 30px;
+  font-size: 24px;
+  padding: 30px 0;
+}
+
+a.create:hover, a.option:hover {
+  background-color: #919AAA;
+  color: #404959;
+}
+
+a.option {
+  background-color: #224C3D;
+  color: white;
+  padding: 15px;
+  margin: 25px 15px;
+}
+
+a.option:hover {
+  background-color: #79C28D;
+  color: #29483D;
+}
+
+a.option.right {
+  margin-right: 30px;
+}
+
+.element {
+  display: grid;
+  font-family: Rokkitt;
+  border-radius: 3px;
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  background-color: rgb(7,16,32,0.6);
+  margin: 0 30px 30px 30px;
+  height: 100px;
+
+  grid-template-columns: 75% auto;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+     "job opt1 opt2"
+     "info opt1 opt2"
+}
+
+.job {
+  grid-area: job;
+  margin: 0;
+  font-size: 30px;
+  padding: 15px 40px 10px 40px;
+  text-transform: uppercase;
+}
+
+.info {;
+  grid-area: info;
+  margin: 0;
+  padding: 8px 0 10px 40px;
+  font-size: 20px;
+}
+
+.opt1 {
+  grid-area: opt1;
+}
+
+.opt2 {
+  grid-area: opt2;
 }
