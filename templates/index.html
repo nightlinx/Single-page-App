@@ -86,65 +86,57 @@
           <form id="attributes">
             <div class="label"> Siła (S) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(0, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(0, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[0].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(0, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Kondycja (KON) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(1, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(1, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[1].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(1, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Moc (M) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(2, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(2, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[2].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(2, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Zręczność (ZR) </div>
             <div class="input">
-              <select class="number">
-              ``<option v-on:click="setMainAttributes(3, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(3, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[3].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(3, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Wygląd (W) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(4, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(4, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[4].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(4, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Budowa Ciała (BC) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(5, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(5, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[5].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(5, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Inteligencja (INT) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(6, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(6, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[6].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(6, m)">{{m}}</option>
               </select>
             </div>
 
             <div class="label"> Wykształcenie (WYK) </div>
             <div class="input">
-              <select class="number">
-                <option v-on:click="setMainAttributes(7, 0)"></option>
-                <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(7, m)">{{m}}</option>
+              <select class="number" v-model="mainAttr[7].value">
+                <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(7, m)">{{m}}</option>
               </select>
             </div>
           <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
@@ -166,7 +158,7 @@
             <div class="input">{{durability}}</div>
 
             <div class="label">Poczytalność (P): </div>
-            <div class="input">{{mainAttr[2].value}}</div>
+            <div class="input">{{mind}}</div>
           </form>
         </div>
 
@@ -175,7 +167,7 @@
           <div class="label">Zawód Badacza</div>
           <div class="input">
             <select id="job" v-model="job">
-              <option v-for="j in allJobs" v-bind:value="j" v-on:click="selectJob(j)">
+              <option v-for="j in allJobs" :value="j" v-on:click="selectJob(j)">
                 {{j}}
               </option>
             </select>
@@ -183,65 +175,58 @@
           <h1>Umiejętności</h1>
           <div class="label">
             <select v-model="mainSkills[0].name">
-              <option v-for="s in jobSkills[0].name" v-bind:value="s">{{s}}</option>
+              <option v-for="s in jobSkills[0].name" :value="s">{{s}}</option>
             </select>
           </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(0, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(0, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[0].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(0, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label"> Broń palna </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(1, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(1, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[1].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(1, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label"> Nasłuchiwanie </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(2, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(2, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[2].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(2, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label"> Prawo </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(3, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(3, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[3].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(3, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label">
             <select v-model="mainSkills[4].name">
-              <option v-for="s in jobSkills[4].name" v-bind:value="s">{{s}}</option>
+              <option v-for="s in jobSkills[4].name" :value="s">{{s}}</option>
             </select>
           </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(4, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(4, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[4].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(4, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label"> Psychologia </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(5, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(5, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[5].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(5, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label"> Spostrzegawczość </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(6, 0)"></option>
-              <option v-for="m in [80,70,60,50,40]" :value="m" v-on:click="setMainSkills(6, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[6].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(6, m)">{{m}}</option>
             </select>
           </div>
 
@@ -251,17 +236,15 @@
             </select>
           </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(7, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(7, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[7].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(7, m)">{{m}}</option>
             </select>
           </div>
 
           <div class="label"> Majętnosć </div>
           <div class="input">
-            <select class="number">
-              <option v-on:click="setMainSkills(8, 0)"></option>
-              <option v-for="m in [70,60,50,40]" :value="m" v-on:click="setMainSkills(8, m)">{{m}}</option>
+            <select class="number" v-model="mainSkills[8].value">
+              <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(8, m)">{{m}}</option>
             </select>
           </div>
           <p class="note"> Przydziel wartości do powyższych umiejętności: <br>70, 60, 60, 50, 50, 50, 40, 40, 40</p>
