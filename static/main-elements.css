@@ -201,3 +201,8 @@ a.option.right {
 .opt2 {
   grid-area: opt2;
 }
+
+.label p {
+  margin-top: 0;
+  margin-bottom: 0;
+}

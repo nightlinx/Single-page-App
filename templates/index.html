@@ -173,10 +173,12 @@
             </select>
           </div>
           <h1>Umiejętności</h1>
+
           <div class="label">
-            <select v-model="mainSkills[0].name">
+            <select v-model="mainSkills[0].name" v-if="jobSkills[0].name.length > 1">
               <option v-for="s in jobSkills[0].name" :value="s">{{s}}</option>
             </select>
+            <p v-else>{{mainSkills[0].name}}</p>
           </div>
           <div class="input">
             <select class="number" v-model="mainSkills[0].value">
@@ -184,21 +186,36 @@
             </select>
           </div>
 
-          <div class="label"> Broń palna </div>
+          <div class="label">
+            <select v-model="mainSkills[1].name" v-if="jobSkills[1].name.length > 1">
+              <option v-for="s in jobSkills[1].name" :value="s">{{s}}</option>
+            </select>
+            <p v-else>{{mainSkills[1].name}}</p>
+          </div>
           <div class="input">
             <select class="number" v-model="mainSkills[1].value">
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(1, m)">{{m}}</option>
             </select>
           </div>
 
-          <div class="label"> Nasłuchiwanie </div>
+          <div class="label">
+            <select v-model="mainSkills[2].name" v-if="jobSkills[2].name.length > 1">
+              <option v-for="s in jobSkills[2].name" :value="s">{{s}}</option>
+            </select>
+            <p v-else>{{mainSkills[2].name}}</p>
+          </div>
           <div class="input">
             <select class="number" v-model="mainSkills[2].value">
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(2, m)">{{m}}</option>
             </select>
           </div>
 
-          <div class="label"> Prawo </div>
+          <div class="label">
+            <select v-model="mainSkills[3].name" v-if="jobSkills[3].name.length > 1">
+              <option v-for="s in jobSkills[3].name" :value="s">{{s}}</option>
+            </select>
+            <p v-else>{{mainSkills[3].name}}</p>
+          </div>
           <div class="input">
             <select class="number" v-model="mainSkills[3].value">
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(3, m)">{{m}}</option>
@@ -206,9 +223,10 @@
           </div>
 
           <div class="label">
-            <select v-model="mainSkills[4].name">
+            <select v-model="mainSkills[4].name" v-if="jobSkills[4].name.length > 1">
               <option v-for="s in jobSkills[4].name" :value="s">{{s}}</option>
             </select>
+            <p v-else>{{mainSkills[4].name}}</p>
           </div>
           <div class="input">
             <select class="number" v-model="mainSkills[4].value">
@@ -216,14 +234,24 @@
             </select>
           </div>
 
-          <div class="label"> Psychologia </div>
+          <div class="label">
+            <select v-model="mainSkills[5].name" v-if="jobSkills[5].name.length > 1">
+              <option v-for="s in jobSkills[5].name" :value="s">{{s}}</option>
+            </select>
+            <p v-else>{{mainSkills[5].name}}</p>
+          </div>
           <div class="input">
             <select class="number" v-model="mainSkills[5].value">
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(5, m)">{{m}}</option>
             </select>
           </div>
 
-          <div class="label"> Spostrzegawczość </div>
+          <div class="label">
+            <select v-model="mainSkills[6].name" v-if="jobSkills[6].name.length > 1">
+              <option v-for="s in jobSkills[6].name" :value="s">{{s}}</option>
+            </select>
+            <p v-else>{{mainSkills[6].name}}</p>
+          </div>
           <div class="input">
             <select class="number" v-model="mainSkills[6].value">
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(6, m)">{{m}}</option>
@@ -231,9 +259,10 @@
           </div>
 
           <div class="label">
-            <select v-model="mainSkills[7].name">
-              <option v-for="s in jobSkills[7].name" v-bind:value="s">{{s}}</option>
+            <select v-model="mainSkills[7].name" v-if="jobSkills[7].name.length > 1">
+              <option v-for="s in jobSkills[7].name" :value="s">{{s}}</option>
             </select>
+            <p v-else>{{mainSkills[7].name}}</p>
           </div>
           <div class="input">
             <select class="number" v-model="mainSkills[7].value">
@@ -241,7 +270,12 @@
             </select>
           </div>
 
-          <div class="label"> Majętnosć </div>
+          <div class="label">
+            <select v-model="mainSkills[8].name" v-if="jobSkills[8].name.length > 1">
+              <option v-for="s in jobSkills[8].name" :value="s">{{s}}</option>
+            </select>
+            <p v-else>{{mainSkills[8].name}}</p>
+          </div>
           <div class="input">
             <select class="number" v-model="mainSkills[8].value">
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(8, m)">{{m}}</option>
