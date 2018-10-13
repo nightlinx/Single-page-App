@@ -3,7 +3,7 @@
   margin: auto;
   grid-gap: 10px;
   max-width: 1200px;
-  grid-template-columns: 200px auto 200px;
+  grid-template-columns: 240px auto 240px;
   grid-template-rows: 80px auto;
   color: white;
   grid-template-areas:
@@ -79,7 +79,7 @@ header {
 
 .maingrid > aside > div#summarise{
   padding: 10px;
-  background-color: black;
+  background-color: rgb(0,0,0,0.8);
   opacity: 0.75;
   border-radius: 3px;
   font-size: 14px;
