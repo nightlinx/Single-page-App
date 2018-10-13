@@ -171,8 +171,8 @@ a.option.right {
   background-color: rgb(7,16,32,0.6);
   margin: 0 30px 30px 30px;
   height: 100px;
-
-  grid-template-columns: 75% auto;
+  min-width: 800px;
+  grid-template-columns: 65% auto;
   grid-template-rows: 50% 50%;
   grid-template-areas:
      "job opt1 opt2"

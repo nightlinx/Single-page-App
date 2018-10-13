@@ -23,7 +23,7 @@
 
 .maingrid > .list {
   grid-area: list;
-  min-width: 500px;
+  min-width: 900px;
   max-width: 1200px;
   background-color: rgb(7,16,32,0.65);
   padding: 0 15px 25px 15px;

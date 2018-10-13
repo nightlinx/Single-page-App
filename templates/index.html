@@ -374,25 +374,21 @@
                 <button v-for="i in [0,1,2,3,4]" v-on:click="switchToElement(i)" v-bind:class="{activeElement: appearancePages[i], notActiveElement: !appearancePages[i]}">{{appearance[i].name}}</button>
               </nav>
               <div>
-
-                  <div id="type">
-                    <h2> Kształt </h2>
-                    <div class="palette">
-                      <div class="img type" v-for="attr in activeAppearance.types">
-                        <span>{{attr}}</span>
-                        <img/>
-                      </div>
-                    </div>
+              <div id="type">
+                <h2> Kształt </h2>
+                <div class="palette">
+                  <div class="img type" v-for="attr in activeAppearance.types">
+                    <span>{{attr}}</span>
+                    <img/>
                   </div>
-                  <div id="colors">
-                    <h2> Kolor </h2>
-                    <div class="palette">
-                      <div class="color" v-for="(atrr, i) in activeAppearance.colors" v-bind:style="{backgroundColor: activeAppearance.colors[i]}"></div>
-                    </div>
-                  </div>
-
-              <div>
-            </div>
+                </div>
+              </div>
+              <div id="colors">
+                <h2> Kolor </h2>
+                <div class="palette">
+                  <div class="color" v-for="(atrr, i) in activeAppearance.colors" v-bind:style="{backgroundColor: activeAppearance.colors[i]}"></div>
+                </div>
+              </div>
           </div>
         </div>
 
