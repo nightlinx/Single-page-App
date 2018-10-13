@@ -371,16 +371,15 @@
             </div>
             <div class="appgrid">
               <nav>
-                <button v-for="(e, index) in elements">{{e.name}}</button>
+                <button v-for="i in [0,1,2,3,4]" v-on:click="switchToElement(i)">{{appearance[i].name}}</button>
               </nav>
               <div>
 
-                <div v-for="e in elements">
                   <div id="type">
                     <h2> Kształt </h2>
                     <div class="palette">
-                      <div class="img type" v-for="(atrr, i) in e.types">
-                        <span>{{e.types[i]}}</span>
+                      <div class="img type" v-for="attr in activeAppearance.types">
+                        <span>{{attr}}</span>
                         <img/>
                       </div>
                     </div>
@@ -388,10 +387,9 @@
                   <div id="colors">
                     <h2> Kolor </h2>
                     <div class="palette">
-                      <div class="color" v-for="(atrr, i) in e.colors" v-bind:style="{backgroundColor: e.colors[i]}"></div>
+                      <div class="color" v-for="(atrr, i) in activeAppearance.colors" v-bind:style="{backgroundColor: activeAppearance.colors[i]}"></div>
                     </div>
                   </div>
-                </div>
 
               <div>
             </div>
@@ -418,27 +416,6 @@
     </div>
   </div>
   <script>
-
-    new Vue({
-      el: '#appearance',
-      data: {
-        elements: [
-          {selected: true, name: "twarz", types: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
-          {selected: false, name: "nos i usta", types: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
-          {selected: false, name: "oczy", types: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
-          {selected: false, name: "włosy", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
-          {selected: false, name: "znaki", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
-        ],
-        methods: {
-          myStyle: function(color) {
-            return {
-              backgroundColor: '#E18D8D',
-            }
-          }
-        }
-      },
-
-    });
 
   	new Vue({
   		el: '#content',
@@ -477,6 +454,7 @@
   			info: true,
         attribute: false,
         pages: [true, false, false, false, false],
+        appearancePages: [true, false, false, false, false],
         mainAttrValues: [{'value':80}, {'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}],
         mainSkillsValues: [{'value':70}, {'value':60}, {'value':60}, {'value':50}, {'value':50}, {'value':50}, {'value':40}, {'value':40}, {'value':40}],
         mainAttr: [
@@ -511,13 +489,14 @@
           {name: '', value: 0},
           {name: '', value: 0},
         ],
-        // elements: [
-        //   { id: 0, title: 'Informacje o postaci' },
-        //   { id: 1, title: 'Cechy' },
-        //   { id: 2, title: 'Zawód i umiejętności' },
-        //   { id: 3, title: 'Ekwipunek' },
-        //   { id: 4, title: 'Wygląd' },
-        // ],
+        appearance: [
+          {selected: true, name: "twarz", types: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
+          {selected: false, name: "nos i usta", types: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
+          {selected: false, name: "oczy", types: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
+          {selected: false, name: "włosy", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+          {selected: false, name: "znaki", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+        ],
+        activeAppearance: {},
   		},
       computed: {
         magic: function() {
@@ -598,23 +577,22 @@
           console.log('watch: mind | ', this.mind);
         },
       },
-
       methods: {
-        isSelected: function (skill) {
-          for (ms of this.mainSkills) { //iteruję po wszystkich skillach, które gracz już wybrał
-            if (ms.name == skill.name){ //jeśli ta nazwa umiejetności jest wybrana to zwracam prawdę
-              //console.log(ms.name, "powtarza się");
-              return true;
-            }
-            return false;
-          }
-        },
         switchToPage(pageIndex){
           var vm = this;
           for (var i=0; i<this.pages.length; i++){
-            vm.$set(vm.pages, i, false)
+            vm.$set(vm.pages, i, false);
           }
-          vm.$set(vm.pages, pageIndex, true)
+          vm.$set(vm.pages, pageIndex, true);
+          this.activeAppearance = this.appearance[0];
+        },
+        switchToElement(pageIndex) {
+          var vm = this;
+          for (var i=0; i<this.appearancePages.length; i++){
+            vm.$set(vm.appearancePages, i, false);
+          }
+          vm.$set(vm.appearancePages, pageIndex, true);
+          this.activeAppearance = this.appearance[pageIndex];
         },
         setJobSkills(job){
           //jeśli job = 'Detektyw' to ....
