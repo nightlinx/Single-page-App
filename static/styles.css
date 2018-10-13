@@ -161,16 +161,17 @@ div.img.creator > img {
   grid-template-columns: 100px auto;
   grid-template-rows: 50% 50%;
   grid-template-areas:
-     "nav opt"
+     "nav type"
      "nav colors"
 }
 
 .appgrid > nav {
-      grid-area: nav;
+    grid-area: nav;
+    padding: 19px 0;
 }
 
-.appgrid > div#opt {
-    grid-area: opt;
+.appgrid > div#type {
+    grid-area: type;
 }
 
 .appgrid > div#colors {
@@ -181,8 +182,8 @@ div.img.creator > img {
   font-size: 14px;
   background-color: #4F5765;
   color: white;
-  padding: 6px 7px;
-  margin: 5px 0;
+  padding: 8px 7px;
+  margin: 8px 0;
   width: 100%;
 }
 
@@ -192,36 +193,42 @@ div.img.creator > img {
   color: #1D2432;
 }
 
-.img.option {
+.img.type {
   height: 80px;
-  width: 25%;
+  width: 80px;
   background-color: rgb(7,7,7,0.7);
   display: inline-block;
-  margin-left: 15px;
+  margin: 9px;
   border-radius: 3px;
   box-sizing: border-box;
   cursor: pointer;
 }
 
-.img.option:hover {
+.img.type:hover {
   border: 2px solid white;
 }
 
-#colors {
+#colors, #type {
   padding: 15px;
 }
 
-#colors > .color{
+.palette {
+  margin: 0 auto;
+  width: 300px;
+  display: block;
+}
+
+.palette > .color{
   border-radius: 3px;
-  height: 38px;
-  width: 38px;
+  height: 40px;
+  width: 40px;
   display: inline-block;
-  margin-right: 5px;
   box-sizing: border-box;
+  margin: 5px;
   cursor: pointer;
 }
 
-#colors > .color:hover{
+.palette > .color:hover{
   border: 2px solid white;
 }
 

@@ -364,40 +364,36 @@
         </div>
 
         <div v-if="pages[4]">
-          <h1> Twoja Postać </h1>
-          <div class="img creator">
-              <img src="../static/img/postac.jpg"></img>
-          </div>
-          <div class="appgrid">
-            <nav>
-              <button>Postura</button>
-              <button>Skóra</button>
-              <button>Włosy</button>
-              <button>Oczy</button>
-              <button>Ubranie</button>
-              <button>Znaki</button>
-            </nav>
-            <div id="opt">
-              <h2> Kształt </h2>
-              <div class="img option">
-                <img></img>
-              </div>
-              <div class="img option">
-                <img></img>
-              </div>
-              <div class="img option">
-                <img></img>
-              </div>
-
+          <div id="appearance">
+            <h1> Twoja Postać </h1>
+            <div class="img creator">
+                <img src="../static/img/postac.jpg"></img>
             </div>
-            <div id="colors">
-              <h2> Kolor </h2>
-              <div class="color col1"></div>
-              <div class="color col2"></div>
-              <div class="color col3"></div>
-              <div class="color col4"></div>
-              <div class="color col5"></div>
-              <div class="color col6"></div>
+            <div class="appgrid">
+              <nav>
+                <button v-for="(e, index) in elements">{{e.name}}</button>
+              </nav>
+              <div>
+
+                <div v-for="e in elements">
+                  <div id="type">
+                    <h2> Kształt </h2>
+                    <div class="palette">
+                      <div class="img type" v-for="(atrr, i) in e.types">
+                        <span>{{e.types[i]}}</span>
+                        <img/>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="colors">
+                    <h2> Kolor </h2>
+                    <div class="palette">
+                      <div class="color" v-for="(atrr, i) in e.colors" v-bind:style="{backgroundColor: e.colors[i]}"></div>
+                    </div>
+                  </div>
+                </div>
+
+              <div>
             </div>
           </div>
         </div>
@@ -423,14 +419,26 @@
   </div>
   <script>
 
-    // ------------ COMPONENTS ---------------
-    //  NAJPIERW DEKLARUJ KOMPONENT, POTEM DOPIERO NEW VUE !!
+    new Vue({
+      el: '#appearance',
+      data: {
+        elements: [
+          {selected: true, name: "twarz", types: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
+          {selected: false, name: "nos i usta", types: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
+          {selected: false, name: "oczy", types: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
+          {selected: false, name: "włosy", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+          {selected: false, name: "znaki", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+        ],
+        methods: {
+          myStyle: function(color) {
+            return {
+              backgroundColor: '#E18D8D',
+            }
+          }
+        }
+      },
 
-    //
-    // Vue.component('buttons', {
-    //   props: ['title'],
-    //   template: '<button>{{title}}</button>',
-    // });
+    });
 
   	new Vue({
   		el: '#content',
