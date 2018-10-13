@@ -371,7 +371,7 @@
             </div>
             <div class="appgrid">
               <nav>
-                <button v-for="i in [0,1,2,3,4]" v-on:click="switchToElement(i)">{{appearance[i].name}}</button>
+                <button v-for="i in [0,1,2,3,4]" v-on:click="switchToElement(i)" v-bind:class="{activeElement: appearancePages[i], notActiveElement: !appearancePages[i]}">{{appearance[i].name}}</button>
               </nav>
               <div>
 

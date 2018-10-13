@@ -180,17 +180,28 @@ div.img.creator > img {
 
 .appgrid > nav > button {
   font-size: 14px;
-  background-color: #4F5765;
-  color: white;
   padding: 8px 7px;
   margin: 8px 0;
   width: 100%;
 }
 
-.appgrid > nav > button:hover {
-  font-size: 14px;
+.activeElement {
   background-color: #919AAA;
   color: #1D2432;
+}
+
+.notActiveElement {
+  background-color: #4F5765;
+  color: white;
+}
+
+.notActiveElement:hover {
+  background-color: #919AAA;
+  color: #1D2432;
+}
+
+.appgrid > nav > button:hover {
+  font-size: 14px;
 }
 
 .img.type {
@@ -230,28 +241,4 @@ div.img.creator > img {
 
 .palette > .color:hover{
   border: 2px solid white;
-}
-
-.color.col1 {
-  background-color: #A3562B;
-}
-
-.color.col2 {
-  background-color: #979696;
-}
-
-.color.col3 {
-  background-color: #D9BD92;
-}
-
-.color.col4 {
-  background-color: #73553F;
-}
-
-.color.col5 {
-  background-color: #3A2828;
-}
-
-.color.col6 {
-  background-color: #000000;
 }
