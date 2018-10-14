@@ -215,9 +215,6 @@ div.img.creator > img {
   cursor: pointer;
 }
 
-.img.type:hover {
-  border: 2px solid white;
-}
 
 #colors, #type {
   padding: 15px;
@@ -237,8 +234,4 @@ div.img.creator > img {
   box-sizing: border-box;
   margin: 5px;
   cursor: pointer;
-}
-
-.palette > .color:hover{
-  border: 2px solid white;
 }
