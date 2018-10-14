@@ -40,8 +40,27 @@ a.yellow {
   background-color: #D8CD6D;
   color: black;
   padding: 20px;
+}
+
+a.yellow:hover {
+  background-color: #F1E89C;
+}
+
+a.wide {
   width: 300px;
 }
+
+a.short {
+  width: 100px;
+  padding: 10px;
+}
+
+a.fixed {
+  position:fixed;
+  right:10px;
+  top:10px;
+}
+
 
 .maingrid > header {
   font-size: 30px;
@@ -157,8 +176,8 @@ a.save:hover {
 }
 
 a.create, .element {
-    width: auto;
-    display: block;
+  width: auto;
+  display: block;
 }
 
 a.create {
