@@ -367,11 +367,11 @@
           <div id="appearance">
             <h1> Twoja Postać </h1>
             <div class="img creator">
-              <svg :width="paths.svgSize" :height="paths.svgSize">
+              <svg id="faceSVG" :width="paths.svgSize" :height="paths.svgSize">
                 <path
-                    :id="2345"
+                    :id="1"
                     :d="paths.d"
-                    :fill="activeColor">
+                    :fill="face">
                 </path>
               </svg>
             </div>
@@ -500,7 +500,7 @@
         ],
         activeAppearance: {},
         svgSize: 250,
-        activeColor: '',
+        face: '',
   		},
       computed: {
         magic: function() {
@@ -573,11 +573,10 @@
                      a ${rx},${rx} 0 1,0 -${x},0`;
           const transforms = [];
           const textTransforms = [];
-          const colors = this.activeAppearance.colors[0];
+
           return {
             svgSize,
             d,
-            colors,
           }
         },
       },
@@ -678,8 +677,10 @@
           return true;
         },
         setActiveColor(i) {
-          this.activeColor = this.activeAppearance.colors[i];
-          console.log(this.activeColor);
+          if (this.appearancePages[0]){
+            this.face = this.activeAppearance.colors[i];
+            console.log(this.face);
+          }
         },
       },
     });
