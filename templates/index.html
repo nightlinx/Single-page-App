@@ -371,7 +371,7 @@
                 <path
                     :id="2345"
                     :d="paths.d"
-                    :fill="activeAppearance.colors[0]">
+                    :fill="activeColor">
                 </path>
               </svg>
             </div>
@@ -392,7 +392,7 @@
               <div id="colors">
                 <h2> Kolor </h2>
                 <div class="palette">
-                  <div class="color" v-for="(atrr, i) in activeAppearance.colors" v-bind:style="{backgroundColor: activeAppearance.colors[i]}"></div>
+                  <div class="color" v-for="(atrr, i) in activeAppearance.colors" v-bind:style="{backgroundColor: activeAppearance.colors[i]}" v-on:click="setActiveColor(i)"></div>
                 </div>
               </div>
           </div>
@@ -500,6 +500,7 @@
         ],
         activeAppearance: {},
         svgSize: 250,
+        activeColor: '',
   		},
       computed: {
         magic: function() {
@@ -567,7 +568,7 @@
           const ry = 70
           const x = 100
           const d = `M 100, 100
-                     m -75, 0
+                     m -25, 0
                      a ${rx},${ry} 0 1,0 ${x},0
                      a ${rx},${rx} 0 1,0 -${x},0`;
           const transforms = [];
@@ -676,7 +677,10 @@
           console.log("Dobrze ustawione wartości");
           return true;
         },
-
+        setActiveColor(i) {
+          this.activeColor = this.activeAppearance.colors[i];
+          console.log(this.activeColor);
+        },
       },
     });
 
