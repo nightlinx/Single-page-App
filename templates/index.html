@@ -383,9 +383,7 @@
               <div id="type">
                 <h2> Kształt </h2>
                 <div class="palette">
-                  <div class="img type" v-for="attr in activeAppearance.types">
-                    <span>{{attr}}</span>
-                    <img/>
+                  <div class="img type" v-for="(attr, i) in activeAppearance.shapes" v-on:click="setActiveShape(i)">
                   </div>
                 </div>
               </div>
@@ -492,15 +490,17 @@
           {name: '', value: 0},
         ],
         appearance: [
-          {name: "twarz", types: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
-          {name: "nos i usta", types: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
-          {name: "oczy", types: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
-          {name: "włosy", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
-          {name: "znaki", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+          {name: "twarz", shapes: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
+          {name: "nos i usta", shapes: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
+          {name: "oczy", shapes: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
+          {name: "włosy", shapes: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+          {name: "znaki", shapes: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
         ],
         activeAppearance: {},
         svgSize: 250,
         face: '',
+        faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100}, {Mx:100, My:100, rx:50, ry:80, x:100}, {Mx:95, My:105, rx:52, ry:60, x:110}],
+        faceShape: {},
   		},
       computed: {
         magic: function() {
@@ -564,16 +564,15 @@
         },
         paths(){
           const svgSize = this._data.svgSize;
-          const rx = 50
-          const ry = 70
-          const x = 100
-          const d = `M 100, 100
+          var Mx = this.faceShape.Mx;
+          var My = this.faceShape.My;
+          var rx = this.faceShape.rx;
+          var ry = this.faceShape.ry;
+          var x = this.faceShape.x;
+          var d = `M ${Mx}, ${My}
                      m -25, 0
                      a ${rx},${ry} 0 1,0 ${x},0
                      a ${rx},${rx} 0 1,0 -${x},0`;
-          const transforms = [];
-          const textTransforms = [];
-
           return {
             svgSize,
             d,
@@ -629,7 +628,6 @@
           }
           this.jobSkills[8].name = ['Majętnosć'];
         },
-
         selectJob(job){
           this.setJobSkills(job);
           for (var i=0; i<this.jobSkills.length; i++){
@@ -639,12 +637,10 @@
             }
           }
         },
-
         setMainAttributes(attribute, value){
           this.mainAttr[attribute].value = value;
           this.validateValues(this.mainAttr, this.mainAttrValues);
         },
-
         setMainSkills(attribute, value){
           this.mainSkills[attribute].value = value;
           this.validateValues(this.mainSkills, this.mainSkillsValues);
@@ -656,7 +652,6 @@
           console.log("-------------------");
 
         },
-
         validateValues(first, second){
           var a = [];
           var b = [];
@@ -680,6 +675,12 @@
           if (this.appearancePages[0]){
             this.face = this.activeAppearance.colors[i];
             console.log(this.face);
+          }
+        },
+        setActiveShape(i) {
+          if (this.appearancePages[0]){
+            this.faceShape = this.faceShapes[i];
+            console.log(this.faceShape.rx);
           }
         },
       },
