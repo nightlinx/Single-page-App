@@ -367,7 +367,13 @@
           <div id="appearance">
             <h1> Twoja Postać </h1>
             <div class="img creator">
-                <img src="../static/img/postac.jpg"></img>
+              <svg :width="paths.svgSize" :height="paths.svgSize">
+                <path
+                    :id="2345"
+                    :d="paths.d"
+                    :fill="activeAppearance.colors[0]">
+                </path>
+              </svg>
             </div>
             <div class="appgrid">
               <nav>
@@ -486,13 +492,14 @@
           {name: '', value: 0},
         ],
         appearance: [
-          {selected: true, name: "twarz", types: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
-          {selected: false, name: "nos i usta", types: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
-          {selected: false, name: "oczy", types: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
-          {selected: false, name: "włosy", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
-          {selected: false, name: "znaki", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+          {name: "twarz", types: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
+          {name: "nos i usta", types: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
+          {name: "oczy", types: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
+          {name: "włosy", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
+          {name: "znaki", types: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
         ],
         activeAppearance: {},
+        svgSize: 250,
   		},
       computed: {
         magic: function() {
@@ -554,7 +561,24 @@
           }
           return this.allSkills.filter(function(i){return mySkills.indexOf(i.name) < 0;})
         },
-
+        paths(){
+          const svgSize = this._data.svgSize;
+          const rx = 50
+          const ry = 70
+          const x = 100
+          const d = `M 100, 100
+                     m -75, 0
+                     a ${rx},${ry} 0 1,0 ${x},0
+                     a ${rx},${rx} 0 1,0 -${x},0`;
+          const transforms = [];
+          const textTransforms = [];
+          const colors = this.activeAppearance.colors[0];
+          return {
+            svgSize,
+            d,
+            colors,
+          }
+        },
       },
       watch: {
         weapons: function() {
