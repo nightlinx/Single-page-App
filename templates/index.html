@@ -545,14 +545,19 @@
         rightEyes: [{Mx:147, My:107},
                    {Mx:147, My:107}],
 
-        upperLips: [{Mx:110, My:145, Cx1:115, Cy1:140, Cx2:125, Cy2:140, Cx:125, Cy:142}],
-        downerLips: [{Mx:110, My:145, Cx1:115, Cy1:150, Cx2:135, Cy2:150, Cx:140, Cy:145}],
+        upperLips: [{Mx:110, My:145, Cx1:115, Cy1:140, Cx2:125, Cy2:140, Cx:125, Cy:142, h:30},
+                    {Mx:110, My:145, Cx1:115, Cy1:137, Cx2:125, Cy2:137, Cx:125, Cy:140, h:30},
+                    {Mx:110, My:145, Cx1:115, Cy1:140, Cx2:125, Cy2:140, Cx:125, Cy:142, h:0}],
+        downerLips: [{Mx:110, My:145, Cx1:115, Cy1:150, Cx2:135, Cy2:150, Cx:140, Cy:145},
+                    {Mx:110, My:145, Cx1:115, Cy1:155, Cx2:135, Cy2:155, Cx:140, Cy:145},
+                    {Mx:117, My:148, Cx1:115, Cy1:150, Cx2:135, Cy2:150, Cx:132, Cy:148}],
 
         leftEye: {},
         rightEye: {},
         leftEyeLid: {},
         rightEyeLid: {},
-        lip: {},
+        upperLip: {},
+        downerLip: {},
   		},
       computed: {
         magic: function() {
@@ -666,33 +671,24 @@
         },
         lipsPaths(){
           const svgSize = this._data.svgSize;
-          var up = this.upperLips;
-          var down = this.downerLips;
-          //
-          //var d = `M ${lip.Mx}, ${lip.My}
-          //          C ${lip.Cx1},${lip.Cy1}
-          //            ${lip.Cx2},${lip.Cy2}
-          //            ${lip.Cx},${lip.Cy}`;
+          var up = this.upperLip;
+          var down = this.downerLip;
+          var d = `M ${up.Mx}, ${up.My}
+                   C ${up.Cx1}, ${up.Cy1}
+                     ${up.Cx2}, ${up.Cy2}
+                     ${up.Cx}, ${up.Cy}
 
-          var d = `M 110, 145
-                   C 115, 140
-                     125, 140
-                     125, 142
-
-                     C 125, 140
-                       135, 140
-                       140, 145
+                     C ${up.Cx2}, ${up.Cy2}
+                       ${up.Cx1+20}, ${up.Cy1}
+                       ${up.Mx+30}, ${up.My}
 
                     M 110, 145
-                    h 30
+                    h ${up.h}
 
-                    M 110, 145
-                    C 115, 150
-                      135, 150
-                      140, 145
-                   `;
-
-
+                    M ${down.Mx}, ${down.My}
+                    C ${down.Cx1}, ${down.Cy1}
+                      ${down.Cx2}, ${down.Cy2}
+                      ${down.Cx}, ${down.Cy}`;
           return {
             svgSize,
             d,
@@ -700,6 +696,9 @@
         },
       },
       watch: {
+        face: function () {
+          this.appearance[1].colors[0] = this.face;
+        },
         weapons: function() {
           console.log('watch: waeopons | ', this.weapons);
         },
@@ -808,7 +807,8 @@
             console.log(this.faceShape.rx);
           }
           if (this.appearancePages[1]){
-            this.lip = this.lips[i];
+            this.upperLip = this.upperLips[i];
+            this.downerLip = this.downerLips[i];
           }
           if (this.appearancePages[2]){
             this.leftEye = this.leftEyes[i];
