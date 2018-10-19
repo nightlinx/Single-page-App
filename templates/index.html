@@ -367,11 +367,29 @@
           <div id="appearance">
             <h1> Twoja Postać </h1>
             <div class="img creator">
-              <svg id="faceSVG" :width="paths.svgSize" :height="paths.svgSize">
+              <svg id="faceSVG" :width="facePaths.svgSize" :height="facePaths.svgSize">
                 <path
                     :id="1"
-                    :d="paths.d"
+                    :d="facePaths.d"
                     :fill="face">
+                </path>
+              </svg>
+              <svg id="eyelidsSVG" :width="eyelidsPaths.svgSize" :height="eyelidsPaths.svgSize">
+                <path
+                    :id="2"
+                    :d="eyelidsPaths.d"
+                    fill-opacity="0"
+                    stroke-width="1"
+                    stroke-opacity="0.5"
+                    stroke="black">
+                </path>
+              </svg>
+              <svg id="eyesSVG" :width="eyesPaths.svgSize" :height="eyesPaths.svgSize">
+                <path
+                    :id="2"
+                    :d="eyesPaths.d"
+                    stroke-width="2.5"
+                    :stroke="eyes">
                 </path>
               </svg>
             </div>
@@ -490,7 +508,7 @@
           {name: '', value: 0},
         ],
         appearance: [
-          {name: "twarz", shapes: ['1', '2', '3'], colors: ['#E18D8D','#F8D6C8', '#D9BD92', '#D5B17C', '#73553F', '#3A2828']},
+          {name: "twarz", shapes: ['1', '2', '3'], colors: ['#FDCACA','#F8D6C8', '#F8DFB9', '#D9BD92', '#73553F', '#3A2828']},
           {name: "nos i usta", shapes: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
           {name: "oczy", shapes: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#585858', '#653818', '#3A2828']},
           {name: "włosy", shapes: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
@@ -499,8 +517,27 @@
         activeAppearance: {},
         svgSize: 250,
         face: '',
-        faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100}, {Mx:100, My:100, rx:50, ry:80, x:100}, {Mx:95, My:105, rx:52, ry:60, x:110}],
+        eyes: '',
+        faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100},
+                    {Mx:100, My:100, rx:50, ry:80, x:100},
+                    {Mx:95, My:105, rx:52, ry:60, x:110}],
         faceShape: {},
+        leftEyeLids: [{Mx:90, My:105, Cx1:90, Cy1:100, Cx2:105, Cy2:95, Cx:115, Cy:105},
+                     {Mx:85, My:100, Cx1:90, Cy1:100, Cx2:105, Cy2:95, Cx:115, Cy:105}],
+
+        rightEyeLids: [{Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:100, Cx:158, Cy:105},
+                   {Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:100, Cx:163, Cy:100}],
+
+        leftEyes: [{Mx:106, My:107},
+                  {Mx:106, My:107}],
+
+        rightEyes: [{Mx:147, My:107},
+                   {Mx:147, My:107}],
+
+        leftEye: {},
+        rightEye: {},
+        leftEyeLid: {},
+        rightEyeLid: {},
   		},
       computed: {
         magic: function() {
@@ -562,7 +599,7 @@
           }
           return this.allSkills.filter(function(i){return mySkills.indexOf(i.name) < 0;})
         },
-        paths(){
+        facePaths(){
           const svgSize = this._data.svgSize;
           var Mx = this.faceShape.Mx;
           var My = this.faceShape.My;
@@ -570,9 +607,43 @@
           var ry = this.faceShape.ry;
           var x = this.faceShape.x;
           var d = `M ${Mx}, ${My}
-                     m -25, 0
-                     a ${rx},${ry} 0 1,0 ${x},0
-                     a ${rx},${rx} 0 1,0 -${x},0`;
+                   m -25, 0
+                   a ${rx},${ry} 0 1,0 ${x},0
+                   a ${rx},${rx} 0 1,0 -${x},0`;
+          return {
+            svgSize,
+            d,
+          }
+        },
+        eyelidsPaths(){
+          const svgSize = this._data.svgSize;
+          var left = this.leftEyeLid;
+          var right = this.rightEyeLid;
+
+          var d = `M ${left.Mx}, ${left.My}
+                   C ${left.Cx1},${left.Cy1}
+                     ${left.Cx2},${left.Cy2}
+                     ${left.Cx},${left.Cy}
+
+                   M ${right.Mx}, ${right.My}
+                   C ${right.Cx1},${right.Cy1}
+                     ${right.Cx2},${right.Cy2}
+                     ${right.Cx},${right.Cy}`;
+          return {
+            svgSize,
+            d,
+          }
+        },
+        eyesPaths(){
+          const svgSize = this._data.svgSize;
+          var left = this.leftEye;
+          var right = this.rightEye;
+
+          var d = `M ${left.Mx}, ${left.My}
+                   a 3,3 0 1,0 -3,0
+
+                   M ${right.Mx}, ${right.My}
+                   a 3,3 0 1,0 -3,0`;
           return {
             svgSize,
             d,
@@ -674,13 +745,22 @@
         setActiveColor(i) {
           if (this.appearancePages[0]){
             this.face = this.activeAppearance.colors[i];
-            console.log(this.face);
+          }
+          if (this.appearancePages[2]){
+            this.eyes = this.activeAppearance.colors[i];
           }
         },
         setActiveShape(i) {
           if (this.appearancePages[0]){
             this.faceShape = this.faceShapes[i];
             console.log(this.faceShape.rx);
+          }
+          if (this.appearancePages[2]){
+            this.leftEye = this.leftEyes[i];
+            this.rightEye = this.rightEyes[i];
+            this.leftEyeLid = this.leftEyeLids[i];
+            this.rightEyeLid = this.rightEyeLids[i];
+
           }
         },
       },
