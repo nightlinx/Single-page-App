@@ -392,6 +392,16 @@
                     :stroke="eyes">
                 </path>
               </svg>
+              <svg id="lipsSVG" :width="lipsPaths.svgSize" :height="lipsPaths.svgSize">
+                <path
+                    :id="2"
+                    :d="lipsPaths.d"
+                    stroke-width="1"
+                    stroke-opacity="0.5"
+                    stroke="black"
+                    :fill="lipsColor">
+                </path>
+              </svg>
             </div>
             <div class="appgrid">
               <nav>
@@ -518,6 +528,7 @@
         svgSize: 250,
         face: '',
         eyes: '',
+        lipsColor: '',
         faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100},
                     {Mx:100, My:100, rx:50, ry:80, x:100},
                     {Mx:95, My:105, rx:52, ry:60, x:110}],
@@ -534,10 +545,14 @@
         rightEyes: [{Mx:147, My:107},
                    {Mx:147, My:107}],
 
+        upperLips: [{Mx:110, My:145, Cx1:115, Cy1:140, Cx2:125, Cy2:140, Cx:125, Cy:142}],
+        downerLips: [{Mx:110, My:145, Cx1:115, Cy1:150, Cx2:135, Cy2:150, Cx:140, Cy:145}],
+
         leftEye: {},
         rightEye: {},
         leftEyeLid: {},
         rightEyeLid: {},
+        lip: {},
   		},
       computed: {
         magic: function() {
@@ -649,6 +664,40 @@
             d,
           }
         },
+        lipsPaths(){
+          const svgSize = this._data.svgSize;
+          var up = this.upperLips;
+          var down = this.downerLips;
+          //
+          //var d = `M ${lip.Mx}, ${lip.My}
+          //          C ${lip.Cx1},${lip.Cy1}
+          //            ${lip.Cx2},${lip.Cy2}
+          //            ${lip.Cx},${lip.Cy}`;
+
+          var d = `M 110, 145
+                   C 115, 140
+                     125, 140
+                     125, 142
+
+                     C 125, 140
+                       135, 140
+                       140, 145
+
+                    M 110, 145
+                    h 30
+
+                    M 110, 145
+                    C 115, 150
+                      135, 150
+                      140, 145
+                   `;
+
+
+          return {
+            svgSize,
+            d,
+          }
+        },
       },
       watch: {
         weapons: function() {
@@ -746,6 +795,9 @@
           if (this.appearancePages[0]){
             this.face = this.activeAppearance.colors[i];
           }
+          if (this.appearancePages[1]){
+            this.lipsColor = this.activeAppearance.colors[i];
+          }
           if (this.appearancePages[2]){
             this.eyes = this.activeAppearance.colors[i];
           }
@@ -755,12 +807,14 @@
             this.faceShape = this.faceShapes[i];
             console.log(this.faceShape.rx);
           }
+          if (this.appearancePages[1]){
+            this.lip = this.lips[i];
+          }
           if (this.appearancePages[2]){
             this.leftEye = this.leftEyes[i];
             this.rightEye = this.rightEyes[i];
             this.leftEyeLid = this.leftEyeLids[i];
             this.rightEyeLid = this.rightEyeLids[i];
-
           }
         },
       },
