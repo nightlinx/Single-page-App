@@ -104,8 +104,16 @@ div.img.creator {
   position: relative;
 }
 
-svg {
+svg, img.hair {
   position: absolute;
+  background: transparent;
+}
+
+img.hair {
+  width: 260px;
+  height: 270px;
+  left: -10px;
+  top: 10px;
 }
 
 div.img.aside > img{
@@ -220,7 +228,6 @@ div.img.aside > img{
   box-sizing: border-box;
   cursor: pointer;
 }
-
 
 #colors, #type {
   padding: 15px;

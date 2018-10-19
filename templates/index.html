@@ -387,8 +387,8 @@
                     :id="2"
                     :d="eyelidsPaths.d"
                     fill-opacity="0"
-                    stroke-width="1.5"
-                    stroke-opacity="0.5"
+                    stroke-width="1"
+                    stroke-opacity="0.3"
                     stroke="black">
                 </path>
               </svg>
@@ -412,6 +412,17 @@
                     fill-opacity="0">
                 </path>
               </svg>
+              <svg id="brawnsSVG" :width="brawnsPath.svgSize" :height="brawnsPath.svgSize">
+                <path
+                    :id="2"
+                    :d="brawnsPath.d"
+                    stroke-width="2.5"
+                    stroke-opacity="1"
+                    :stroke="hair"
+                    fill-opacity="0">
+                </path>
+              </svg>
+              <img class="hair" src="../static/img/hairGirl.png"/>
             </div>
             <div class="appgrid">
               <nav>
@@ -536,9 +547,10 @@
         ],
         activeAppearance: {},
         svgSize: 250,
-        face: '',
-        eyes: '',
+        face: '#F8D6C8',
+        eyes: '#5C802E',
         lipsColor: '',
+        hair: '#73553F',
         faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100},
                     {Mx:100, My:100, rx:50, ry:75, x:100},
                     {Mx:95, My:105, rx:52, ry:60, x:110}],
@@ -710,10 +722,26 @@
         },
         nosePaths(){
           const svgSize = this._data.svgSize;
-          var d = `   M 117, 130
-                      C 115, 135
-                        135, 135
-                        132, 130`;
+          var d = `   M 117, 127
+                      C 115, 132
+                        135, 132
+                        132, 127`;
+          return {
+            svgSize,
+            d,
+          }
+        },
+        brawnsPath(){
+          const svgSize = this._data.svgSize;
+          var d = `   M 90, 92
+                      C 90, 92
+                        105, 87
+                        115, 97
+
+                      M 133, 97
+                      C 143, 87
+                        158, 92
+                        160, 92`;
           return {
             svgSize,
             d,
