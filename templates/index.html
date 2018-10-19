@@ -402,6 +402,16 @@
                     :fill="lipsColor">
                 </path>
               </svg>
+              <svg id="noseSVG" :width="nosePaths.svgSize" :height="nosePaths.svgSize">
+                <path
+                    :id="2"
+                    :d="nosePaths.d"
+                    stroke-width="1"
+                    stroke-opacity="0.5"
+                    stroke="black"
+                    fill-opacity="0">
+                </path>
+              </svg>
             </div>
             <div class="appgrid">
               <nav>
@@ -530,14 +540,14 @@
         eyes: '',
         lipsColor: '',
         faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100},
-                    {Mx:100, My:100, rx:50, ry:80, x:100},
+                    {Mx:100, My:100, rx:50, ry:75, x:100},
                     {Mx:95, My:105, rx:52, ry:60, x:110}],
         faceShape: {},
         leftEyeLids: [{Mx:90, My:105, Cx1:90, Cy1:100, Cx2:105, Cy2:95, Cx:115, Cy:105},
                      {Mx:85, My:100, Cx1:90, Cy1:100, Cx2:105, Cy2:95, Cx:115, Cy:105}],
 
         rightEyeLids: [{Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:100, Cx:158, Cy:105},
-                   {Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:100, Cx:163, Cy:100}],
+                      {Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:100, Cx:163, Cy:100}],
 
         leftEyes: [{Mx:106, My:107},
                   {Mx:106, My:107}],
@@ -689,6 +699,17 @@
                     C ${down.Cx1}, ${down.Cy1}
                       ${down.Cx2}, ${down.Cy2}
                       ${down.Cx}, ${down.Cy}`;
+          return {
+            svgSize,
+            d,
+          }
+        },
+        nosePaths(){
+          const svgSize = this._data.svgSize;
+          var d = `   M 117, 130
+                      C 115, 135
+                        135, 135
+                        132, 130`;
           return {
             svgSize,
             d,
