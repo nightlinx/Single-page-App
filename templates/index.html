@@ -412,6 +412,7 @@
                     fill-opacity="0">
                 </path>
               </svg>
+              <!--
               <svg id="brawnsSVG" :width="brawnsPath.svgSize" :height="brawnsPath.svgSize">
                 <path
                     :id="2"
@@ -422,7 +423,9 @@
                     fill-opacity="0">
                 </path>
               </svg>
-              <img class="hair" src="../static/img/hairGirl.png"/>
+            <img class="hair" :src="../static/img/hair/23.png"/>
+          -->
+            <img class="hair" :src="hairShapeSrc" :style="hairSize"/>
             </div>
             <div class="appgrid">
               <nav>
@@ -549,12 +552,11 @@
         svgSize: 250,
         face: '#F8D6C8',
         eyes: '#5C802E',
-        lipsColor: '',
-        hair: '#73553F',
+        lipsColor: '#D66E6E',
         faceShapes: [{Mx:100, My:100 ,rx:50, ry:70, x:100},
                     {Mx:100, My:100, rx:50, ry:75, x:100},
                     {Mx:95, My:105, rx:52, ry:60, x:110}],
-        faceShape: {},
+        faceShape: {Mx:100, My:100 ,rx:50, ry:70, x:100},
         leftEyeLids: [{Mx:90, My:105, Cx1:90, Cy1:100, Cx2:105, Cy2:95, Cx:115, Cy:105},
                      {Mx:85, My:100, Cx1:90, Cy1:100, Cx2:105, Cy2:95, Cx:115, Cy:105},
                      {Mx:95, My:100, Cx1:90, Cy1:105, Cx2:105, Cy2:95, Cx:115, Cy:105}],
@@ -584,6 +586,14 @@
         rightEyeLid: {},
         upperLip: {},
         downerLip: {},
+        hairShape: 2,
+        hairColor: 2,
+        hairSize: {
+            width: '165px',
+            height: '165px',
+            left: '37px',
+            top: '-8px',
+        }
   		},
       computed: {
         magic: function() {
@@ -747,6 +757,17 @@
             d,
           }
         },
+        hairShapeSrc: function () {
+          return `../static/img/hair/${this.hairShape}${this.hairColor}.png`;
+        },
+        // styleHair: {
+        //   if (this.hairShape == 2) {
+        //     width: '165px',
+        //     height: '165px',
+        //     left: '37px';
+        //     top: '-8px';
+        //   }
+        // }
       },
       watch: {
         face: function () {
@@ -853,11 +874,13 @@
           if (this.appearancePages[2]){
             this.eyes = this.activeAppearance.colors[i];
           }
+          if (this.appearancePages[3]){
+            this.hairColor = i+1;
+          }
         },
         setActiveShape(i) {
           if (this.appearancePages[0]){
             this.faceShape = this.faceShapes[i];
-            console.log(this.faceShape.rx);
           }
           if (this.appearancePages[1]){
             this.upperLip = this.upperLips[i];
@@ -868,6 +891,21 @@
             this.rightEye = this.rightEyes[i];
             this.leftEyeLid = this.leftEyeLids[i];
             this.rightEyeLid = this.rightEyeLids[i];
+          }
+          if (this.appearancePages[3]){
+            this.hairShape = i+1;
+            if (this.hairShape == 1){
+              this.hairSize.width = '250px';
+              this.hairSize.height = '260px';
+              this.hairSize.left = '-5px';
+              this.hairSize.top = '17px';
+            }
+            if (this.hairShape == 2){
+              this.hairSize.width = '165px';
+              this.hairSize.height = '165px';
+              this.hairSize.left = '37px';
+              this.hairSize.top = '-8px';
+            }
           }
         },
       },

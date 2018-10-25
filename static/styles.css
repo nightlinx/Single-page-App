@@ -109,13 +109,6 @@ svg, img.hair {
   background: transparent;
 }
 
-img.hair {
-  width: 260px;
-  height: 270px;
-  left: -10px;
-  top: 10px;
-}
-
 div.img.aside > img{
   margin-bottom: 20px;
   padding: 0;
