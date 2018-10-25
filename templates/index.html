@@ -139,7 +139,8 @@
                 <option v-for="m in ['',80,70,60,50,40]" :value="m" v-on:click="setMainAttributes(7, m)">{{m}}</option>
               </select>
             </div>
-          <p class="note"> Przydziel wartości do powyższych cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
+          <p v-if="wrongValuesMsg" class="note red">Ustaw poprawne wartości!</p>
+          <p class="note"> Przydziel wartości cech: 80, 70, 60, 60, 50, 50, 50, 40 </p>
 
           <h1>Cechy pochodne</h1>
             <div class="label">Szczęście:</div>
@@ -281,6 +282,7 @@
               <option v-for="m in ['',70,60,50,40]" :value="m" v-on:click="setMainSkills(8, m)">{{m}}</option>
             </select>
           </div>
+          <p v-if="wrongValuesMsg2" class="note red">Ustaw poprawne wartości!</p>
           <p class="note"> Przydziel wartości do powyższych umiejętności: <br>70, 60, 60, 50, 50, 50, 40, 40, 40</p>
           <h1>Zainteresowania</h1>
             <form>
@@ -472,6 +474,8 @@
         sk: '',
         luckDraw: true,
         moneyDraw: true,
+        wrongValuesMsg: false,
+        wrongValuesMsg2: false,
         allJobs: ['Aktor', 'Antykwariusz', 'Artysta', 'Detektyw', 'Hobbysta', 'Lekarz', 'Policjant', 'Student'],
         allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
         allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
@@ -810,11 +814,11 @@
         },
         setMainAttributes(attribute, value){
           this.mainAttr[attribute].value = value;
-          this.validateValues(this.mainAttr, this.mainAttrValues);
+          this.wrongValuesMsg = !this.validateValues(this.mainAttr, this.mainAttrValues);
         },
         setMainSkills(attribute, value){
           this.mainSkills[attribute].value = value;
-          this.validateValues(this.mainSkills, this.mainSkillsValues);
+          this.wrongValuesMsg2 = !this.validateValues(this.mainSkills, this.mainSkillsValues);
 
           console.log("----twoje umiejętności----");
           for (s of this.mainSkills){
