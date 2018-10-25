@@ -218,12 +218,18 @@ div.img.aside > img{
 .img.type {
   height: 80px;
   width: 80px;
-  background-color: rgb(7,7,7,0.7);
+  background-color: rgb(64,73,89,0.5);
   display: inline-block;
   margin: 9px;
   border-radius: 3px;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.img.type > p{
+  text-align: center;
+  font-size: 30px;
+  margin: 22px 0;
 }
 
 #colors, #type {
