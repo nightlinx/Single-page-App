@@ -412,24 +412,11 @@
                     fill-opacity="0">
                 </path>
               </svg>
-              <!--
-              <svg id="brawnsSVG" :width="brawnsPath.svgSize" :height="brawnsPath.svgSize">
-                <path
-                    :id="2"
-                    :d="brawnsPath.d"
-                    stroke-width="2.5"
-                    stroke-opacity="1"
-                    :stroke="hair"
-                    fill-opacity="0">
-                </path>
-              </svg>
-            <img class="hair" :src="../static/img/hair/23.png"/>
-          -->
             <img class="hair" :src="hairShapeSrc" :style="hairSize"/>
             </div>
             <div class="appgrid">
               <nav>
-                <button v-for="i in [0,1,2,3,4]" v-on:click="switchToElement(i)" v-bind:class="{activeElement: appearancePages[i], notActiveElement: !appearancePages[i]}">{{appearance[i].name}}</button>
+                <button v-for="i in [0,1,2,3]" v-on:click="switchToElement(i)" v-bind:class="{activeElement: appearancePages[i], notActiveElement: !appearancePages[i]}">{{appearance[i].name}}</button>
               </nav>
               <div>
               <div id="type">
@@ -546,7 +533,6 @@
           {name: "nos i usta", shapes: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
           {name: "oczy", shapes: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#653818', '#3A2828', 'black']},
           {name: "włosy", shapes: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
-          {name: "znaki", shapes: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
         ],
         activeAppearance: {},
         svgSize: 250,
@@ -760,14 +746,6 @@
         hairShapeSrc: function () {
           return `../static/img/hair/${this.hairShape}${this.hairColor}.png`;
         },
-        // styleHair: {
-        //   if (this.hairShape == 2) {
-        //     width: '165px',
-        //     height: '165px',
-        //     left: '37px';
-        //     top: '-8px';
-        //   }
-        // }
       },
       watch: {
         face: function () {
