@@ -537,7 +537,7 @@
         appearance: [
           {name: "twarz", shapes: ['1', '2', '3'], colors: ['#FDCACA','#F8D6C8', '#F8DFB9', '#D9BD92', '#73553F', '#3A2828']},
           {name: "nos i usta", shapes: ['1', '2', '3'], colors: ['#FED0B6', '#D66E6E', '#FF3E3E', '#B91B1B', '#4C1313', '#340916']},
-          {name: "oczy", shapes: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#653818', '#3A2828', 'black']},
+          {name: "oczy", shapes: ['1', '2', '3'], colors: ['#9F9A1D', '#5C802E', '#5A9CC2', '#653818', '#3A2828', '#000000']},
           {name: "włosy", shapes: ['1', '2', '3'], colors: ['#EE6214','#D5B17C', '#73553F', '#3A2828', '#1E1104', '#979696']},
         ],
         activeAppearance: {},
@@ -557,14 +557,6 @@
                       {Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:100, Cx:163, Cy:100},
                       {Mx:133, My:105, Cx1:143, Cy1:95, Cx2:158, Cy2:105, Cx:153, Cy:100}],
 
-        leftEyes: [{Mx:106, My:107},
-                  {Mx:106, My:107},
-                  {Mx:106, My:107}],
-
-        rightEyes: [{Mx:147, My:107},
-                   {Mx:147, My:107},
-                   {Mx:147, My:107}],
-
         upperLips: [{Mx:110, My:145, Cx1:115, Cy1:140, Cx2:125, Cy2:140, Cx:125, Cy:142, h:30},
                     {Mx:110, My:145, Cx1:115, Cy1:137, Cx2:125, Cy2:137, Cx:125, Cy:140, h:30},
                     {Mx:110, My:145, Cx1:115, Cy1:140, Cx2:125, Cy2:140, Cx:125, Cy:142, h:0}],
@@ -572,8 +564,6 @@
                     {Mx:110, My:145, Cx1:115, Cy1:155, Cx2:135, Cy2:155, Cx:140, Cy:145},
                     {Mx:117, My:148, Cx1:115, Cy1:150, Cx2:135, Cy2:150, Cx:132, Cy:148}],
 
-        leftEye: {},
-        rightEye: {},
         leftEyeLid: {},
         rightEyeLid: {},
         upperLip: {},
@@ -684,13 +674,10 @@
         },
         eyesPaths(){
           const svgSize = this._data.svgSize;
-          var left = this.leftEye;
-          var right = this.rightEye;
-
-          var d = `M ${left.Mx}, ${left.My}
+          var d = `M 106, 107
                    a 3,3 0 1,0 -3,0
 
-                   M ${right.Mx}, ${right.My}
+                   M 147, 107
                    a 3,3 0 1,0 -3,0`;
           return {
             svgSize,
@@ -871,8 +858,6 @@
             this.downerLip = this.downerLips[i];
           }
           if (this.appearancePages[2]){
-            this.leftEye = this.leftEyes[i];
-            this.rightEye = this.rightEyes[i];
             this.leftEyeLid = this.leftEyeLids[i];
             this.rightEyeLid = this.rightEyeLids[i];
           }
