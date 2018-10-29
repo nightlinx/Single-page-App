@@ -16,25 +16,25 @@
   ```
   pipenv shell
   ```
-5. Dodaj zmienną środowiskową, w zależności od systemu operacyjnego. W PowerShell:
+5. Uruchom migracje bazy danych
   ```
-  $env:FLASK_APP = "server.py"
+  $ python manage.py migrate
   ```
 6. Uruchom serwer
   ```
-  $ flask run
+  $ python manage.py runserver
   ```
-7. Przejdź do strony [localhost:5000](localhost:5000)
+7. Przejdź do strony [localhost:8000](localhost:8000)
 
 # Development
 
 ## Dodawania nowych zależności do projektu
 
-W tym przykładzie dodamy mikroframework Flask w wersji 1.0.2:
+W tym przykładzie dodamy framework Django w wersji 2.1.2:
 ```
-$ pipenv install "flask==1.0.2"
+$ pipenv install "django==2.1.2"
 ```
-Pipenv umieści Flaska jako zależność w pliku `Pipfile` oraz przypnie wersję
-Flaska oraz wszystkich jego zależności w pliku `Pipfile.lock`. Dodatkowo
+Pipenv umieści Django jako zależność w pliku `Pipfile` oraz przypnie wersję
+Django oraz wszystkich jego zależności w pliku `Pipfile.lock`. Dodatkowo
 zainstaluje wszystkie pakiety w przeznaczonym dla tego projektu środowisku
 wirtualnym.

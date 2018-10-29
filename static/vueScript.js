@@ -705,5 +705,20 @@
           }
         }
       },
-    },
+      saveCharacter() {
+        this.$http.post(
+          '/characters',
+          {'name': this.explorerName,
+           'gamer': this.gamerName,
+           'age': this.explorerAge,
+           'sex': this.explorerSex,
+           'city': this.explorerCity,
+           'birthCity': this.explorerBirthCity,
+           'importantPlace': this.importantPlace,
+           'nature': this.nature,
+           'importantPeople': this.importantPeople,
+         },
+         {responseType: 'Object'}).then(response => {}, response => {console.log(response.body)});
+      },
+    }
   });
