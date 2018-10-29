@@ -97,7 +97,6 @@ class HairList(BaseList):
     model = models.Hair
     fields = marshallers.hair_fields
 
-
 api.add_resource(CharacterList, '/characters')
 api.add_resource(Character, '/characters/<character_id>')
 api.add_resource(JobList, '/jobs')

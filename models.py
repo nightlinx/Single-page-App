@@ -75,6 +75,43 @@ class Hair(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String, unique=True)
 
+class Character(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    #part1
+    name = db.Column(db.String)
+    gamer = db.Column(db.String)
+    age = db.Column(db.SmallInteger)
+    sex = db.Column(db.String)
+    city = db.Column(db.String)
+    birthCity = db.Column(db.String)
+    importantPlace = db.Column(db.String)
+    nature = db.Column(db.String)
+    importantPeople = db.Column(db.String)
+    #part2
+    strength = db.Column(db.SmallInteger)
+    constitution = db.Column(db.SmallInteger)
+    power = db.Column(db.SmallInteger)
+    dexterity = db.Column(db.SmallInteger)
+    appearance = db.Column(db.SmallInteger)
+    size = db.Column(db.SmallInteger)
+    intelligence = db.Column(db.SmallInteger)
+    education = db.Column(db.SmallInteger)
+    luck = db.Column(db.SmallInteger)
+    magicPoints = db.Column(db.SmallInteger)
+    damageBonus = db.Column(db.SmallInteger)
+    build = db.Column(db.SmallInteger)
+    hitPoints = db.Column(db.SmallInteger)
+    sanity = db.Column(db.SmallInteger)
+    #part3
+    occupation = db.Column(db.String)
+    skills = db.Column(db.String)
+    interests = db.Column(db.String)
+    #part3
+    weapons = db.Column(db.String)
+    creditRating = db.Column(db.SmallInteger)
+    equipment = db.Column(db.String)
+
+
 
 @app.cli.command()
 def create_db():
@@ -129,5 +166,6 @@ def create_db():
         Hair(image=f"img/hair/{i}{j}.png")
         for i in range(1, 4) for j in range(1, 7)
     ])
+
 
     db.session.commit()
