@@ -225,28 +225,13 @@
       face: '#F8D6C8',
       eyes: '#5C802E',
       lipsColor: '#D66E6E',
-      faceShapes: [{
-          Mx: 100,
-          My: 100,
-          rx: 50,
-          ry: 70,
-          x: 100
-        },
-        {
-          Mx: 100,
-          My: 100,
-          rx: 50,
-          ry: 75,
-          x: 100
-        },
-        {
-          Mx: 95,
-          My: 105,
-          rx: 52,
-          ry: 60,
-          x: 110
-        }
-      ],
+      faceShapes: [],
+      leftEyeLids: [],
+      rightEyeLids: [],
+      upperLips: [],
+      bottomLips: [],
+      leftEyeLid: {},
+      rightEyeLid: {},
       faceShape: {
         Mx: 100,
         My: 100,
@@ -254,138 +239,6 @@
         ry: 70,
         x: 100
       },
-      leftEyeLids: [{
-          Mx: 90,
-          My: 105,
-          Cx1: 90,
-          Cy1: 100,
-          Cx2: 105,
-          Cy2: 95,
-          Cx: 115,
-          Cy: 105
-        },
-        {
-          Mx: 85,
-          My: 100,
-          Cx1: 90,
-          Cy1: 100,
-          Cx2: 105,
-          Cy2: 95,
-          Cx: 115,
-          Cy: 105
-        },
-        {
-          Mx: 95,
-          My: 100,
-          Cx1: 90,
-          Cy1: 105,
-          Cx2: 105,
-          Cy2: 95,
-          Cx: 115,
-          Cy: 105
-        }
-      ],
-
-      rightEyeLids: [{
-          Mx: 133,
-          My: 105,
-          Cx1: 143,
-          Cy1: 95,
-          Cx2: 158,
-          Cy2: 100,
-          Cx: 158,
-          Cy: 105
-        },
-        {
-          Mx: 133,
-          My: 105,
-          Cx1: 143,
-          Cy1: 95,
-          Cx2: 158,
-          Cy2: 100,
-          Cx: 163,
-          Cy: 100
-        },
-        {
-          Mx: 133,
-          My: 105,
-          Cx1: 143,
-          Cy1: 95,
-          Cx2: 158,
-          Cy2: 105,
-          Cx: 153,
-          Cy: 100
-        }
-      ],
-
-      upperLips: [{
-          Mx: 110,
-          My: 145,
-          Cx1: 115,
-          Cy1: 140,
-          Cx2: 125,
-          Cy2: 140,
-          Cx: 125,
-          Cy: 142,
-          h: 30
-        },
-        {
-          Mx: 110,
-          My: 145,
-          Cx1: 115,
-          Cy1: 137,
-          Cx2: 125,
-          Cy2: 137,
-          Cx: 125,
-          Cy: 140,
-          h: 30
-        },
-        {
-          Mx: 110,
-          My: 145,
-          Cx1: 115,
-          Cy1: 140,
-          Cx2: 125,
-          Cy2: 140,
-          Cx: 125,
-          Cy: 142,
-          h: 0
-        }
-      ],
-      downerLips: [{
-          Mx: 110,
-          My: 145,
-          Cx1: 115,
-          Cy1: 150,
-          Cx2: 135,
-          Cy2: 150,
-          Cx: 140,
-          Cy: 145
-        },
-        {
-          Mx: 110,
-          My: 145,
-          Cx1: 115,
-          Cy1: 155,
-          Cx2: 135,
-          Cy2: 155,
-          Cx: 140,
-          Cy: 145
-        },
-        {
-          Mx: 117,
-          My: 148,
-          Cx1: 115,
-          Cy1: 150,
-          Cx2: 135,
-          Cy2: 150,
-          Cx: 132,
-          Cy: 148
-        }
-      ],
-
-      leftEyeLid: {},
-      rightEyeLid: {},
       upperLip:{
                 Mx: 110,
                 My: 145,
@@ -592,6 +445,9 @@
         }
         vm.$set(vm.pages, pageIndex, true);
         this.activeAppearance = this.appearance[0];
+        if (pageIndex == 4) {
+          this.getAppearanceDetails();
+        }
       },
       switchToElement(pageIndex) {
         var vm = this;
@@ -600,6 +456,16 @@
         }
         vm.$set(vm.appearancePages, pageIndex, true);
         this.activeAppearance = this.appearance[pageIndex];
+      },
+      getAppearanceDetails() {
+        this.$http.get('/api/appearance', {	responseType: 'Object'}).then(response => {
+          console.log(response.body.faces);
+          this.faceShapes = response.body.faces;
+          this.leftEyeLids = response.body.left_eyes;
+          this.rightEyeLids = response.body.right_eyes;
+          this.upperLips = response.body.upper_lips;
+          this.bottomLips = response.body.bottom_lips;
+          }, response => {console.log("Error")})
       },
       setJobSkills(job) {
         //jeśli job = 'Detektyw' to ....
@@ -679,7 +545,7 @@
         }
         if (this.appearancePages[1]) {
           this.upperLip = this.upperLips[i];
-          this.downerLip = this.downerLips[i];
+          this.downerLip = this.bottomLips[i];
         }
         if (this.appearancePages[2]) {
           this.leftEyeLid = this.leftEyeLids[i];
@@ -706,6 +572,9 @@
             this.hairSize.top = '25px';
           }
         }
+      },
+      getJobs() {
+        // GET
       },
       saveCharacter() {
         this.postSuccess=false;

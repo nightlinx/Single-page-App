@@ -48,9 +48,9 @@
               <input type="radio" v-model="explorerSex" value="Mężczyzna" checked> M<br>
             </div>
 
-            <div class="label"> Wiek </div>
+            <div class="label"> Wiek (od 10 do 100)</div>
             <div class="input">
-              <input type="number" v-model="explorerAge" min="10" max="100">
+              <input type="number" v-model="explorerAge" min="10" max="100" required>
             </div>
 
             <div class="label"> Miejsce zamieszkania </div>
@@ -63,7 +63,7 @@
               <input type="text" v-model="explorerBirthCity">
             </div>
           </form>
-          <h1>Inne </h1>
+          <h1>Inne (opcjonalne)</h1>
           <form>
             <div class="label"> Znaczące miejsca </div>
             <div class="input">
@@ -166,7 +166,7 @@
 
         <div v-if="pages[2]">
           <h1>Zawód</h1>
-          <div class="label">Zawód Badacza</div>
+          <div class="label" v-on:click="getJobs">Zawód Badacza</div>
           <div class="input">
             <select id="job" v-model="job">
               <option v-for="j in allJobs" :value="j" v-on:click="selectJob(j)">
