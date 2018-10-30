@@ -71,7 +71,7 @@ class Character(models.Model):
     #part1
     name = models.CharField(max_length=100, blank=True, default="")
     gamer = models.CharField(max_length=100, blank=True, default="")
-    age = models.SmallIntegerField(blank=True, default=10)
+    age = models.SmallIntegerField(blank=True, default=20)
     sex = models.CharField(max_length=100, blank=True, default="")
     city = models.CharField(max_length=100, blank=True, default="")
     birthCity = models.CharField(max_length=100, blank=True, default="")
@@ -89,13 +89,13 @@ class Character(models.Model):
     education = models.SmallIntegerField(blank=True, default=0)
     luck = models.SmallIntegerField(blank=True, default=0)
     magicPoints = models.SmallIntegerField(blank=True, default=0)
-    damageBonus = models.SmallIntegerField(blank=True, default=0)
-    build = models.SmallIntegerField(blank=True, default=0)
+    damageBonus = models.CharField(max_length=100, blank=True, default="")
+    build = models.CharField(max_length=100, blank=True, default="")
     hitPoints = models.SmallIntegerField(blank=True, default=0)
     sanity = models.SmallIntegerField(blank=True, default=0)
     #part3
     occupation = models.CharField(max_length=100, blank=True, default="")
-    skills = models.CharField(max_length=100, blank=True, default="")
+    skills = models.CharField(max_length=500, blank=True, default="")
     interests = models.CharField(max_length=100, blank=True, default="")
     #part3
     weapons = models.CharField(max_length=100, blank=True, default="")

@@ -414,7 +414,9 @@
         height: '260px',
         left: '-5px',
         top: '17px',
-      }
+      },
+      postError: false,
+      postSuccess: false,
     },
     computed: {
       magic: function() {
@@ -706,7 +708,8 @@
         }
       },
       saveCharacter() {
-        console.log("saveCharacter");
+        this.postSuccess=false;
+        this.postError=false;
         this.$http.post(
           '/api/characters/',
           {'name': this.explorerName,
@@ -733,13 +736,13 @@
            'hitPoints': this.hitPoints,
            'sanity': this.sanity,
            'occupation': this.job,
-           'skills': this.mainSkills[0].name,
+           'skills': `${this.mainSkills[0].name}: ${this.mainSkills[0].value}, ${this.mainSkills[1].name}: ${this.mainSkills[1].value}, ${this.mainSkills[2].name}: ${this.mainSkills[2].value}, ${this.mainSkills[3].name}: ${this.mainSkills[3].value}, ${this.mainSkills[4].name}: ${this.mainSkills[4].value}, ${this.mainSkills[5].name}: ${this.mainSkills[5].value}, ${this.mainSkills[6].name}: ${this.mainSkills[6].value},`,
            'interests': `${this.interests[0]}, ${this.interests[1]}, ${this.interests[2]}, ${this.interests[3]}`,
            'weapons': `${this.weapons[0]}, ${this.weapons[1]}`,
            'creditRating': this.creditRating,
            'equipment': `${this.equipment[0]}, ${this.equipment[1]}, ${this.equipment[2]}, ${this.equipment[3]}, ${this.equipment[4]}`,
          },
-         {responseType: 'Object'}).then(response => {}, response => {console.log(response.body)});
+         {responseType: 'Object'}).then(response => {this.postSuccess=true}, response => {this.postError=true});
       },
     }
   });

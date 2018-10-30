@@ -17,6 +17,7 @@
   {% verbatim %}
   <div id="content">
     <a class="yellow short fixed" href="login.html">Wyloguj</a>
+
     <div class="maingrid">
       <header>Tworzenie postaci</header>
       <nav>
@@ -288,22 +289,22 @@
           <form>
             <div class="center-label">
               <select v-model="interests[0]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
                 </select>
             </div>
             <div class="center-label">
               <select v-model="interests[1]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
                 </select>
             </div>
             <div class="center-label">
               <select v-model="interests[2]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
                 </select>
             </div>
             <div class="center-label">
               <select v-model="interests[3]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
                 </select>
             </div>
           </form>
@@ -456,6 +457,14 @@
         <a class="save" href="#" v-on:click="saveCharacter">Zapisz</a>
       </aside>
       </div>
+      <footer class="fixed yellow" v-if="postError" v-on:click="postError=!postError">
+          Aby zapisać postać trzeba uzupełnić wszystkie informacje
+          <button> ok </button>
+      </footer>
+      <footer class="fixed green" v-if="postSuccess" v-on:click="postSuccess=!postSuccess">
+          Twoja postać została zapisana
+          <button> ok </button>
+      </footer>
       </div>
 
       <script src="/static/vueScript.js"></script>
