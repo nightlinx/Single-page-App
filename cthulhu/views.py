@@ -1,6 +1,7 @@
 from collections import namedtuple
 
 from rest_framework.response import Response
+from rest_framework.mixins import DestroyModelMixin, CreateModelMixin
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
 from rest_framework.views import APIView
 
@@ -35,11 +36,12 @@ class AppearanceViewSet(ViewSet):
         )
 
     def list(self, request):
-        serializer = serializers.AppearanceChoicesSerializer(instance=self.get_object())
+        serializer = serializers.AppearanceChoicesSerializer(
+            instance=self.get_object())
         return Response(serializer.data)
 
 
-class CharacterViewSet(ReadOnlyModelViewSet):
+class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet):
 
     queryset = models.Character.objects.all()
     serializer_class = serializers.CharacterSerializer

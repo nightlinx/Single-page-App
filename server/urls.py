@@ -20,4 +20,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include("cthulhu.urls")),
     path('', TemplateView.as_view(template_name="index.html")),
+    path('list', TemplateView.as_view(template_name="characters.html")),
 ]

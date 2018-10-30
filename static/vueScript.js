@@ -706,8 +706,9 @@
         }
       },
       saveCharacter() {
+        console.log("saveCharacter");
         this.$http.post(
-          '/characters',
+          '/api/characters/',
           {'name': this.explorerName,
            'gamer': this.gamerName,
            'age': this.explorerAge,
@@ -717,6 +718,26 @@
            'importantPlace': this.importantPlace,
            'nature': this.nature,
            'importantPeople': this.importantPeople,
+           'strength': this.mainAttr[0].value,
+           'constitution': this.mainAttr[1].value,
+           'power': this.mainAttr[2].value,
+           'dexterity': this.mainAttr[3].value,
+           'appearance': this.mainAttr[4].value,
+           'size': this.mainAttr[5].value,
+           'intelligence': this.mainAttr[6].value,
+           'education': this.mainAttr[7].value,
+           'luck': this.luck,
+           'magicPoints': this.magic,
+           'damageBonus': this.damageBonusAndBuild[0],
+           'build': this.damageBonusAndBuild[1],
+           'hitPoints': this.hitPoints,
+           'sanity': this.sanity,
+           'occupation': this.job,
+           'skills': this.mainSkills[0].name,
+           'interests': `${this.interests[0]}, ${this.interests[1]}, ${this.interests[2]}, ${this.interests[3]}`,
+           'weapons': `${this.weapons[0]}, ${this.weapons[1]}`,
+           'creditRating': this.creditRating,
+           'equipment': `${this.equipment[0]}, ${this.equipment[1]}, ${this.equipment[2]}, ${this.equipment[3]}, ${this.equipment[4]}`,
          },
          {responseType: 'Object'}).then(response => {}, response => {console.log(response.body)});
       },

@@ -38,3 +38,16 @@ Pipenv umieści Django jako zależność w pliku `Pipfile` oraz przypnie wersję
 Django oraz wszystkich jego zależności w pliku `Pipfile.lock`. Dodatkowo
 zainstaluje wszystkie pakiety w przeznaczonym dla tego projektu środowisku
 wirtualnym.
+
+
+## Zmiany w modelach
+Gdy wprowadzi się zmianę w modelach, trzeba wygenerować migracje dla bazy danych.
+Aby to zrobić wywołaj:
+```
+$ python manage.py makemigrations
+```
+
+Następnie zmiany trzeba zaaplikować na bazie danych:
+```
+$ python manage.py migrate
+```
