@@ -55,13 +55,11 @@ class HairSerializer(serializers.ModelSerializer):
 class CharacterSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = '__all__'
         model = models.Character
-        depth = 1
+        fields = "__all__"
 
 
 class AppearanceChoicesSerializer(serializers.Serializer):
-    jobs = JobSerializer(many=True)
     faces = FaceShapeSerializer(many=True)
     left_eyes = LeftEyeLidShapeSerializer(many=True)
     right_eyes = RightEyeLidShapeSerializer(many=True)

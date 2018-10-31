@@ -166,7 +166,7 @@
 
         <div v-if="pages[2]">
           <h1>Zawód</h1>
-          <div class="label" v-on:click="getJobs">Zawód Badacza</div>
+          <div class="label">Zawód Badacza</div>
           <div class="input">
             <select id="job" v-model="job">
               <option v-for="j in allJobs" :value="j" v-on:click="selectJob(j)">
@@ -374,7 +374,7 @@
                 <path
                     :id="1"
                     :d="facePaths.d"
-                    :fill="face">
+                    :fill="faceColor">
                 </path>
               </svg>
               <svg id="eyesSVG" :width="svgSize" :height="svgSize">
@@ -382,7 +382,7 @@
                     :id="2"
                     :d="eyesPaths.d"
                     stroke-width="2.5"
-                    :stroke="eyes">
+                    :stroke="eyesColor">
                 </path>
               </svg>
               <svg id="eyelidsSVG" :width="svgSize" :height="svgSize">
@@ -415,7 +415,7 @@
                     fill-opacity="0">
                 </path>
               </svg>
-              <img class="hair" :src="hairShapeSrc" :style="hairSize" />
+              <img class="hair" :src="hairShapeSrc" :style="hair" />
             </div>
             <div class="appgrid">
               <nav>

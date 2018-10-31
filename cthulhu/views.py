@@ -13,7 +13,6 @@ class AppearanceViewSet(ViewSet):
     appearance_class = namedtuple(
         "Appearance",
         [
-            "jobs",
             "faces",
             "left_eyes",
             "right_eyes",
@@ -26,7 +25,6 @@ class AppearanceViewSet(ViewSet):
 
     def get_object(self):
         return self.appearance_class(
-            jobs=models.Job.objects.all(),
             faces=models.FaceShape.objects.all(),
             left_eyes=models.LeftEyeLidShape.objects.all(),
             right_eyes=models.RightEyeLidShape.objects.all(),
@@ -40,8 +38,12 @@ class AppearanceViewSet(ViewSet):
             instance=self.get_object())
         return Response(serializer.data)
 
-
 class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet):
 
     queryset = models.Character.objects.all()
     serializer_class = serializers.CharacterSerializer
+
+class JobViewSet(ReadOnlyModelViewSet):
+
+    queryset = models.Job.objects.all()
+    serializer_class = serializers.JobSerializer

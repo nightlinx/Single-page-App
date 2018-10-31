@@ -1,5 +1,8 @@
+from itertools import chain
+
 from django.core.management.base import BaseCommand
 from cthulhu import models
+
 
 class Command(BaseCommand):
     help = 'Populates appearance and models.Jobs choices in database'
@@ -24,41 +27,50 @@ class Command(BaseCommand):
 
         models.LeftEyeLidShape.objects.bulk_create([
             models.LeftEyeLidShape(Mx=90, My=105, Cx1=90, Cy1=100,
-                            Cx2=105, Cy2=95, Cx=115, Cy=105),
+                                   Cx2=105, Cy2=95, Cx=115, Cy=105),
             models.LeftEyeLidShape(Mx=85, My=100, Cx1=90, Cy1=100,
-                            Cx2=105, Cy2=95, Cx=115, Cy=105),
+                                   Cx2=105, Cy2=95, Cx=115, Cy=105),
             models.LeftEyeLidShape(Mx=95, My=100, Cx1=90, Cy1=105,
-                            Cx2=105, Cy2=95, Cx=115, Cy=105),
+                                   Cx2=105, Cy2=95, Cx=115, Cy=105),
         ])
 
         models.RightEyeLidShape.objects.bulk_create([
             models.RightEyeLidShape(Mx=133, My=105, Cx1=143, Cy1=95,
-                             Cx2=158, Cy2=100, Cx=158, Cy=105),
+                                    Cx2=158, Cy2=100, Cx=158, Cy=105),
             models.RightEyeLidShape(Mx=133, My=105, Cx1=143, Cy1=95,
-                             Cx2=158, Cy2=100, Cx=163, Cy=100),
+                                    Cx2=158, Cy2=100, Cx=163, Cy=100),
             models.RightEyeLidShape(Mx=133, My=105, Cx1=143, Cy1=95,
-                             Cx2=158, Cy2=105, Cx=153, Cy=100),
+                                    Cx2=158, Cy2=105, Cx=153, Cy=100),
         ])
 
         models.UpperLipShape.objects.bulk_create([
             models.UpperLipShape(Mx=110, My=145, Cx1=115, Cy1=140,
-                          Cx2=125, Cy2=140, Cx=125, Cy=142, h=30),
+                                 Cx2=125, Cy2=140, Cx=125, Cy=142, h=30),
             models.UpperLipShape(Mx=110, My=145, Cx1=115, Cy1=137,
-                          Cx2=125, Cy2=137, Cx=125, Cy=140, h=30),
+                                 Cx2=125, Cy2=137, Cx=125, Cy=140, h=30),
             models.UpperLipShape(Mx=110, My=145, Cx1=115, Cy1=140,
-                          Cx2=125, Cy2=140, Cx=125, Cy=142, h=0),
+                                 Cx2=125, Cy2=140, Cx=125, Cy=142, h=0),
         ])
 
         models.BottomLipShape.objects.bulk_create([
             models.BottomLipShape(Mx=110, My=145, Cx1=115, Cy1=150,
-                           Cx2=135, Cy2=150, Cx=140, Cy=145, h=0),
+                                  Cx2=135, Cy2=150, Cx=140, Cy=145, h=0),
             models.BottomLipShape(Mx=110, My=145, Cx1=115, Cy1=155,
-                           Cx2=135, Cy2=155, Cx=140, Cy=145, h=0),
+                                  Cx2=135, Cy2=155, Cx=140, Cy=145, h=0),
             models.BottomLipShape(Mx=117, My=148, Cx1=115, Cy1=150,
-                           Cx2=135, Cy2=150, Cx=132, Cy=148, h=0),
+                                  Cx2=135, Cy2=150, Cx=132, Cy=148, h=0),
         ])
 
         models.Hair.objects.bulk_create(
-            models.Hair(image=f"img/models.Hair/{i}{j}.png")
-            for i in range(1, 4) for j in range(1, 7)
+            chain(
+                (models.Hair(image=f"img/models.Hair/{1}{j}.png",
+                             width='250px', height='260px', left='-5px', top='17px')
+                 for j in range(1, 7)),
+                (models.Hair(image=f"img/models.Hair/{2}{j}.png",
+                             width='165px', height='165px', left='37px', top='-8px')
+                 for j in range(1, 7)),
+                (models.Hair(image=f"img/models.Hair/{3}{j}.png",
+                             width='140px', height='175px', left='57px', top='25px')
+                 for j in range(1, 7))
+            )
         )
