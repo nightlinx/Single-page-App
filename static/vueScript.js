@@ -231,37 +231,9 @@ new Vue({
     bottomLips: [],
     leftEyeLid: {},
     rightEyeLid: {},
-    faceShape: {
-      id: 1,
-      Mx: 100,
-      My: 100,
-      rx: 50,
-      ry: 70,
-      x: 100
-    },
-    upperLip: {
-      id: 2,
-      Mx: 110,
-      My: 145,
-      Cx1: 115,
-      Cy1: 137,
-      Cx2: 125,
-      Cy2: 137,
-      Cx: 125,
-      Cy: 140,
-      h: 30
-    },
-    bottomLip: {
-      id: 2,
-      Mx: 110,
-      My: 145,
-      Cx1: 115,
-      Cy1: 155,
-      Cx2: 135,
-      Cy2: 155,
-      Cx: 140,
-      Cy: 145
-    },
+    faceShape: {},
+    upperLip: {},
+    bottomLip: {},
     hairShape: 1,
     hairColor: 3,
     hairObjects: {},
@@ -482,6 +454,9 @@ new Vue({
         this.bottomLips = response.body.bottom_lips;
         this.bottomLips = response.body.bottom_lips;
         this.hairObjects = response.body.hair;
+        this.faceShape = this.faceShapes[0];
+        this.upperLip = this.upperLips[0];
+        this.bottomLip = this.bottomLips[0];
         this.hair = this.hairObjects[0];
       }, response => {
         console.log("Error")
