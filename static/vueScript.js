@@ -429,6 +429,7 @@ new Vue({
       this.activeAppearance = this.appearance[0];
       if (pageIndex == 2) {
         this.getJobDetails();
+        this.getSkillsDetails();
       }
       if (pageIndex == 4) {
         this.getAppearanceDetails();
@@ -470,6 +471,15 @@ new Vue({
         for (j of response.body){
           this.allJobs.push(j.name);
         }
+      }, response => {
+        console.log("Error")
+      })
+    },
+    getSkillsDetails() {
+      this.$http.get('/api/skills', {
+        responseType: 'Object'
+      }).then(response => {
+        this.allSkills = response.body;
       }, response => {
         console.log("Error")
       })

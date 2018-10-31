@@ -9,6 +9,12 @@ class JobSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = models.Job
 
+class SkillSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = '__all__'
+        model = models.Skill
+
 
 class FaceShapeSerializer(serializers.ModelSerializer):
 

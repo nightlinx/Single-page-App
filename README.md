@@ -51,3 +51,8 @@ Następnie zmiany trzeba zaaplikować na bazie danych:
 ```
 $ python manage.py migrate
 ```
+
+## Zmiana w obiektach w bazie danych
+```
+$ python manage.py create_objects
+```

@@ -8,6 +8,9 @@ class Job(models.Model):
     def __repr__(self):
         return '<Job %r>' % self.name
 
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    value = models.SmallIntegerField()
 
 class FaceShape(models.Model):
     Mx = models.SmallIntegerField()
