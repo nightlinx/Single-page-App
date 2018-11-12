@@ -12,23 +12,23 @@
 </head>
 
 <body>
-  {% verbatim %}
    <div id="list">
      <a class="yellow short fixed" href="login.html">Wyloguj</a>
      <div class="maingrid">
        <header>twoje postacie</header>
        <div class="list">
-         <a class="create" href="index.html">nowa postać</a>
-         <div class="element" v-for="c in characters">
+         <a class="create" href="{% url 'index' %}">nowa postać</a>
+         {% verbatim %}
+         <div class="element" v-for="(c, index) in characters">
            <p class="job">{{c.job}}</p><br>
            <p class="info"><b>{{c.name}}</b> | Płeć: {{c.sex}} | Wiek: {{c.age}} </p>
            <div class="opt1"><a class="option">drukuj/zapisz</a></div>
-           <div class="opt2"><a class="option right">usuń</a></div>
+           <div class="opt2"><a class="option right" v-on:click="deleteCharacter(index)">usuń</a></div>
          </div>
+         {% endverbatim %}
        </div>
      </div>
    </div>
   <script src="/static/charactersScript.js"></script>
-{% endverbatim %}
 </body>
 </html>

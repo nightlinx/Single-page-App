@@ -538,7 +538,7 @@ new Vue({
         this.hair = this.hairObjects[(this.hairColor + (this.hairShape-1)*6)-1];
       }
     },
-    saveCharacter() {
+    saveCharacter(event) {
       this.postSuccess = false;
       this.postError = false;
       this.$http.post(
@@ -586,6 +586,7 @@ new Vue({
         }).then(response => {
           console.log("Zapisano postać:", response.body);
           this.postSuccess = true;
+          window.location.href = event.target.href;
       }, response => {
         console.log("Nie udało się zapisać postaci");
         this.postError = true;

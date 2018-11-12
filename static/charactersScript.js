@@ -22,6 +22,15 @@ new Vue({
     ]
   },
   methods: {
+    deleteCharacter(index) {
+      var id = this.characters[index].id;
+      console.log(id);
+      this.$http.delete('/api/characters/'+ id)
+        .then((response) => {
+          console.log("Deleted character");
+          this.characters.splice(index, 1);
+        });
+      },
     getCharacters() {
       this.$http.get('/api/characters/', {
         responseType: 'Object'
@@ -29,6 +38,7 @@ new Vue({
         console.log("Udany GET");
         for (c of response.body) {
           this.characters.push({
+            'id': `${c.id}`,
             'job': `${c.occupation}`,
             'name': `${c.name}`,
             'sex': `${c.sex}`,
@@ -38,7 +48,7 @@ new Vue({
       }, response => {
         console.log("Error")
       })
-    }
+    },
   },
   beforeMount(){
    this.getCharacters()

@@ -454,7 +454,8 @@
             <b>Umiejętności:</b> <span v-for="skills in strongSkills">{{skills.name}}, </span><br>
             <b>Broń:</b> <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
-        <a class="save" href="#" v-on:click="saveCharacter">Zapisz</a>
+        {% endverbatim %}
+        <a class="save" v-on:click.self.prevent="saveCharacter" href="{% url 'characters' %}" >Zapisz</a>
       </aside>
       </div>
       <footer class="fixed yellow" v-if="postError" v-on:click="postError=!postError">
@@ -468,7 +469,7 @@
       </div>
 
       <script src="/static/vueScript.js"></script>
-      {% endverbatim %}
+
 </body>
 
 </html>
