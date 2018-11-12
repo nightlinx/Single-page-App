@@ -64,6 +64,11 @@ class CharacterSerializer(serializers.ModelSerializer):
         model = models.Character
         fields = "__all__"
 
+class JobSkillSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.JobSkill
+        fields = "__all__"
 
 class AppearanceChoicesSerializer(serializers.Serializer):
     faces = FaceShapeSerializer(many=True)

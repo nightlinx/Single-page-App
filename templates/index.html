@@ -169,8 +169,8 @@
           <div class="label">Zawód Badacza</div>
           <div class="input">
             <select id="job" v-model="job">
-              <option v-for="j in allJobs" :value="j" v-on:click="selectJob(j)">
-                {{j}}
+              <option v-for="j in allJobs" :value="j.name" v-on:click="selectJob(j.id)">
+                {{j.name}}
               </option>
             </select>
           </div>

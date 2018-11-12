@@ -52,3 +52,8 @@ class SkillViewSet(ReadOnlyModelViewSet):
 
     queryset = models.Skill.objects.all()
     serializer_class = serializers.SkillSerializer
+
+class JobSkillViewSet(ReadOnlyModelViewSet):
+
+    queryset = models.JobSkill.objects.all()
+    serializer_class = serializers.JobSkillSerializer

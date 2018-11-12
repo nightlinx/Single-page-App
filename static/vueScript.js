@@ -433,7 +433,7 @@ new Vue({
       }).then(response => {
         console.log(response.body);
         for (j of response.body){
-          this.allJobs.push(j.name);
+          this.allJobs.push({id: j.id, name: j.name});
         }
       }, response => {
         console.log("Error")
@@ -448,29 +448,39 @@ new Vue({
         console.log("Error")
       })
     },
-    setJobSkills(job) {
-      //jeśli job = 'Detektyw' to ....
-      // tutaj będę pobierać GETem umiejętności danego zawodu
-      this.jobSkills[0].name = ['Sztuka/Rzemiosło', 'Charakteryzacja'];
-      this.jobSkills[1].name = ['Broń palna'];
-      this.jobSkills[2].name = ['Nasłuchiwanie'];
-      this.jobSkills[3].name = ['Prawo'];
-      this.jobSkills[4].name = ['Urok Osobisty', 'Gadanina', 'Zastraszanie', 'Perswazja'];
-      this.jobSkills[5].name = ['Psychologia'];
-      this.jobSkills[6].name = ['Spostrzegawczość'];
-      for (var i = 0; i < this.allSkills.length; i++) {
-        this.jobSkills[7].name[i] = this.allSkills[i].name;
-      }
-      this.jobSkills[8].name = ['Majętnosć'];
-    },
-    selectJob(job) {
-      this.setJobSkills(job);
-      for (var i = 0; i < this.jobSkills.length; i++) {
-        if (this.jobSkills[i].name.length == 1) { //jeśli jest tylko jedna cecha do wyboru to zapisz ją 'na sztywno' jako umiejętność głowna (w mainSkills)
-          this.mainSkills[i].name = this.jobSkills[i].name[0];
-          //console.log(this.jobSkills[i].name[0])
+    selectJob(job_id) {
+      this.$http.get('/api/job-skills', {
+        responseType: 'Object'
+      }).then(response => {
+        for (js of this.jobSkills){
+          js.name = [];
         }
-      }
+        var skills = response.body;
+        for (s of skills){
+            if (s.job == job_id){ //jesli trafimy na dobry zawod; skill_id może być None
+              var skill_id = s.skill;
+              if(skill_id == null){
+                for (var i = 0; i < this.allSkills.length; i++) {
+                  this.jobSkills[s.position-1].name[i] = this.allSkills[i].name;
+                }
+              }
+              else{
+                var skill_name = this.allSkills[skill_id-1].name;
+                this.jobSkills[s.position-1].name.push(skill_name);
+              }
+            }
+        }
+        for (var i = 0; i < this.jobSkills.length; i++) {
+          if (this.jobSkills[i].name.length == 1) { //jeśli jest tylko jedna cecha do wyboru to zapisz ją 'na sztywno' jako umiejętność głowna (w mainSkills)
+            this.mainSkills[i].name = this.jobSkills[i].name[0];
+          }
+        }
+        for (js of this.mainSkills){
+          console.log("main skills", js.name);
+        }
+      }, response => {
+        console.log("Error")
+      })
     },
     setMainAttributes(attribute, value) {
       this.mainAttr[attribute].value = value;
