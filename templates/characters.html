@@ -1,4 +1,5 @@
 <!DOCTYPE  html>
+{% load static %}
 <html lang='pl'>
 <head>
   <meta charset='utf-8'>
@@ -7,9 +8,11 @@
   <link href='../static/main-elements.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet">
   <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 </head>
 
 <body>
+  {% verbatim %}
    <div id="list">
      <a class="yellow short fixed" href="login.html">Wyloguj</a>
      <div class="maingrid">
@@ -19,23 +22,13 @@
          <div class="element" v-for="c in characters">
            <p class="job">{{c.job}}</p><br>
            <p class="info"><b>{{c.name}}</b> | Płeć: {{c.sex}} | Wiek: {{c.age}} </p>
-           <div class="opt1"><a class="option">edytuj</a></div>
-           <div class="opt2"><a class="option right">drukuj</a></div>
+           <div class="opt1"><a class="option">drukuj/zapisz</a></div>
+           <div class="opt2"><a class="option right">usuń</a></div>
          </div>
        </div>
      </div>
    </div>
-<script>
-	new Vue({
-    el: '#list',
-    data: {
-      characters: [
-        {job: "detektyw", name: "Jass Anderson", sex: "Kobieta", age: "34"},
-        {job: "lekarz", name: "Andrew", sex: "Mężczyzna", age: "41"},
-        {job: "aktorka", name: "Izabell", sex: "Kobieta", age: "25"},
-      ]
-    },
-  });
-</script>
+  <script src="/static/charactersScript.js"></script>
+{% endverbatim %}
 </body>
 </html>

@@ -19,43 +19,7 @@ new Vue({
     allJobs: [],
     allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
     allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
-    allSkills: [{
-        name: 'Charakteryzacja',
-        value: 25
-      },
-      {
-        name: 'Elektryka',
-        value: 30
-      },
-      {
-        name: 'Medycyna',
-        value: 21
-      },
-      {
-        name: 'Historia',
-        value: 25
-      },
-      {
-        name: 'Tropienie',
-        value: 30
-      },
-      {
-        name: 'Język włoski',
-        value: 21
-      },
-      {
-        name: 'Język francuski',
-        value: 21
-      },
-      {
-        name: 'Zastraszanie',
-        value: 20
-      },
-      {
-        name: 'Nasłuchiwanie',
-        value: 20
-      }
-    ],
+    allSkills: [],
     interests: [],
     skills: [],
     weapons: [],
@@ -404,7 +368,7 @@ new Vue({
       this.appearance[1].colors[0] = this.face;
     },
     weapons: function() {
-      console.log('watch: waeopons | ', this.weapons);
+      console.log('watch: waepons | ', this.weapons);
     },
     equipment: function() {
       console.log('watch: equipment | ', this.equipment);

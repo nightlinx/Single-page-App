@@ -12,7 +12,7 @@ class Command(BaseCommand):
             models.Job(name="Antykwariusz", skills="a"),
             models.Job(name="Bogaty hobbysta", skills="a"),
             models.Job(name="Detektyw policyjny", skills="a"),
-            models.Job(name="Dziennikarzy", skills="a"),
+            models.Job(name="Dziennikarz", skills="a"),
             models.Job(name="Lakarz", skills="a"),
             models.Job(name="Pisarz", skills="a"),
             models.Job(name="Profesor", skills="a"),

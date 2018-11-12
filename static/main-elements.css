@@ -145,7 +145,7 @@ input[type="text"], input[type="number"], select{
 }
 
 .label > select {
-  width: 150px;
+  width: 190px;
 }
 
 .input > select.number {
@@ -153,7 +153,7 @@ input[type="text"], input[type="number"], select{
 }
 
 .input > select {
-  width: 150px;
+  width: 160px;
 }
 
 div.label, div.input {
@@ -177,7 +177,7 @@ div.center-label{
 }
 
 div.center-label >select{
-  width: 150px;
+  width: 210px;
 }
 
 div.input {
