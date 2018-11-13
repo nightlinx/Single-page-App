@@ -110,21 +110,22 @@ class Character(models.Model):
     creditRating = models.SmallIntegerField(blank=True, default=0)
     equipment = models.CharField(max_length=100, blank=True, default="")
     # part4
+    appearance = models.TextField(blank=True, default="")
     face_color = models.CharField(max_length=100, blank=True, default="")
     lips_color = models.CharField(max_length=100, blank=True, default="")
     eyes_color = models.CharField(max_length=100, blank=True, default="")
     face = models.ForeignKey(
-        FaceShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
+     FaceShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
     upper_lip = models.ForeignKey(
-        UpperLipShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
+     UpperLipShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
     bottom_lip = models.ForeignKey(
-        BottomLipShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
+     BottomLipShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
     left_eye = models.ForeignKey(
-        LeftEyeLidShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
+     LeftEyeLidShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
     right_eye = models.ForeignKey(
-        RightEyeLidShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
+     RightEyeLidShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
     hair = models.ForeignKey(
-        Hair, null=True, default=None, on_delete=models.PROTECT, blank=True)
+     Hair, null=True, default=None, on_delete=models.PROTECT, blank=True)
 
 
 class JobSkill(models.Model):

@@ -17,7 +17,10 @@ new Vue({
     wrongValuesMsg: false,
     wrongValuesMsg2: false,
     allJobs: [],
-    allWeapons: ['Krótki nóż: 1K4', 'Broń krótka: 1K10', 'Maczeta: 1K8', "Mała pałka: 1K6"],
+    allWeapons: ['Ataki bez broni: 1K3 + Mod.Obr.', 'Krótki nóż: 1K4 + Mod.Obr.',
+      'Maczeta: 1K8 + Mod.Obr.', 'Kij baseballowy: 1K6 + Mod.Obr.', 'Broń krótka: 1K10 + Mod.Obr.',
+      'Mała pałka: 1K6 + Mod.Obr.', 'Strzelba: 4K6', 'Karabin: 2K6 + 4'
+    ],
     allEquipment: ['Koc', 'Apteczka', 'Lampa naftowa', 'Zapałki', 'Lina', 'Butelka wina', 'Ołówek', 'Zeszyt', 'Torebka'],
     allSkills: [],
     interests: [],
@@ -204,6 +207,7 @@ new Vue({
     hair: {},
     postError: false,
     postSuccess: false,
+    appearance_url: '',
   },
   computed: {
     magic: function() {
@@ -432,8 +436,11 @@ new Vue({
         responseType: 'Object'
       }).then(response => {
         console.log(response.body);
-        for (j of response.body){
-          this.allJobs.push({id: j.id, name: j.name});
+        for (j of response.body) {
+          this.allJobs.push({
+            id: j.id,
+            name: j.name
+          });
         }
       }, response => {
         console.log("Error")
@@ -452,30 +459,29 @@ new Vue({
       this.$http.get('/api/job-skills', {
         responseType: 'Object'
       }).then(response => {
-        for (js of this.jobSkills){
+        for (js of this.jobSkills) {
           js.name = [];
         }
         var skills = response.body;
-        for (s of skills){
-            if (s.job == job_id){ //jesli trafimy na dobry zawod; skill_id może być None
-              var skill_id = s.skill;
-              if(skill_id == null){
-                for (var i = 0; i < this.allSkills.length; i++) {
-                  this.jobSkills[s.position-1].name[i] = this.allSkills[i].name;
-                }
+        for (s of skills) {
+          if (s.job == job_id) { //jesli trafimy na dobry zawod; skill_id może być None
+            var skill_id = s.skill;
+            if (skill_id == null) {
+              for (var i = 0; i < this.allSkills.length; i++) {
+                this.jobSkills[s.position - 1].name[i] = this.allSkills[i].name;
               }
-              else{
-                var skill_name = this.allSkills[skill_id-1].name;
-                this.jobSkills[s.position-1].name.push(skill_name);
-              }
+            } else {
+              var skill_name = this.allSkills[skill_id - 1].name;
+              this.jobSkills[s.position - 1].name.push(skill_name);
             }
+          }
         }
         for (var i = 0; i < this.jobSkills.length; i++) {
           if (this.jobSkills[i].name.length == 1) { //jeśli jest tylko jedna cecha do wyboru to zapisz ją 'na sztywno' jako umiejętność głowna (w mainSkills)
             this.mainSkills[i].name = this.jobSkills[i].name[0];
           }
         }
-        for (js of this.mainSkills){
+        for (js of this.mainSkills) {
           console.log("main skills", js.name);
         }
       }, response => {
@@ -528,7 +534,7 @@ new Vue({
       }
       if (this.appearancePages[3]) {
         this.hairColor = i + 1;
-        this.hair = this.hairObjects[(this.hairColor + (this.hairShape-1)*6)-1];
+        this.hair = this.hairObjects[(this.hairColor + (this.hairShape - 1) * 6) - 1];
       }
     },
     setActiveShape(i) {
@@ -545,12 +551,14 @@ new Vue({
       }
       if (this.appearancePages[3]) {
         this.hairShape = i + 1;
-        this.hair = this.hairObjects[(this.hairColor + (this.hairShape-1)*6)-1];
+        this.hair = this.hairObjects[(this.hairColor + (this.hairShape - 1) * 6) - 1];
       }
     },
     saveCharacter(event) {
       this.postSuccess = false;
       this.postError = false;
+      this.print();
+      console.log('appearance_url', this.appearance_url);
       this.$http.post(
         '/api/characters/', {
           'name': this.explorerName,
@@ -582,24 +590,33 @@ new Vue({
           'weapons': `${this.weapons[0]}, ${this.weapons[1]}`,
           'creditRating': this.creditRating,
           'equipment': `${this.equipment[0]}, ${this.equipment[1]}, ${this.equipment[2]}, ${this.equipment[3]}, ${this.equipment[4]}`,
-          'face_color': `${this.faceColor}`,
-          'lips_color': `${this.lipsColor}`,
-          'eyes_color': `${this.eyesColor}`,
-          'face': this.faceShape.id,
-          'bottom_lip': this.bottomLip.id,
-          'upper_lip': this.upperLip.id,
-          'left_eye': this.leftEyeLid.id,
-          'right_eye': this.rightEyeLid.id,
-          'hair': this.hair.id,
+          'appearance': `${this.appearance_url}`,
+          // 'face_color': `${this.faceColor}`,
+          // 'lips_color': `${this.lipsColor}`,
+          // 'eyes_color': `${this.eyesColor}`,
+          // 'face': this.faceShape.id,
+          // 'bottom_lip': this.bottomLip.id,
+          // 'upper_lip': this.upperLip.id,
+          // 'left_eye': this.leftEyeLid.id,
+          // 'right_eye': this.rightEyeLid.id,
+          // 'hair': this.hair.id,
         }, {
           responseType: 'Object'
         }).then(response => {
-          console.log("Zapisano postać:", response.body);
-          this.postSuccess = true;
-          window.location.href = event.target.href;
+        console.log("Zapisano postać:", response.body);
+        this.postSuccess = true;
+        window.location.href = event.target.href;
       }, response => {
         console.log("Nie udało się zapisać postaci");
         this.postError = true;
+      });
+    },
+    print() {
+      const el = this.$refs.printMe;
+      html2canvas(el).then(canvas => {
+        this.appearance_url = canvas.toDataURL();
+      }).catch((error) => {
+        console.log("Error", error)
       });
     },
   }

@@ -88,7 +88,7 @@ p.red{
   border-radius: 3px;
   font-size: 14px;
   margin-bottom: 10px;
-  height: 150px;
+  height: 200px;
 }
 
 .maingrid > aside > div.img{
@@ -113,12 +113,12 @@ svg, img.hair {
   background: transparent;
 }
 
-div.img.aside > img{
+div.img.aside{
   margin-bottom: 20px;
   padding: 0;
   width: 200px;
+  height: 200px;
 }
-
 
 .maingrid > aside > div > p{
   margin: 0;

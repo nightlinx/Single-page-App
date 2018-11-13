@@ -153,7 +153,7 @@ input[type="text"], input[type="number"], select{
 }
 
 .input > select {
-  width: 160px;
+  width: 180px;
 }
 
 div.label, div.input {

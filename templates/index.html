@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet">
   <script src="https://npmcdn.com/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 </head>
 
 <body>
@@ -369,7 +370,7 @@
         <div v-if="pages[4]">
           <div id="appearance">
             <h1> Twoja Postać </h1>
-            <div class="img creator">
+            <div class="img creator" ref="printMe" v-on:click="print">
               <svg id="faceSVG" :width="svgSize" :height="svgSize">
                 <path
                     :id="1"
@@ -442,9 +443,6 @@
       </main>
 
       <aside>
-        <div class="img aside">
-          <img src="../static/img/postac.jpg"></img>
-        </div>
         <div id="summarise">
           <p><b>Imię:</b> {{explorerName}}<br>
             <b>Płeć:</b> {{explorerSex}} <br>
