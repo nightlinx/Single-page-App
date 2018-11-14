@@ -605,7 +605,7 @@ new Vue({
         }).then(response => {
         console.log("Zapisano postać:", response.body);
         this.postSuccess = true;
-        window.location.href = event.target.href;
+        //window.location.href = event.target.href;
       }, response => {
         console.log("Nie udało się zapisać postaci");
         this.postError = true;

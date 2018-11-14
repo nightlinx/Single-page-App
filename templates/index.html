@@ -290,22 +290,22 @@
           <form>
             <div class="center-label">
               <select v-model="interests[0]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.base_value">{{skill.name}}: {{skill.base_value + 20}}</option>
                 </select>
             </div>
             <div class="center-label">
               <select v-model="interests[1]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.base_value">{{skill.name}}: {{skill.base_value + 20}}</option>
                 </select>
             </div>
             <div class="center-label">
               <select v-model="interests[2]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.base_value">{{skill.name}}: {{skill.base_value + 20}}</option>
                 </select>
             </div>
             <div class="center-label">
               <select v-model="interests[3]">
-                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.value">{{skill.name}}: {{skill.value}}</option>
+                  <option v-for="skill in allInterests" v-bind:value="skill.name + ': ' +skill.base_value">{{skill.name}}: {{skill.base_value + 20}}</option>
                 </select>
             </div>
           </form>

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from . import models
+from .fields import Base64ImageField
 
 
 class JobSerializer(serializers.ModelSerializer):
@@ -59,6 +60,7 @@ class HairSerializer(serializers.ModelSerializer):
 
 
 class CharacterSerializer(serializers.ModelSerializer):
+    appearance = Base64ImageField()
 
     class Meta:
         model = models.Character
