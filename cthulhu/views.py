@@ -1,12 +1,14 @@
 from collections import namedtuple
 
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.mixins import DestroyModelMixin, CreateModelMixin
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
 from rest_framework.views import APIView
 
 from . import models, serializers
-
+from django.shortcuts import render
+from .models import Character
 
 class AppearanceViewSet(ViewSet):
 
@@ -38,10 +40,54 @@ class AppearanceViewSet(ViewSet):
             instance=self.get_object())
         return Response(serializer.data)
 
+
 class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet):
 
     queryset = models.Character.objects.all()
     serializer_class = serializers.CharacterSerializer
+
+    @action(detail=True, methods=["GET"])
+    def sheet(self, request, pk=None):
+        instance = self.get_object()
+        name = instance.name
+        gamer = instance.gamer
+        age = instance.age
+        sex = instance.sex
+        city = instance.city
+        birthCity = instance.birthCity
+        nature = instance.nature
+        importantPeople = instance.importantPeople
+        strength = instance.strength
+        constitution = instance.constitution
+        power = instance.power
+        dexterity = instance.dexterity
+        appearance = instance.appearance
+        size = instance.size
+        intelligence = instance.intelligence
+        education = instance.education
+
+        skills = instance.skills.split(",")
+        interests = instance.interests.split(",")
+        return render(request, 'sheet.html', {
+            'name': name,
+            'gamer': gamer,
+            'age': age,
+            'sex': sex,
+            'city': city,
+            'birthCity': birthCity,
+            'nature': nature,
+            'importantPeople': importantPeople,
+            'strength': strength,
+            'constitution': constitution,
+            'power': power,
+            'dexterity': dexterity,
+            'appearance': appearance,
+            'size': size,
+            'intelligence': intelligence,
+            'education': education,
+            'skills': skills,
+            'interests': interests
+            })
 
 class JobViewSet(ReadOnlyModelViewSet):
 

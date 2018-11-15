@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>{% block title %}Character sheet{% endblock %}</title>
+</head>
+
+<body>
+  <h1>Karta postaci</h1>
+    <div id="sidebar">
+      <p>Imię Badacza: {{name}}</p>
+      <p>Wiek: {{age}}</p>
+      <h2>Cechy główne</h2>
+      <p>S: {{strength}}</p>
+      <p>KON: {{constitution}}</p>
+      <p>S: {{power}}</p>
+      <p>ZR: {{dexterity}}</p>
+      <p>WYG: {{appearance}}</p>
+      <p>BC: {{size}}</p>
+      <p>INT: {{intelligence}}</p>
+      <p>WYK: {{education}}</p>
+      <h2>Umiejętności</h2>
+      {{skills}}
+      {% for skill in skills %}
+        <p>{{ skill }}</p>
+      {% endfor %}
+      {{interests}}
+      {% for i in interests %}
+        <p>{{ i }} + 20 </p>
+      {% endfor %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
