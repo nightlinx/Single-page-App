@@ -55,6 +55,7 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
         sex = instance.sex
         city = instance.city
         birthCity = instance.birthCity
+        importantPlace = instance.importantPlace
         nature = instance.nature
         importantPeople = instance.importantPeople
         strength = instance.strength
@@ -65,9 +66,17 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
         size = instance.size
         intelligence = instance.intelligence
         education = instance.education
-
+        luck = instance.luck
+        magicPoints = instance.magicPoints
+        damageBonus = instance.damageBonus
+        build = instance.build
+        hitPoints = instance.hitPoints
+        sanity = instance.sanity
+        occupation = instance.occupation
         skills = instance.skills.split(",")
         interests = instance.interests.split(",")
+        weapons = instance.weapons.split(",")
+        equipment = instance.equipment.split(",")
         return render(request, 'sheet.html', {
             'name': name,
             'gamer': gamer,
@@ -75,6 +84,7 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             'sex': sex,
             'city': city,
             'birthCity': birthCity,
+            'importantPlace': importantPlace,
             'nature': nature,
             'importantPeople': importantPeople,
             'strength': strength,
@@ -85,8 +95,17 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             'size': size,
             'intelligence': intelligence,
             'education': education,
+            'luck': luck,
+            'magicPoints': magicPoints,
+            'damageBonus': damageBonus,
+            'build': build,
+            'hitPoints': hitPoints,
+            'sanity': sanity,
             'skills': skills,
-            'interests': interests
+            'interests': interests,
+            'job': occupation,
+            'weapons': weapons,
+            'equipment': equipment,
             })
 
 class JobViewSet(ReadOnlyModelViewSet):

@@ -574,7 +574,7 @@ new Vue({
           'constitution': this.mainAttr[1].value,
           'power': this.mainAttr[2].value,
           'dexterity': this.mainAttr[3].value,
-          'appearance': this.mainAttr[4].value,
+          'appear': this.mainAttr[4].value,
           'size': this.mainAttr[5].value,
           'intelligence': this.mainAttr[6].value,
           'education': this.mainAttr[7].value,

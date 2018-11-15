@@ -7,27 +7,71 @@
 
 <body>
   <h1>Karta postaci</h1>
-    <div id="sidebar">
-      <p>Imię Badacza: {{name}}</p>
-      <p>Wiek: {{age}}</p>
-      <h2>Cechy główne</h2>
-      <p>S: {{strength}}</p>
-      <p>KON: {{constitution}}</p>
-      <p>S: {{power}}</p>
-      <p>ZR: {{dexterity}}</p>
-      <p>WYG: {{appearance}}</p>
-      <p>BC: {{size}}</p>
-      <p>INT: {{intelligence}}</p>
-      <p>WYK: {{education}}</p>
-      <h2>Umiejętności</h2>
-      {{skills}}
-      {% for skill in skills %}
-        <p>{{ skill }}</p>
-      {% endfor %}
-      {{interests}}
-      {% for i in interests %}
-        <p>{{ i }} + 20 </p>
-      {% endfor %}
+    <div id="content">
+      <div id="Main informations">
+        <p>Imię Badacza: {{name}}</p>
+        <p>Gracz: {{gamer}}</p>
+        <p>Zawód: {{job}}</p>
+        <p>Wiek: {{age}}</p>
+        <p>Płeć: {{sex}}</p>
+        <p>Miejsce zamieszkania: {{city}}</p>
+        <p>Miejsce urodzenia: {{birthCity}}</p>
+      </div>
+      <div id="Main sttributes">
+        <h2>Cechy główne</h2>
+        <p>S: {{strength}}</p>
+        <p>KON: {{constitution}}</p>
+        <p>S: {{power}}</p>
+        <p>ZR: {{dexterity}}</p>
+        <p>WYG: {{appear}}</p>
+        <p>BC: {{size}}</p>
+        <p>INT: {{intelligence}}</p>
+        <p>WYK: {{education}}</p>
+      </div>
+      <div id="points">
+        <h2>Punkty</h2>
+        <p>Punkty wytrzymałości: {{hitPoints}}</p>
+        <p>Poczytalność: {{sanity}}</p>
+        <p>Szczęście: {{sanity}}</p>
+        <p>Punkty magii: {{sanity}}</p>
+        <p>Punkty poczytalności: {{sanity}}</p>
+      </div>
+      <div id="skills">
+        <h2>Umiejętności</h2>
+        {% for skill in skills %}
+          <p>{{ skill }}</p>
+        {% endfor %}
+        {% for i in interests %}
+          <p>{{ i }} + 20 </p>
+        {% endfor %}
+      </div>
+      <div id="weapon">
+        <h2>Walka</h2>
+        <h3>Broń</h3>
+        {% for weapon in weapons %}
+          <p>{{ weapon }}</p>
+        {% endfor %}
+        <h3>Punkty walki</h3>
+          <p>Modyfikator Obrażeń: {{ damageBonus }}</p>
+          <p>Krzepa: {{ build }}</p>
+      </div>
+      <div id="history">
+        <h2>Historia badacza</h2>
+        <p>{{ weapon }}</p>
+        <p>{{ weapon }}</p>
+        <p>{{ weapon }}</p>
+      </div>
+      <div id="equipment">
+        <h2>Ewkipunek</h2>
+        <h3>Broń</h3>
+        {% for weapon in weapons %}
+          <p>{{ weapon }}</p>
+        {% endfor %}
+        <h3>Dobytek</h3>
+        {% for e in equipment %}
+          <p>{{ e }}</p>
+        {% endfor %}
+      </div>
     </div>
 
     <div id="content">

@@ -91,7 +91,7 @@ class Character(models.Model):
     constitution = models.SmallIntegerField(blank=True, default=0)
     power = models.SmallIntegerField(blank=True, default=0)
     dexterity = models.SmallIntegerField(blank=True, default=0)
-    appearance = models.SmallIntegerField(blank=True, default=0)
+    appear = models.SmallIntegerField(blank=True, default=0)
     size = models.SmallIntegerField(blank=True, default=0)
     intelligence = models.SmallIntegerField(blank=True, default=0)
     education = models.SmallIntegerField(blank=True, default=0)
