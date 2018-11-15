@@ -49,61 +49,21 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
     @action(detail=True, methods=["GET"])
     def sheet(self, request, pk=None):
         instance = self.get_object()
-        name = instance.name
-        gamer = instance.gamer
-        age = instance.age
-        sex = instance.sex
-        city = instance.city
-        birthCity = instance.birthCity
-        importantPlace = instance.importantPlace
-        nature = instance.nature
-        importantPeople = instance.importantPeople
-        strength = instance.strength
-        constitution = instance.constitution
-        power = instance.power
-        dexterity = instance.dexterity
-        appearance = instance.appearance
-        size = instance.size
-        intelligence = instance.intelligence
-        education = instance.education
-        luck = instance.luck
-        magicPoints = instance.magicPoints
-        damageBonus = instance.damageBonus
-        build = instance.build
-        hitPoints = instance.hitPoints
-        sanity = instance.sanity
-        occupation = instance.occupation
         skills = instance.skills.split(",")
+        skills.remove('');
         interests = instance.interests.split(",")
+        modified_interests = []
+        for i in interests:
+            a = i.split(":")
+            value = int(a[1]) + 20;
+            modified_interests.append(f'{a[0]}: {value}')
         weapons = instance.weapons.split(",")
+        creditRating = instance.creditRating
         equipment = instance.equipment.split(",")
         return render(request, 'sheet.html', {
-            'name': name,
-            'gamer': gamer,
-            'age': age,
-            'sex': sex,
-            'city': city,
-            'birthCity': birthCity,
-            'importantPlace': importantPlace,
-            'nature': nature,
-            'importantPeople': importantPeople,
-            'strength': strength,
-            'constitution': constitution,
-            'power': power,
-            'dexterity': dexterity,
-            'appearance': appearance,
-            'size': size,
-            'intelligence': intelligence,
-            'education': education,
-            'luck': luck,
-            'magicPoints': magicPoints,
-            'damageBonus': damageBonus,
-            'build': build,
-            'hitPoints': hitPoints,
-            'sanity': sanity,
+            "character": instance,
             'skills': skills,
-            'interests': interests,
-            'job': occupation,
+            'interests': modified_interests,
             'weapons': weapons,
             'equipment': equipment,
             })

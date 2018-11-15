@@ -1,73 +1,76 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <title>{% block title %}Character sheet{% endblock %}</title>
+    <link href='{% static "sheetStyles.css" %}' rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet"
 </head>
 
 <body>
-  <h1>Karta postaci</h1>
+  <h1>Karta postaci - ZEW CTHULHU</h1>
     <div id="content">
-      <div id="Main informations">
-        <p>Imię Badacza: {{name}}</p>
-        <p>Gracz: {{gamer}}</p>
-        <p>Zawód: {{job}}</p>
-        <p>Wiek: {{age}}</p>
-        <p>Płeć: {{sex}}</p>
-        <p>Miejsce zamieszkania: {{city}}</p>
-        <p>Miejsce urodzenia: {{birthCity}}</p>
+      <div id="information">
+        <h2>Informacje</h2>
+        <p>Imię Badacza: {{character.name}}</p>
+        <p>Gracz: {{character.gamer}}</p>
+        <p>Zawód: {{character.occupation}}</p>
+        <p>Wiek: {{character.age}}</p>
+        <p>Płeć: {{character.sex}}</p>
+        <p>Charakter: {{ character.nature }}</p>
+        <p>Miejsce zamieszkania: {{character.city}}</p>
+        <p>Miejsce urodzenia: {{character.birthCity}}</p>
       </div>
-      <div id="Main sttributes">
+      <div id="imageField">
+        <img src="{{character.appearance.url}}"/>
+      </div>
+      <div id="attributes">
         <h2>Cechy główne</h2>
-        <p>S: {{strength}}</p>
-        <p>KON: {{constitution}}</p>
-        <p>S: {{power}}</p>
-        <p>ZR: {{dexterity}}</p>
-        <p>WYG: {{appear}}</p>
-        <p>BC: {{size}}</p>
-        <p>INT: {{intelligence}}</p>
-        <p>WYK: {{education}}</p>
+        <p class='attrName'><p>1/2</p><p>1/5</p>
+        <p class='attrName'>S: {{character.strength}}</p><p>{% widthratio character.strength 2 1 %}</p><p>{% widthratio character.strength 5 1 %}</p>
+        <p class='attrName'>KON: {{character.constitution}}</p><p>{% widthratio character.constitution 2 1 %}</p><p>{% widthratio character.constitution 5 1 %} </p>
+        <p class='attrName'>S: {{character.power}}</p><p>{% widthratio character.power 2 1 %}</p><p>{% widthratio character.power 5 1 %} </p>
+        <p class='attrName'>ZR: {{character.dexterity}}</p><p>{% widthratio character.dexterity 2 1 %}</p><p>{% widthratio character.dexterity 5 1 %} </p>
+        <p class='attrName'>WYG: {{character.appear}}</p><p>{% widthratio character.appear 2 1 %}</p><p>{% widthratio character.appear 5 1 %} </p>
+        <p class='attrName'>BC: {{character.size}}</p><p>{% widthratio character.size 2 1 %}</p><p>{% widthratio character.size 5 1 %} </p>
+        <p class='attrName'>INT: {{character.intelligence}}</p><p>{% widthratio character.intelligence 2 1 %}</p><p>{% widthratio character.intelligence 5 1 %} </p>
+        <p class='attrName'>WYK: {{character.education}}</p><p>{% widthratio character.education 2 1 %}</p><p>{% widthratio character.education 5 1 %} </p>
       </div>
       <div id="points">
         <h2>Punkty</h2>
-        <p>Punkty wytrzymałości: {{hitPoints}}</p>
-        <p>Poczytalność: {{sanity}}</p>
-        <p>Szczęście: {{sanity}}</p>
-        <p>Punkty magii: {{sanity}}</p>
-        <p>Punkty poczytalności: {{sanity}}</p>
+        <p>Punkty wytrzymałości: {{character.hitPoints}}</p>
+        <p>Poczytalność: {{character.sanity}}</p>
+        <p>Szczęście: {{character.luck}}</p>
+        <p>Punkty magii: {{character.magicPoints}}</p>
       </div>
       <div id="skills">
         <h2>Umiejętności</h2>
         {% for skill in skills %}
-          <p>{{ skill }}</p>
+          <p>[  ] {{ skill }}%</p>
         {% endfor %}
         {% for i in interests %}
-          <p>{{ i }} + 20 </p>
+          <p>[  ] {{ i }}%</p>
         {% endfor %}
       </div>
       <div id="weapon">
-        <h2>Walka</h2>
-        <h3>Broń</h3>
+        <h2>Broń</h2>
         {% for weapon in weapons %}
           <p>{{ weapon }}</p>
         {% endfor %}
-        <h3>Punkty walki</h3>
-          <p>Modyfikator Obrażeń: {{ damageBonus }}</p>
-          <p>Krzepa: {{ build }}</p>
+      </div>
+      <div id="combat">
+        <h2>Punkty walki</h2>
+          <p>Modyfikator Obrażeń: {{ character.damageBonus }}</p>
+          <p>Krzepa: {{ character.build }}</p>
       </div>
       <div id="history">
         <h2>Historia badacza</h2>
-        <p>{{ weapon }}</p>
-        <p>{{ weapon }}</p>
-        <p>{{ weapon }}</p>
+        <p>Ważne miejsca: {{ character.importantPlace }}</p>
+        <p>Ważni ludzie: {{ character.importantPeople }}</p>
       </div>
       <div id="equipment">
-        <h2>Ewkipunek</h2>
-        <h3>Broń</h3>
-        {% for weapon in weapons %}
-          <p>{{ weapon }}</p>
-        {% endfor %}
-        <h3>Dobytek</h3>
+        <h2>Dobytek</h2>
+        <p>Gotówka: {{ character.creditRating }} $</p>
+        <br>
         {% for e in equipment %}
           <p>{{ e }}</p>
         {% endfor %}

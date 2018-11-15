@@ -1,0 +1,82 @@
+body {
+  font-family: Rokkitt;
+  width: 790px;
+  height: 1000px;
+  border: 1px solid grey;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin: 10px 0 10px 0;
+  border-bottom: 1px solid grey;
+}
+
+p {
+  margin: 0px;
+}
+
+#content {
+  display: grid;
+  margin: auto;
+  grid-gap: 20px;
+  max-width: 1200px;
+  grid-template-columns: 250px 250px 250px;
+  grid-template-rows: 200px 300px 200px;
+  grid-template-areas:
+     "info img attr"
+     "skills skills skills"
+     "weapon combat points"
+     "history equipment ..."
+}
+
+#information {
+  grid-area: info;
+}
+
+#imageField {
+  grid-area: img;
+}
+
+#attributes {
+  grid-area: attr;
+}
+
+#attributes p {
+  display: inline-block;
+  width: 60px;
+}
+#attributes p.attrName {
+  display: inline-block;
+  width: 90px;
+}
+#attributes span {
+  width: 70px;
+}
+
+#points {
+  grid-area: points;
+}
+
+#skills {
+  grid-area: skills;
+}
+
+#weapon {
+  grid-area: weapon;
+}
+
+#combat {
+  grid-area: combat;
+}
+
+#history {
+  grid-area: history;
+}
+
+#combat {
+  grid-area: equipment;
+}

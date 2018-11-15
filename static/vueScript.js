@@ -229,16 +229,13 @@ new Vue({
       return sum / 10;
     },
     luck: function() {
-      // wykonuję 3 rzuty koścmi K6 i mnożę razy 5;
       var first = Math.floor(Math.random() * 6) + 1;
       var sec = Math.floor(Math.random() * 6) + 1;
       var third = Math.floor(Math.random() * 6) + 1;
       return (first + sec + third) * 5;
-      //== return Math.floor(Math.random() * 90) + 15;
     },
     creditRating: function() {
-      var a = Math.floor(Math.random() * 5) + 1;
-      return a * this.mainSkills[8].value / 10;
+      return this.mainSkills[8].value * 5;
     },
     strongPoints: function() {
       if (this.validateValues(this.mainAttr, this.mainAttrValues)) {
@@ -585,7 +582,7 @@ new Vue({
           'hitPoints': this.hitPoints,
           'sanity': this.sanity,
           'occupation': this.job,
-          'skills': `${this.mainSkills[0].name}: ${this.mainSkills[0].value}, ${this.mainSkills[1].name}: ${this.mainSkills[1].value}, ${this.mainSkills[2].name}: ${this.mainSkills[2].value}, ${this.mainSkills[3].name}: ${this.mainSkills[3].value}, ${this.mainSkills[4].name}: ${this.mainSkills[4].value}, ${this.mainSkills[5].name}: ${this.mainSkills[5].value}, ${this.mainSkills[6].name}: ${this.mainSkills[6].value},`,
+          'skills': `${this.mainSkills[0].name}: ${this.mainSkills[0].value}, ${this.mainSkills[1].name}: ${this.mainSkills[1].value}, ${this.mainSkills[2].name}: ${this.mainSkills[2].value}, ${this.mainSkills[3].name}: ${this.mainSkills[3].value}, ${this.mainSkills[4].name}: ${this.mainSkills[4].value}, ${this.mainSkills[5].name}: ${this.mainSkills[5].value}, ${this.mainSkills[6].name}: ${this.mainSkills[6].value}, ${this.mainSkills[7].name}: ${this.mainSkills[7].value}, ${this.mainSkills[8].name}: ${this.mainSkills[8].value},`,
           'interests': `${this.interests[0]}, ${this.interests[1]}, ${this.interests[2]}, ${this.interests[3]}`,
           'weapons': `${this.weapons[0]}, ${this.weapons[1]}`,
           'creditRating': this.creditRating,
