@@ -42,13 +42,11 @@
         <p>Szczęście: {{character.luck}}</p>
         <p>Punkty magii: {{character.magicPoints}}</p>
       </div>
+      <h2 id="skillTitle">Umiejętności</h2>
       <div id="skills">
-        <h2>Umiejętności</h2>
-        {% for skill in skills %}
-          <p>[  ] {{ skill }}%</p>
-        {% endfor %}
-        {% for i in interests %}
-          <p>[  ] {{ i }}%</p>
+        <br>
+        {% for as in all_skills %}
+          <p>☐ {{as.name}}: {{as.value}}%</p>
         {% endfor %}
       </div>
       <div id="weapon">

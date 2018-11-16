@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from . import models, serializers
 from django.shortcuts import render
 from .models import Character
+from .models import Skill
 
 class AppearanceViewSet(ViewSet):
 
@@ -50,22 +51,36 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
     def sheet(self, request, pk=None):
         instance = self.get_object()
         skills = instance.skills.split(",")
-        skills.remove('');
+        skills.remove('')
         interests = instance.interests.split(",")
-        modified_interests = []
+        characters_skills = []
         for i in interests:
-            a = i.split(":")
-            value = int(a[1]) + 20;
-            modified_interests.append(f'{a[0]}: {value}')
+            name, value = i.split(":")
+            characters_skills.append({'name': name.strip(), 'value': int(value)+20})
+        for i in skills:
+            name, value = i.split(":")
+            characters_skills.append({'name': name.strip(), 'value': int(value)})
+
         weapons = instance.weapons.split(",")
         creditRating = instance.creditRating
         equipment = instance.equipment.split(",")
+
+        skill_queryset = Skill.objects.all()
+        base_skills = []
+        all_skills = []
+        for i in skill_queryset:
+            base_skills.append({'name': i.name, 'value': i.base_value})
+
+        for bs in base_skills:
+            skill = next(filter(lambda x: x['name'] == bs['name'], characters_skills), bs)
+            all_skills.append(skill)
+
         return render(request, 'sheet.html', {
             "character": instance,
-            'skills': skills,
-            'interests': modified_interests,
+            'characters_skills': characters_skills,
             'weapons': weapons,
             'equipment': equipment,
+            'all_skills': all_skills,
             })
 
 class JobViewSet(ReadOnlyModelViewSet):
@@ -77,6 +92,13 @@ class SkillViewSet(ReadOnlyModelViewSet):
 
     queryset = models.Skill.objects.all()
     serializer_class = serializers.SkillSerializer
+
+    @action(detail=True, methods=["GET"])
+    def sheet(self, request, pk=None):
+        instance = self.get_object()
+        return render(request, 'sheet.html', {
+            'allSkills': instance,
+            })
 
 class JobSkillViewSet(ReadOnlyModelViewSet):
 

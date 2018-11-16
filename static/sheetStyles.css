@@ -1,13 +1,14 @@
 body {
   font-family: Rokkitt;
   width: 790px;
-  height: 1000px;
+  height: 1100px;
   border: 1px solid grey;
   padding: 20px;
 }
 
 h1 {
   text-align: center;
+  margin: 10px;
 }
 
 h2 {
@@ -25,9 +26,10 @@ p {
   grid-gap: 20px;
   max-width: 1200px;
   grid-template-columns: 250px 250px 250px;
-  grid-template-rows: 200px 300px 200px;
+  grid-template-rows: 220px 50px 350px 200px;
   grid-template-areas:
      "info img attr"
+     "title title title"
      "skills skills skills"
      "weapon combat points"
      "history equipment ..."
@@ -35,6 +37,15 @@ p {
 
 #information {
   grid-area: info;
+}
+
+#information p {
+  margin: 1px;
+  font-size: 18px;
+}
+
+#skillTitle {
+  grid-area: title;
 }
 
 #imageField {
@@ -48,6 +59,7 @@ p {
 #attributes p {
   display: inline-block;
   width: 60px;
+  height: 20px;
 }
 #attributes p.attrName {
   display: inline-block;
@@ -63,6 +75,7 @@ p {
 
 #skills {
   grid-area: skills;
+  column-count: 3;
 }
 
 #weapon {
