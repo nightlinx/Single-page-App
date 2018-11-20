@@ -2,8 +2,9 @@
 {% load static %}
 <html lang="en">
 <head>
-    <link href='{% static "sheetStyles.css" %}' rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet"
+    <meta charset='utf-8'>
+    <link href='E:/Ania/PWr/Semestr7/Inzynierka/Program/static/sheetStyles.css' rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet">
 </head>
 
 <body>
@@ -56,7 +57,7 @@
         {% endfor %}
       </div>
       <div id="combat">
-        <h2>Punkty walki</h2>
+        <h2>Walka</h2>
           <p>Modyfikator Obrażeń: {{ character.damageBonus }}</p>
           <p>Krzepa: {{ character.build }}</p>
       </div>

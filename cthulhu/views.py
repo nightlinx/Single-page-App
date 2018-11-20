@@ -41,6 +41,19 @@ class AppearanceViewSet(ViewSet):
         return Response(serializer.data)
 
 
+import pdfkit
+from django.http import HttpResponse
+from django.template.loader import get_template
+
+def render_pdf(path: str, params: dict):
+    template = get_template(path)
+    html = template.render(params)
+    pdf_file = pdfkit.from_string(html, False)
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    return response
+
+
 class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet):
 
     queryset = models.Character.objects.all()
@@ -78,7 +91,7 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             skill = next(filter(lambda x: x['name'] == bs['name'], characters_skills), bs)
             all_skills.append(skill)
 
-        return render(request, 'sheet.html', {
+        return render_pdf('sheet.html', {
             "character": instance,
             'characters_skills': characters_skills,
             'weapons': weapons,
