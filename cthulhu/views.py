@@ -9,38 +9,6 @@ from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
 from . import models, serializers
 from django.shortcuts import render
 from .models import Skill
-
-class AppearanceViewSet(ViewSet):
-
-    appearance_class = namedtuple(
-        "Appearance",
-        [
-            "faces",
-            "left_eyes",
-            "right_eyes",
-            "upper_lips",
-            "bottom_lips",
-            "hair",
-        ]
-    )
-    serializer_class = serializers.AppearanceChoicesSerializer
-
-    def get_object(self):
-        return self.appearance_class(
-            faces=models.FaceShape.objects.all(),
-            left_eyes=models.LeftEyeLidShape.objects.all(),
-            right_eyes=models.RightEyeLidShape.objects.all(),
-            upper_lips=models.UpperLipShape.objects.all(),
-            bottom_lips=models.BottomLipShape.objects.all(),
-            hair=models.Hair.objects.all(),
-        )
-
-    def list(self, request):
-        serializer = serializers.AppearanceChoicesSerializer(
-            instance=self.get_object())
-        return Response(serializer.data)
-
-
 import pdfkit
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -91,12 +59,19 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             skill = next(filter(lambda x: x['name'] == bs['name'], characters_skills), bs)
             all_skills.append(skill)
 
+        part1_skills = all_skills[:14]
+        part2_skills = all_skills[14:28]
+        part3_skills = all_skills[28:]
+
         return render_pdf('sheet.html', {
             "character": instance,
             'characters_skills': characters_skills,
             'weapons': weapons,
             'equipment': equipment,
             'all_skills': all_skills,
+            'part1': part1_skills,
+            'part2': part2_skills,
+            'part3': part3_skills,
             })
 
 class JobViewSet(ReadOnlyModelViewSet):
@@ -108,13 +83,6 @@ class SkillViewSet(ReadOnlyModelViewSet):
 
     queryset = models.Skill.objects.all()
     serializer_class = serializers.SkillSerializer
-
-    @action(detail=True, methods=["GET"])
-    def sheet(self, request, pk=None):
-        instance = self.get_object()
-        return render(request, 'sheet.html', {
-            'allSkills': instance,
-            })
 
 class JobSkillViewSet(ReadOnlyModelViewSet):
 
