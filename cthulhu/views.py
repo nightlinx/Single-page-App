@@ -1,17 +1,14 @@
-from collections import namedtuple
-
 from rest_framework.decorators import action
-from rest_framework.response import Response
 from rest_framework.mixins import DestroyModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from . import models, serializers
-from django.shortcuts import render
 from .models import Skill
 import pdfkit
 from django.http import HttpResponse
 from django.template.loader import get_template
+
 
 def render_pdf(path: str, params: dict):
     template = get_template(path)
@@ -46,7 +43,6 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             characters_skills.append({'name': name.strip(), 'value': int(value)})
 
         weapons = instance.weapons.split(",")
-        creditRating = instance.creditRating
         equipment = instance.equipment.split(",")
 
         skill_queryset = Skill.objects.all()
@@ -74,15 +70,18 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             'part3': part3_skills,
             })
 
+
 class JobViewSet(ReadOnlyModelViewSet):
 
     queryset = models.Job.objects.all()
     serializer_class = serializers.JobSerializer
 
+
 class SkillViewSet(ReadOnlyModelViewSet):
 
     queryset = models.Skill.objects.all()
     serializer_class = serializers.SkillSerializer
+
 
 class JobSkillViewSet(ReadOnlyModelViewSet):
 
