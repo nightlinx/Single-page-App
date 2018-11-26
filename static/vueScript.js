@@ -1,3 +1,8 @@
+function getCookie(cookiename) {
+  var cookiestring = RegExp(""+cookiename+"[^;]+").exec(document.cookie);
+  return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
+}
+
 new Vue({
   el: '#content',
   data: {
@@ -598,7 +603,8 @@ new Vue({
           // 'right_eye': this.rightEyeLid.id,
           // 'hair': this.hair.id,
         }, {
-          responseType: 'Object'
+          responseType: 'Object',
+          headers: {"X-CSRFToken": getCookie("csrftoken")},
         }).then(response => {
         console.log("Zapisano postać:", response.body);
         this.postSuccess = true;

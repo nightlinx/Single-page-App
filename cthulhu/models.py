@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -12,6 +13,7 @@ class Job(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=100)
     base_value = models.SmallIntegerField()
+
 
 class FaceShape(models.Model):
     Mx = models.SmallIntegerField()
@@ -126,6 +128,7 @@ class Character(models.Model):
     #  RightEyeLidShape, null=True, default=None, on_delete=models.PROTECT, blank=True)
     # hair = models.ForeignKey(
     #  Hair, null=True, default=None, on_delete=models.PROTECT, blank=True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
 
 
 class JobSkill(models.Model):

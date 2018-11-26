@@ -3,12 +3,11 @@ from collections import namedtuple
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.mixins import DestroyModelMixin, CreateModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet, ViewSet
-from rest_framework.views import APIView
 
 from . import models, serializers
 from django.shortcuts import render
-from .models import Character
 from .models import Skill
 
 class AppearanceViewSet(ViewSet):
@@ -46,6 +45,10 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
 
     queryset = models.Character.objects.all()
     serializer_class = serializers.CharacterSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        return super().get_queryset().filter(owner=self.request.user)
 
     @action(detail=True, methods=["GET"])
     def sheet(self, request, pk=None):
