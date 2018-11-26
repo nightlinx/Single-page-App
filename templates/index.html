@@ -1,28 +1,12 @@
-<!DOCTYPE  html>
+{% extends "base.html" %}
 {% load static %}
 
-<html lang='pl'>
-
-<head>
-  <meta charset='utf-8'>
-  <title>Zew Cthulhu</title>
-  <link href='{% static "styles.css" %}' rel='stylesheet'>
-  <link href='{% static "main-elements.css" %}' rel='stylesheet'>
-  <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet">
-  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+{% block extra-head %}
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-</head>
+{% endblock %}
 
-<body>
-  {% if user.is_authenticated %}
-    <a class="yellow short fixed" href="{% url 'logout' %}">Wyloguj</a>
-  {% else %}
-    <a class="yellow short fixed" href="{% url 'social:begin' 'google-oauth2' %}">Zaloguj</a>
-  {% endif %}
-
-  {% verbatim %}
-  <div id="content">
+{% block content %}
+    {% verbatim %}
     <div class="maingrid">
       <header>Tworzenie postaci</header>
       <nav>
@@ -443,6 +427,8 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
       </main>
 
@@ -456,22 +442,20 @@
             <b>Umiejętności:</b> <span v-for="skills in strongSkills">{{skills.name}}, </span><br>
             <b>Broń:</b> <span v-for="weapon in weapons">{{weapon}}, </span><br></p>
         </div>
-        {% endverbatim %}
-        <a class="save" v-on:click.self.prevent="saveCharacter" href="{% url 'characters' %}" >Zapisz</a>
+        <a class="save" v-on:click.self.prevent="saveCharacter" href="#" >Zapisz</a>
       </aside>
-      </div>
-      <footer class="fixed yellow" v-if="postError" v-on:click="postError=!postError">
+    </div>
+    <footer class="fixed yellow" v-if="postError" v-on:click="postError=!postError">
           Aby zapisać postać trzeba uzupełnić wszystkie informacje
           <button> ok </button>
-      </footer>
-      <footer class="fixed green" v-if="postSuccess" v-on:click="postSuccess=!postSuccess">
+    </footer>
+    <footer class="fixed green" v-if="postSuccess" v-on:click="postSuccess=!postSuccess">
           Twoja postać została zapisana
           <button> ok </button>
-      </footer>
-      </div>
+    </footer>
+    {% endverbatim %}
+{% endblock %}
 
-      <script src="/static/vueScript.js"></script>
-
-</body>
-
-</html>
+{% block extra-script %}
+    <script src="{% static "vueScript.js" %}"></script>
+{% endblock extra-script %}

@@ -1,19 +1,7 @@
-<!DOCTYPE  html>
+{% extends "base.html" %}
 {% load static %}
-<html lang='pl'>
-<head>
-  <meta charset='utf-8'>
-  <title>Zew Cthulhu</title>
-  <link href='../static/styles.css' rel='stylesheet'>
-  <link href='../static/main-elements.css' rel='stylesheet'>
-  <link href="https://fonts.googleapis.com/css?family=Rokkitt:300,400,700" rel="stylesheet">
-  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-</head>
 
-<body>
-   <div id="list">
-     <a class="yellow short fixed" href="login.html">Wyloguj</a>
+{% block content %}
      <div class="maingrid">
        <header>twoje postacie</header>
        <div class="list">
@@ -28,7 +16,8 @@
          {% endverbatim %}
        </div>
      </div>
-   </div>
-  <script src="/static/charactersScript.js"></script>
-</body>
-</html>
+{% endblock %}
+
+{% block extra-script %}
+  <script src="{% static "charactersScript.js" %}"></script>
+{% endblock extra-script %}

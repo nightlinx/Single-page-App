@@ -366,7 +366,7 @@ new Vue({
       };
     },
     hairShapeSrc: function() {
-      return `../static/img/hair/${this.hairShape}${this.hairColor}.png`;
+      return `/static/img/hair/${this.hairShape}${this.hairColor}.png`;
     },
   },
   watch: {

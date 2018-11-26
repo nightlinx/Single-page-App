@@ -1,5 +1,5 @@
 new Vue({
-  el: '#list',
+  el: '#content',
   data: {
     characters: [{
         job: "detektyw",
