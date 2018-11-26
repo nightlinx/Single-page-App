@@ -13,7 +13,7 @@ from django.template.loader import get_template
 def render_pdf(path: str, params: dict):
     template = get_template(path)
     html = template.render(params)
-    pdf_file = pdfkit.from_string(html, False)
+    pdf_file = pdfkit.from_string(html, None, options = {'quiet': ''})
     response = HttpResponse(pdf_file, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
     return response

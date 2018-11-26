@@ -1,7 +1,10 @@
+import mimetypes
 from unittest import mock
 
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
+from django.http import HttpResponse
+from django.template.backends.dummy import Template
 from django.test import TestCase
 
 from rest_framework.exceptions import ValidationError
@@ -9,7 +12,7 @@ from rest_framework.request import Request
 
 from .fields import Base64ImageField
 from .models import Character
-from .views import CharacterViewSet
+from .views import CharacterViewSet, render_pdf
 
 
 User = get_user_model()
@@ -65,5 +68,26 @@ class CharacterViewSetTest(TestCase):
         m_render_pdf.assert_called_once()
         template_name, context = m_render_pdf.call_args[0]
         self.assertEqual(template_name, "sheet.html")
-        for key in ("character", "characters_skills", "weapons", "all_skills"):
-            self.assertIn(key, context)
+
+        for key in (
+            "character",
+            "characters_skills",
+            "weapons",
+            "all_skills",
+            "part1",
+            "part2",
+            "part3",
+        ):
+            self.assertIn(key, context, f"{key} is needed in context for rendering template")
+
+
+class RenderPdfTest(TestCase):
+
+    template = "My name is {{ name }}"
+
+    @mock.patch("cthulhu.views.get_template")
+    def test_is_http_respone_with_attachment(self, m_get_template):
+        m_get_template.return_value = Template(self.template)
+        rendered = render_pdf("mock_template", {"name": "Django"})
+        self.assertIsInstance(rendered, HttpResponse)
+        self.assertEquals(rendered["Content-Type"], mimetypes.types_map[".pdf"])
