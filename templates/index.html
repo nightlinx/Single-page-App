@@ -15,10 +15,14 @@
 </head>
 
 <body>
+  {% if user.is_authenticated %}
+    <a class="yellow short fixed" href="{% url 'logout' %}">Wyloguj</a>
+  {% else %}
+    <a class="yellow short fixed" href="{% url 'social:begin' 'google-oauth2' %}">Zaloguj</a>
+  {% endif %}
+
   {% verbatim %}
   <div id="content">
-    <a class="yellow short fixed" href="login.html">Wyloguj</a>
-
     <div class="maingrid">
       <header>Tworzenie postaci</header>
       <nav>
