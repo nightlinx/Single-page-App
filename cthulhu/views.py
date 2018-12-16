@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 
 
-def render_pdf(path: str, params: dict):
+def render_character_sheet(path: str, params: dict):
     template = get_template(path)
     html = template.render(params)
     pdf_file = pdfkit.from_string(html, None, options = {'quiet': ''})
@@ -59,7 +59,7 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
         part2_skills = all_skills[14:28]
         part3_skills = all_skills[28:]
 
-        return render_pdf('sheet.html', {
+        return render_character_sheet('sheet.html', {
             "character": instance,
             'characters_skills': characters_skills,
             'weapons': weapons,
