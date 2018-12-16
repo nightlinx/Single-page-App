@@ -43,7 +43,10 @@ class CharacterViewSet(DestroyModelMixin, CreateModelMixin, ReadOnlyModelViewSet
             characters_skills.append({'name': name.strip(), 'value': int(value)})
 
         weapons = instance.weapons.split(",")
-        equipment = instance.equipment.split(",")
+        equipment = []
+        for e in instance.equipment.split(","):
+            if e != ' undefined':
+                equipment.append(e)
 
         skill_queryset = Skill.objects.all()
         base_skills = []

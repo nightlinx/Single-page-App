@@ -875,55 +875,56 @@ new Vue({
     saveCharacter(event) {
       this.postSuccess = false;
       this.postError = false;
-      this.elementToCanvas(this.$refs.printMe);
+      render = this.elementToCanvas(this.$refs.printMe);
       console.log('appearance_url', this.appearance_url);
-      this.$http.post(
-        '/api/characters/', {
-          'name': this.explorerName,
-          'gamer': this.gamerName,
-          'age': this.explorerAge,
-          'sex': this.explorerSex,
-          'city': this.explorerCity,
-          'birthCity': this.explorerBirthCity,
-          'importantPlace': this.importantPlace,
-          'nature': this.nature,
-          'importantPeople': this.importantPeople,
-          'strength': this.mainAttr[0].value,
-          'constitution': this.mainAttr[1].value,
-          'power': this.mainAttr[2].value,
-          'dexterity': this.mainAttr[3].value,
-          'appear': this.mainAttr[4].value,
-          'size': this.mainAttr[5].value,
-          'intelligence': this.mainAttr[6].value,
-          'education': this.mainAttr[7].value,
-          'luck': this.luck,
-          'magicPoints': this.magic,
-          'damageBonus': this.damageBonusAndBuild[0],
-          'build': this.damageBonusAndBuild[1],
-          'hitPoints': this.hitPoints,
-          'sanity': this.sanity,
-          'occupation': this.job,
-          'skills': `${this.mainSkills[0].name}: ${this.mainSkills[0].value}, ${this.mainSkills[1].name}: ${this.mainSkills[1].value}, ${this.mainSkills[2].name}: ${this.mainSkills[2].value}, ${this.mainSkills[3].name}: ${this.mainSkills[3].value}, ${this.mainSkills[4].name}: ${this.mainSkills[4].value}, ${this.mainSkills[5].name}: ${this.mainSkills[5].value}, ${this.mainSkills[6].name}: ${this.mainSkills[6].value}, ${this.mainSkills[7].name}: ${this.mainSkills[7].value}, ${this.mainSkills[8].name}: ${this.mainSkills[8].value},`,
-          'interests': `${this.interests[0]}, ${this.interests[1]}, ${this.interests[2]}, ${this.interests[3]}`,
-          'weapons': `${this.weapons[0]}, ${this.weapons[1]}`,
-          'cash': this.cash,
-          'equipment': `${this.equipment[0]}, ${this.equipment[1]}, ${this.equipment[2]}, ${this.equipment[3]}, ${this.equipment[4]}`,
-          'appearance': `${this.appearance_url}`,
-
-        }, {
-          responseType: 'Object',
-          headers: {"X-CSRFToken": getCookie("csrftoken")},
-        }).then(response => {
-        console.log("Zapisano postać:", response.body);
-        this.postSuccess = true;
-        window.location.href = event.target.href;
-      }, response => {
-        console.log("Nie udało się zapisać postaci");
-        this.postError = true;
+      render.then(_ => {
+        this.$http.post(
+          '/api/characters/', {
+            'name': this.explorerName,
+            'gamer': this.gamerName,
+            'age': this.explorerAge,
+            'sex': this.explorerSex,
+            'city': this.explorerCity,
+            'birthCity': this.explorerBirthCity,
+            'importantPlace': this.importantPlace,
+            'nature': this.nature,
+            'importantPeople': this.importantPeople,
+            'strength': this.mainAttr[0].value,
+            'constitution': this.mainAttr[1].value,
+            'power': this.mainAttr[2].value,
+            'dexterity': this.mainAttr[3].value,
+            'appear': this.mainAttr[4].value,
+            'size': this.mainAttr[5].value,
+            'intelligence': this.mainAttr[6].value,
+            'education': this.mainAttr[7].value,
+            'luck': this.luck,
+            'magicPoints': this.magic,
+            'damageBonus': this.damageBonusAndBuild[0],
+            'build': this.damageBonusAndBuild[1],
+            'hitPoints': this.hitPoints,
+            'sanity': this.sanity,
+            'occupation': this.job,
+            'skills': `${this.mainSkills[0].name}: ${this.mainSkills[0].value}, ${this.mainSkills[1].name}: ${this.mainSkills[1].value}, ${this.mainSkills[2].name}: ${this.mainSkills[2].value}, ${this.mainSkills[3].name}: ${this.mainSkills[3].value}, ${this.mainSkills[4].name}: ${this.mainSkills[4].value}, ${this.mainSkills[5].name}: ${this.mainSkills[5].value}, ${this.mainSkills[6].name}: ${this.mainSkills[6].value}, ${this.mainSkills[7].name}: ${this.mainSkills[7].value}, ${this.mainSkills[8].name}: ${this.mainSkills[8].value},`,
+            'interests': `${this.interests[0]}, ${this.interests[1]}, ${this.interests[2]}, ${this.interests[3]}`,
+            'weapons': `${this.weapons[0]}, ${this.weapons[1]}`,
+            'cash': this.cash,
+            'equipment': `${this.equipment[0]}, ${this.equipment[1]}, ${this.equipment[2]}, ${this.equipment[3]}, ${this.equipment[4]}`,
+            'appearance': `${this.appearance_url}`,
+          }, {
+            responseType: 'Object',
+            headers: {"X-CSRFToken": getCookie("csrftoken")},
+          }).then(response => {
+          console.log("Zapisano postać:");
+          this.postSuccess = true;
+          window.location.href = "list";
+        }, response => {
+          console.log("Nie udało się zapisać postaci");
+          this.postError = true;
+        });
       });
     },
     elementToCanvas(el) {
-      html2canvas(el).then(canvas => {
+      return html2canvas(el).then(canvas => {
         this.appearance_url = canvas.toDataURL();
       }).catch((error) => {
         console.log("Error rendering element to canvas")

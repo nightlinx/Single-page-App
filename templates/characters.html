@@ -10,7 +10,7 @@
          <div class="element" v-for="(c, index) in characters">
            <p class="job">{{c.job}}</p><br>
            <p class="info"><b>{{c.name}}</b> | Płeć: {{c.sex}} | Wiek: {{c.age}} </p>
-           <div class="opt1"><a class="option">drukuj/zapisz</a></div>
+           <div class="opt1"><a class="option" v-on:click="printCharacter(index)">drukuj/zapisz</a></div>
            <div class="opt2"><a class="option right" v-on:click="deleteCharacter(index)">usuń</a></div>
          </div>
          {% endverbatim %}
