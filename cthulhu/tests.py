@@ -12,7 +12,7 @@ from rest_framework.request import Request
 
 from .fields import Base64ImageField
 from .models import Character
-from .views import CharacterViewSet, render_pdf
+from .views import CharacterViewSet, render_character_sheet
 
 
 User = get_user_model()
@@ -61,7 +61,7 @@ class CharacterViewSetTest(TestCase):
         )
         cls.request = mock.Mock(spec=Request, user=user)
 
-    @mock.patch("cthulhu.views.render_pdf")
+    @mock.patch("cthulhu.views.render_character_sheet")
     def test_sheet(self, m_render_pdf):
         view = self.view_class(request=self.request, kwargs={"pk": self.character.pk})
         view.sheet(self.request, self.character.pk)
@@ -88,6 +88,6 @@ class RenderPdfTest(TestCase):
     @mock.patch("cthulhu.views.get_template")
     def test_is_http_respone_with_attachment(self, m_get_template):
         m_get_template.return_value = Template(self.template)
-        rendered = render_pdf("mock_template", {"name": "Django"})
+        rendered = render_character_sheet("mock_template", {"name": "Django"})
         self.assertIsInstance(rendered, HttpResponse)
         self.assertEquals(rendered["Content-Type"], mimetypes.types_map[".pdf"])
