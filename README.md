@@ -1,3 +1,14 @@
+# Web application supporting creation of character for role playing game
+
+The purpose of this application is the improvement of creating character's profile of role playing game. Implemented application is substitute of a traditional, paper solution.
+Existing solutions do not contain all essential functionalities such as interactive appearance creator, printing generated character's sheet and saving all of created characters in system.
+
+To create this application it was made detailed project of application. There was described all requirements, use cases, architecture of application, data base design, package diagram and user interface prototype. The application is developed in Vue.js and Django frameworks with SQLite data base. Django REST Framework is used to create web API. 
+
+To improve application there was made unit, manual and usbaility tests.
+
+Developed application can by used by people interested in role playing game, who are willing to use IT solutions in improvement of creating character's profiles.
+
 # Wymagania do uruchomienia projektu
 
 1. Zainstaluj w systemie operacyjnym Pythona w wersji 3.6, na przykład
